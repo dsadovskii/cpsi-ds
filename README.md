@@ -1,24 +1,23 @@
-# cpsi-ds
+### CPSI design system
 
-## Project setup
-```
-yarn install
-```
+Install:
 
-### Compiles and hot-reloads for development
-```
-yarn serve
+```bash
+npm install cpsi-ds --save
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
+Import:
 
-### Lints and fixes files
-```
-yarn lint
-```
+```javascript
+import Vue from 'vue'
+import CPSIDs from 'cpsi-ds'
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Vue.use(CPSIDs)
+```
+```javascript
+//In your nuxt.config.js
+styleResources: {
+  scss: ['cpsi-ds/src/assets/scss/main.scss'],
+},
+css: ['cpsi-ds/src/assets/scss/_indents.scss', 'cpsi-ds/src/assets/css/reset.css'],
+```

@@ -1,0 +1,17 @@
+$bg-white: #FFFFFF;
+$bg-gray: #7F8FA4;
+$bg-dark-gray: #242424;
+$bg-red: #E20E41;
+$bg-light-blue: #CED9F0;
+$bg-lightnest-blue: #E6F1F9;
+$bg-blue: #1E3685;
+
+$backgrounds: (
+  'white': $bg-white,
+  'gray': $bg-gray,
+  'dark-gray': $bg-dark-gray,
+  'red': $bg-red,
+  'light-blue': $bg-light-blue,
+  'lightnest-blue': $bg-lightnest-blue,
+  'blue': $bg-blue,
+);

@@ -1,0 +1,116 @@
+@mixin page-wrapper() {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: $space-50 $space-zero $space-54;
+}
+@mixin pseudo($display: block, $pos: absolute, $content: "") {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+@mixin size($size, $important: null) {
+  @if($important) {
+    width: $size $important;
+    min-width: $size $important;
+    height: $size $important;
+    min-height: $size $important;
+  }
+  @else {
+    width: $size;
+    min-width: $size;
+    height: $size;
+    min-height: $size;
+  }
+}
+@mixin reset {
+  box-sizing: border-box;
+  //padding: 0;
+  //margin: 0;
+}
+@mixin reset-text-indents() {
+  font-size: 0;
+  line-height: 0;
+}
+@mixin layout-flex-fix {
+  min-width: 0;
+  max-width: 100%;
+}
+@mixin align($vertical: true, $horizontal: false, $position: relative) {
+  @if $position {
+    position: $position;
+  }
+  @if $vertical {
+    top: 50%;
+  }
+  @if $horizontal {
+    left: 50%;
+  }
+
+  @if $vertical and $horizontal {
+    transform: translateX(-50%) translateY(-50%);
+  } @else if $vertical {
+    transform: translateY(-50%);
+  } @else {
+    transform: translateX(-50%);
+  }
+}
+@mixin responsive-ratio($x, $y, $pseudo: false) {
+  $padding: unquote(($y / $x) * 100 + "%");
+
+  @if $pseudo {
+    &::before {
+      @include pseudo($pos: relative);
+      width: 100%;
+      padding-top: $padding;
+    }
+  } @else {
+    padding-top: $padding;
+  }
+}
+
+@mixin input-placeholder {
+  &.placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+@mixin reset-btn() {
+  box-sizing: border-box;
+  //display: block;
+  margin: 0;
+  padding: 0 !important;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  background-image: none;
+  cursor: pointer;
+  outline: 0;
+  font-size: 0;
+  line-height: 0;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -webkit-text-fill-color: currentColor;
+
+  &:focus {
+    outline: 0;
+  }
+}

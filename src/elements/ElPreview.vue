@@ -1,0 +1,62 @@
+<template>
+  <article class="el-preview">
+    <a-badge v-bind="previewNotifies">
+      <a-avatar v-if="src" :size="64" :src="src" shape="circle" />
+    </a-badge>
+    <section class="el-preview__content">
+      <div class="el-preview__content--top">
+        <slot name="top" />
+      </div>
+      <div class="el-preview__content--bottom">
+        <slot name="bottom" />
+      </div>
+    </section>
+  </article>
+</template>
+
+<script>
+export default {
+  name: 'ElPreview',
+  props: {
+    src: {
+      type: String,
+      default: null,
+    },
+    dot: {
+      type: Boolean,
+      default: false,
+    },
+    count: {
+      type: Number,
+      default: null,
+    },
+  },
+  computed: {
+    previewNotifies() {
+      const props = {}
+      !this.dot || (props.dot = true)
+      !this.count || (props.count = this.count)
+      return props
+    },
+  },
+}
+</script>
+
+<style lang="scss">
+.el-preview {
+  display: flex;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: $space-24;
+    &--top,
+    &--bottom {
+      display: flex;
+      align-items: center;
+      flex: 1 1 auto;
+    }
+  }
+}
+</style>

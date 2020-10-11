@@ -1,0 +1,17 @@
+$color-white: #ffffff;
+$color-red: #D52B1E;
+$color-blue: #1E3685;
+$color-light-blue: #CED9F0;
+$color-black: #000026;
+$color-gray: #7F8FA4;
+$color-transparent: transparent;
+
+$colors: (
+  'white': $color-white,
+  'red': $color-red,
+  'blue': $color-blue,
+  'light-blue': $color-light-blue,
+  'black': $color-black,
+  'gray': $color-gray,
+  'transparent': transparent,
+);
