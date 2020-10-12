@@ -89,6 +89,18 @@ export default {
     width: 100%;
     border-bottom: 1px solid $color-light-blue;
   }
+  &__header,
+  &__footer {
+    & > * {
+      flex: 0 0 auto;
+    }
+    &-center {
+      flex: 1 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: $space-zero $space-16;
+    }
+  }
   &__content {
     height: 100%;
     width: 100%;
