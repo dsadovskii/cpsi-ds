@@ -76,6 +76,12 @@ export default {
       [`${data.staticClass}`]: !!data.staticClass,
       ...data.class,
     }
+    const htmlContent = {}
+    if (data.domProps && data.domProps.innerHTML) {
+      htmlContent.domProps = {
+        innerHTML: data.domProps.innerHTML,
+      }
+    }
     return h(
       tag,
       {
@@ -83,6 +89,7 @@ export default {
         style: {
           maxWidth: props.maxWidth,
         },
+        ...htmlContent,
       },
       slots()['default'],
     )
