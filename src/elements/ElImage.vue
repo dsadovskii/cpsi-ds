@@ -99,6 +99,9 @@ export default {
 <style lang="scss">
 .el-image {
   $block-name: &;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 0;
   overflow: hidden;
   @each $media, $value in $medias {
@@ -124,7 +127,8 @@ export default {
   }
   img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-height: 100%;
     user-select: none;
   }
 }
