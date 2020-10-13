@@ -41,7 +41,7 @@ export default {
     },
     nuxt: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     variant: {
       type: String,
