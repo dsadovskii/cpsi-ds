@@ -105,7 +105,8 @@ export default {
       font-size: $fs-16;
       line-height: $lh-14;
       border-radius: $radius-3;
-      border: none;
+      background-color: transparent;
+      border: 1px solid $color-gray;
       box-shadow: none;
       outline: none;
       color: $color-black;
@@ -122,6 +123,7 @@ export default {
     }
     &-main {
       width: 100%;
+      max-width: 300px;
       .mx-calendar {
         width: 100%;
         &-content {
@@ -137,6 +139,18 @@ export default {
           }
         }
       }
+    }
+    .mx-icon-calendar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 90px;
+      height: 52px;
+      right: 0;
+      color: $color-white;
+      background: $color-blue;
+      border-radius: 0 $radius-3 $radius-3 0;
+      pointer-events: none;
     }
   }
   &--error {

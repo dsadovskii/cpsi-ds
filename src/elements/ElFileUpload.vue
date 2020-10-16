@@ -9,7 +9,7 @@
           {{ text }}
         </span>
         <span class="el-file-upload__icon-append">
-          <el-button @click="setInputFocus">+</el-button>
+          <el-button @click.stop.prevent="setInputFocus" full-width>+</el-button>
         </span>
       </label>
       <input :id="name" :ref="name" :name="name" type="file" class="el-file-upload__input" multiple @change="setFile" />
@@ -18,9 +18,11 @@
       <el-badge
         v-for="(file, index) in files"
         @click="() => removeFile(index, file)"
+        variant="light-blue"
+        color="blue"
         closable
         :key="`file${file}`"
-        class="mt-30"
+        class="mt-24 mr-16"
       >
         {{ fileName(file) }}
       </el-badge>
@@ -63,6 +65,9 @@ export default {
       return this.value && this.value.length
     },
     text() {
+      if (this.files && this.files.length) {
+        return `Selected ${this.files.length} files`
+      }
       return this.title
     },
   },
@@ -104,6 +109,18 @@ export default {
   &__result {
     display: inline-flex;
     align-items: center;
+  }
+  &__icon-append {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 52px;
+    width: 90px;
+    .el-button {
+      height: inherit;
+      border-radius: 0 $radius-3 $radius-3 0;
+      pointer-events: none;
+    }
   }
   &__file {
     display: flex;
