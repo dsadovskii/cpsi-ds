@@ -169,10 +169,6 @@ export default {
       }
     }
   }
-  &__content + &__icon-append,
-  &__icon-prepend + &__content {
-    margin-left: $space-8;
-  }
   &__result {
     position: relative;
     padding-right: 20px;
