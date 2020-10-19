@@ -4,6 +4,7 @@
       class="no-select-styles"
       :dropdown-match-select-width="false"
       :default-value="computedValue"
+      :value="computedValue"
       :class="classes"
       :style="styles"
       @change="handleChange"
@@ -21,8 +22,8 @@ import _get from 'lodash/get'
 export default {
   name: 'ElDropdown',
   props: {
-    // eslint-disable-next-line vue/require-prop-types
     value: {
+      type: [String, Number, Object],
       required: false,
     },
     options: {
@@ -45,11 +46,15 @@ export default {
       type: String,
       default: '230px',
     },
+    returnObject: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     computedValue: {
       get() {
-        return this.value
+        return this.returnObject ? (this.value && this.value[this.valueField]) || '' : this.value
       },
       set(value) {
         this.$emit('input', value)
@@ -77,6 +82,13 @@ export default {
       return _get(item, prop)
     },
     handleChange(value) {
+      if (this.returnObject) {
+        const object = this.options.find(o => o[this.valueField] === value)
+        value = {
+          [this.valueField]: object[this.valueField],
+          [this.titleField]: object[this.titleField],
+        }
+      }
       this.computedValue = value
       this.$emit('change', value)
     },

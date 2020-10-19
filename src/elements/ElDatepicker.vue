@@ -26,6 +26,7 @@
 <script>
 import DatePicker from 'vue2-datepicker'
 import 'vue2-datepicker/index.css'
+import moment from 'moment'
 export default {
   name: 'ElDatepicker',
   components: {
@@ -64,8 +65,12 @@ export default {
       type: String,
       default: 'DD.MM.YYYY',
     },
-    error: {
+    toFormat: {
       type: String,
+      default: 'YYYY-MM-DD HH:mm',
+    },
+    error: {
+      type: [String, Array],
       default: null,
     },
     appendToBody: {
@@ -79,10 +84,10 @@ export default {
     },
     date: {
       get() {
-        return this.value
+        return moment(this.value, this.toFormat).format(this.format)
       },
       set(value) {
-        this.$emit('input', value)
+        this.$emit('input', moment(value, this.format).format(this.toFormat))
       },
     },
   },
