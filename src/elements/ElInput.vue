@@ -249,6 +249,27 @@ export default {
     right: $space-24;
     transform: translateY(-50%);
     transform-origin: center;
+    .el-dropdown {
+      min-width: 90px;
+      height: 52px;
+      background: #1e3685;
+      border-radius: 0 3px 3px 0;
+      transform: translateX($space-24);
+      .ant-select {
+        height: inherit;
+        display: inline-flex;
+        align-items: center;
+        color: #ffffff;
+        &-selection {
+          min-width: 100%;
+        }
+        .ant-select-arrow-icon {
+          svg {
+            fill: $color-gray;
+          }
+        }
+      }
+    }
   }
 }
 </style>

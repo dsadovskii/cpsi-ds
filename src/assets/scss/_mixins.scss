@@ -1,7 +1,7 @@
-@mixin page-wrapper() {
+@mixin page-wrapper($padding: $space-50 $space-zero $space-54) {
   max-width: 1120px;
   margin: 0 auto;
-  padding: $space-50 $space-zero $space-54;
+  padding: $padding;
 }
 @mixin pseudo($display: block, $pos: absolute, $content: "") {
   content: $content;

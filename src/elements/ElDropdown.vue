@@ -1,5 +1,5 @@
 <template>
-  <div class="el-dropdown">
+  <div class="el-dropdown" @click.stop.prevent>
     <a-select
       class="no-select-styles"
       :dropdown-match-select-width="false"

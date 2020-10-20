@@ -144,6 +144,10 @@ export default {
     &--#{$name} {
       background-color: #{$color};
       color: #ffffff;
+      @if $color == #ffffff {
+        background-color: #{$color};
+        color: $color-blue;
+      }
       @media #{$desktop} {
         &:hover {
           filter: brightness(1.3);
