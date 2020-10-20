@@ -9,10 +9,19 @@
           {{ text }}
         </span>
         <span class="el-file-upload__icon-append">
-          <el-button @click.stop.prevent="setInputFocus" full-width>+</el-button>
+          <el-button :disabled="disabled" full-width @click.stop.prevent="setInputFocus">+</el-button>
         </span>
       </label>
-      <input :id="name" :ref="name" :name="name" type="file" class="el-file-upload__input" multiple @change="setFile" />
+      <input
+        :id="name"
+        :ref="name"
+        :name="name"
+        :disabled="disabled"
+        type="file"
+        class="el-file-upload__input"
+        multiple
+        @change="setFile"
+      />
     </section>
     <template v-if="hasFiles">
       <el-badge
@@ -20,7 +29,7 @@
         @click="() => removeFile(index, file)"
         variant="light-blue"
         color="blue"
-        closable
+        :closable="!disabled"
         :key="`file${file}`"
         class="mt-24 mr-16"
       >
@@ -51,6 +60,10 @@ export default {
       default: null,
       required: true,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     files: {
@@ -65,7 +78,9 @@ export default {
       return this.value && this.value.length
     },
     text() {
-      if (this.files && this.files.length) {
+      if (this.disabled) {
+        return 'Files uploaded'
+      } else if (this.files && this.files.length) {
         return `Selected ${this.files.length} files`
       }
       return this.title

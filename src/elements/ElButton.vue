@@ -161,6 +161,9 @@ export default {
       &.active {
         filter: brightness(1.3);
       }
+      &#{$block-name}--disabled {
+        background-color: rgba($color, 0.5);
+      }
     }
     &--#{$name}-link {
       @include reset-btn();
