@@ -28,7 +28,7 @@ export default {
       default: false,
     },
   },
-  render(h, { slots, props, data }) {
+  render(h, { slots, props, data, listeners }) {
     const attrs = props.to ? { to: props.to } : {}
     return h(
       props.to ? (props.nuxt ? 'nuxt-link' : 'router-link') : 'article',
@@ -43,6 +43,12 @@ export default {
           ...data.class,
         },
         attrs: attrs,
+        on: {
+          click(e) {
+            if (!Object.keys(listeners).length) return
+            listeners['click'](e)
+          },
+        },
       },
       [
         !(slots()['card-header'] || slots()['card-header-left'] || slots()['card-header-right']) ||

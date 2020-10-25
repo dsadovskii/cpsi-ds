@@ -1,13 +1,18 @@
 <template>
   <div class="el-dropdown" @click.stop.prevent>
     <a-select
+      :mode="mode"
       class="no-select-styles"
       :dropdown-match-select-width="false"
       :default-value="computedValue"
       :value="computedValue"
       :class="classes"
       :style="styles"
+      :placeholder="computedPlaceholder"
+      :show-search="searchable"
+      :filter-option="!searchable && mode === 'multiple'"
       @change="handleChange"
+      @search="handleSearch"
     >
       <a-select-option v-for="item in options" :key="item.id || item.key" :value="getValue(item)">
         {{ getTitle(item) }}
@@ -23,7 +28,7 @@ export default {
   name: 'ElDropdown',
   props: {
     value: {
-      type: [String, Number, Object],
+      type: [String, Number, Object, Array],
       required: false,
     },
     options: {
@@ -46,6 +51,21 @@ export default {
       type: String,
       default: '230px',
     },
+    /**
+     * multiple, default
+     * */
+    mode: {
+      type: String,
+      default: 'default',
+    },
+    searchable: {
+      type: Boolean,
+      default: false,
+    },
+    placeholder: {
+      type: String,
+      default: null,
+    },
     returnObject: {
       type: Boolean,
       default: false,
@@ -54,7 +74,11 @@ export default {
   computed: {
     computedValue: {
       get() {
-        return this.returnObject ? (this.value && this.value[this.valueField]) || '' : this.value
+        return this.returnObject
+          ? this.mode === 'multiple'
+            ? [...this.value].map(val => val[this.valueField])
+            : (this.value && this.value[this.valueField]) || ''
+          : this.value
       },
       set(value) {
         this.$emit('input', value)
@@ -70,6 +94,12 @@ export default {
         'min-width': this.minWidth,
       }
     },
+    computedPlaceholder() {
+      if (!this.placeholder) {
+        return this.searchable ? 'Start typing' : 'Select'
+      }
+      return this.placeholder
+    },
   },
   methods: {
     getValue(item) {
@@ -83,14 +113,23 @@ export default {
     },
     handleChange(value) {
       if (this.returnObject) {
-        const object = this.options.find(o => o[this.valueField] === value)
-        value = {
-          [this.valueField]: object[this.valueField],
-          [this.titleField]: object[this.titleField],
+        if (this.mode === 'multiple') {
+          value = this.options.filter(o => {
+            return value.includes(o[this.valueField])
+          })
+        } else {
+          const object = this.options.find(o => o[this.valueField] === value)
+          value = {
+            [this.valueField]: object[this.valueField],
+            [this.titleField]: object[this.titleField],
+          }
         }
       }
       this.computedValue = value
       this.$emit('change', value)
+    },
+    handleSearch(value) {
+      this.$emit('search', value)
     },
   },
 }

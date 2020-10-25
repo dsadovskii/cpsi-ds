@@ -1,6 +1,6 @@
 <template>
   <section class="pt-tabs">
-    <a-tabs :default-active-key="defaultActiveKey">
+    <a-tabs v-model="currentTab" :default-active-key="defaultActiveKey">
       <slot />
     </a-tabs>
   </section>
@@ -14,6 +14,19 @@ export default {
       type: String,
       default: '1',
       required: true,
+    },
+    value: {
+      type: [String, Number],
+    },
+  },
+  computed: {
+    currentTab: {
+      get() {
+        return this.value
+      },
+      set(value) {
+        this.$emit('input', value)
+      },
     },
   },
 }
