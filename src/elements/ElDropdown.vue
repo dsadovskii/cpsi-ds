@@ -70,6 +70,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    size: {
+      type: String,
+      default: 'm',
+    },
   },
   computed: {
     computedValue: {
@@ -87,6 +91,7 @@ export default {
     classes() {
       return {
         'el-dropdown--no-bg': this.noBg,
+        [`el-dropdown--size-${this.size}`]: true,
       }
     },
     styles() {
@@ -143,6 +148,29 @@ export default {
       background: none;
       box-shadow: none !important;
       border: none !important;
+      height: 30px;
+    }
+  }
+  &--size-m {
+    .ant-select-selection {
+      padding: 0;
+      &--multiple,
+      &--single {
+        min-height: 52px;
+        font-size: $space-16;
+        line-height: $lh-14;
+        margin: 0 !important;
+        padding: $space-10 $space-24;
+      }
+      &__placeholder {
+        margin-left: 0 !important;
+        margin-right: 0;
+      }
+    }
+  }
+  &--size-s {
+    .ant-select-selection {
+      min-height: 30px;
     }
   }
   .ant-select-selection {
