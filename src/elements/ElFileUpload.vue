@@ -9,7 +9,9 @@
           {{ text }}
         </span>
         <span class="el-file-upload__icon-append">
-          <el-button :disabled="disabled" full-width @click.stop.prevent="setInputFocus">+</el-button>
+          <el-button :disabled="disabled" full-width @click.stop.prevent="setInputFocus">
+            <el-svg-icon name="pin" size="20" />
+          </el-button>
         </span>
       </label>
       <input
@@ -42,11 +44,13 @@
 <script>
 import ElButton from './ElButton.vue'
 import ElBadge from './ElBadge.vue'
+import ElSvgIcon from './ElSvgIcon.vue'
 export default {
   name: 'ElFileUpload',
   components: {
     ElButton,
     ElBadge,
+    ElSvgIcon,
   },
   props: {
     value: {},
