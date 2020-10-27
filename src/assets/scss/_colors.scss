@@ -1,5 +1,6 @@
 $color-white: #ffffff;
 $color-red: #D52B1E;
+$color-light-red: rgba(238, 63, 88, 0.25);
 $color-blue: #1E3685;
 $color-light-blue: #CED9F0;
 $color-black: #000026;
@@ -9,6 +10,7 @@ $color-transparent: transparent;
 $colors: (
   'white': $color-white,
   'red': $color-red,
+  'light-red': $color-light-red,
   'blue': $color-blue,
   'light-blue': $color-light-blue,
   'black': $color-black,

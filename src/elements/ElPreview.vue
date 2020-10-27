@@ -7,7 +7,7 @@
       <div class="el-preview__content--top">
         <slot name="top" />
       </div>
-      <div class="el-preview__content--bottom">
+      <div v-if="$slots['bottom']" class="el-preview__content--bottom">
         <slot name="bottom" />
       </div>
     </section>
