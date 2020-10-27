@@ -35,6 +35,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    rounded: {
+      type: Boolean,
+      default: false,
+    },
   },
   render(h, { props, slots, listeners, data }) {
     let prepend = slots()['icon-prepend']
@@ -65,6 +69,7 @@ export default {
           'el-button--default': !props.variant,
           'el-button--disabled': props.disabled,
           'el-button--loading': props.loading,
+          'el-button--rounded': props.rounded,
           'el-button--full-width': props.fullWidth,
           [`${data.staticClass}`]: !!data.staticClass,
           ...data.class,
@@ -136,6 +141,9 @@ export default {
       transform: none;
     }
   }
+	&--rounded {
+		border-radius: $radius-round;
+	}
   &::after {
     animation: none;
     box-shadow: none;
