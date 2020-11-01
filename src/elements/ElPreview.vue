@@ -51,11 +51,13 @@ export default {
     justify-content: center;
     align-items: flex-start;
     margin-left: $space-24;
+    max-width: 100%;
     &--top,
     &--bottom {
       display: flex;
       align-items: center;
       flex: 1 1 auto;
+      max-width: 100%;
     }
   }
 }

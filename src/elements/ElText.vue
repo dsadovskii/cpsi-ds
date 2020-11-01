@@ -124,7 +124,6 @@ export default {
     flex-wrap: nowrap;
   }
   &--ellipsis {
-    display: inline;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -27,6 +27,13 @@ export default {
       type: Boolean,
       default: false,
     },
+    /**
+     * top, center, bottom
+     * **/
+    headerValign: {
+      type: String,
+      default: 'top',
+    },
   },
   render(h, { slots, props, data, listeners }) {
     const attrs = props.to ? { to: props.to } : {}
@@ -39,6 +46,7 @@ export default {
           'pt-card--no-border': props.noBorder,
           'pt-card--no-padding': props.noPadding,
           'pt-card--no-bg': props.noBg,
+          [`pt-card-header--valign-${props.headerValign}`]: true,
           [`${data.staticClass}`]: !!data.staticClass,
           ...data.class,
         },
@@ -98,13 +106,33 @@ export default {
   &__header,
   &__footer {
     & > * {
-      flex: 0 0 auto;
+      flex: 0 1 auto;
+      max-width: 100%;
+      min-width: 1px;
+      width: max-content;
     }
     &-center {
-      flex: 1 0;
+      flex: 1 1 auto;
       overflow: hidden;
       text-overflow: ellipsis;
       padding: $space-zero $space-16;
+    }
+  }
+  &-header {
+    &--valign-top {
+      #{$block-name}__header {
+        align-items: flex-start;
+      }
+    }
+    &--valign-center {
+      #{$block-name}__header {
+        align-items: center;
+      }
+    }
+    &--valign-bottom {
+      #{$block-name}__header {
+        align-items: flex-end;
+      }
     }
   }
   &__content {

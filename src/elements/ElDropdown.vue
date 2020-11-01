@@ -70,6 +70,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    invertedColors: {
+      type: Boolean,
+      default: false,
+    },
     size: {
       type: String,
       default: 'm',
@@ -91,6 +95,7 @@ export default {
     classes() {
       return {
         'el-dropdown--no-bg': this.noBg,
+        'el-dropdown--inverted-colors': this.invertedColors,
         [`el-dropdown--size-${this.size}`]: true,
       }
     },
@@ -145,10 +150,36 @@ export default {
   $block-name: &;
   &--no-bg {
     .ant-select-selection {
-      background: none;
+      background: none !important;
       box-shadow: none !important;
       border: none !important;
-      height: 30px;
+      height: auto;
+      &__rendered {
+        margin-right: 30px !important;
+      }
+      &-selected-value {
+        color: $color-blue !important;
+      }
+    }
+    min-width: auto !important;
+  }
+  &--inverted-colors {
+    color: $color-white !important;
+    .ant-select {
+      &-selection {
+        background-color: $color-gray;
+        border-color: $color-gray;
+        color: $color-white;
+        &__placeholder {
+          color: $color-white;
+        }
+        &-selected-value {
+          color: $color-white !important;
+        }
+      }
+      &-arrow {
+        color: $color-white;
+      }
     }
   }
   &--size-m {
@@ -173,9 +204,19 @@ export default {
       min-height: 30px;
     }
   }
-  .ant-select-selection {
-    &-selected-value {
-      color: $color-gray;
+  .ant-select {
+    &-selection {
+      &-selected-value {
+        color: $color-gray;
+      }
+    }
+    &-arrow,
+    .anticon {
+      display: inline-flex;
+      align-items: center;
+    }
+    &-arrow {
+      margin-top: -5px;
     }
   }
 }
