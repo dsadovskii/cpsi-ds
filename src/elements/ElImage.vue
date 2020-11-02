@@ -27,6 +27,10 @@ export default {
       type: String,
       default: '',
     },
+    maxHeight: {
+      type: String,
+      default: '100%',
+    },
     bordered: {
       type: Boolean,
       default: false,
@@ -79,7 +83,9 @@ export default {
             srcset: srcset,
             alt: props.alt,
           },
-
+          style: {
+            maxHeight: props.maxHeight,
+          },
           on: {
             click() {
               if (!Object.keys(listeners).length || props.disabled) return
@@ -128,7 +134,6 @@ export default {
   img {
     width: 100%;
     height: auto;
-    max-height: 100%;
     user-select: none;
   }
 }
