@@ -3,7 +3,7 @@
     <a-select
       :mode="mode"
       class="no-select-styles"
-      :dropdown-match-select-width="false"
+      :dropdown-match-select-width="matchWidth"
       :default-value="computedValue"
       :value="computedValue"
       :class="classes"
@@ -44,6 +44,10 @@ export default {
       default: 'title',
     },
     noBg: {
+      type: Boolean,
+      default: false,
+    },
+    matchWidth: {
       type: Boolean,
       default: false,
     },
@@ -205,6 +209,7 @@ export default {
     }
   }
   .ant-select {
+    width: 100%;
     &-selection {
       &-selected-value {
         color: $color-gray;

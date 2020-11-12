@@ -36,6 +36,16 @@
   min-width: 0;
   max-width: 100%;
 }
+@mixin child-indent-right($space: $space-zero) {
+  & > *:not(:last-child) {
+    margin-right: $space;
+  }
+}
+@mixin child-indent-bottom($space: $space-zero) {
+  & > *:not(:last-child) {
+    margin-bottom: $space;
+  }
+}
 @mixin align($vertical: true, $horizontal: false, $position: relative) {
   @if $position {
     position: $position;

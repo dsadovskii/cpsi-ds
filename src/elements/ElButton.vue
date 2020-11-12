@@ -31,6 +31,10 @@ export default {
       type: String,
       default: null,
     },
+    weight: {
+      type: String,
+      default: 'semi-bold',
+    },
     bgFlat: {
       type: Boolean,
       default: false,
@@ -66,6 +70,7 @@ export default {
           [`el-button--${props.variant}`]: !!props.variant,
           [`el-button--secondary-color-${props.secondaryColor}`]: !!props.secondaryColor,
           [`el-button--size-${props.size}`]: !!props.size,
+          [`el-button--weight-${props.weight}`]: !!props.weight,
           'el-button--default': !props.variant,
           'el-button--disabled': props.disabled,
           'el-button--loading': props.loading,
@@ -109,7 +114,6 @@ export default {
   align-items: center;
   flex-wrap: nowrap;
   max-width: 100%;
-  font-weight: $fw-semi-bold;
   border-radius: $radius-4;
   white-space: nowrap;
   user-select: none;
@@ -124,6 +128,11 @@ export default {
   color: $color-black;
   -webkit-appearance: none;
   -webkit-text-fill-color: currentColor;
+  @each $name, $weight in $font-weights {
+    &--weight-#{$name} {
+      font-weight: #{$weight};
+    }
+  }
   &__content {
     font-size: inherit;
     line-height: inherit;
@@ -141,9 +150,9 @@ export default {
       transform: none;
     }
   }
-	&--rounded {
-		border-radius: $radius-round;
-	}
+  &--rounded {
+    border-radius: $radius-round;
+  }
   &::after {
     animation: none;
     box-shadow: none;
@@ -171,6 +180,31 @@ export default {
       }
       &#{$block-name}--disabled {
         background-color: rgba($color, 0.5);
+      }
+      &-outline {
+        border: 1px solid #{$color};
+        background-color: transparent;
+        color: #{$color};
+        @media #{$desktop} {
+          &:hover {
+            background-color: #{$color};
+            @if $color == $color-white {
+              color: $color-blue;
+            } @else {
+              color: $color-white;
+            }
+          }
+        }
+        @media #{$mobile} {
+          &:active {
+            background-color: #{$color};
+            @if $color == $color-white {
+              color: $color-blue;
+            } @else {
+              color: $color-white;
+            }
+          }
+        }
       }
     }
     &--#{$name}-link {

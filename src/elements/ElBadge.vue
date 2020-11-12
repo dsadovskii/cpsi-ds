@@ -23,6 +23,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    clickable: {
+      type: Boolean,
+      default: false,
+    },
   },
   render(h, { slots, props, data, listeners }) {
     return h(
@@ -34,8 +38,17 @@ export default {
           [`el-badge--${props.variant}`]: !!props.variant,
           [`el-badge__color--${props.color}`]: !!props.color,
           'el-badge__closable': props.closable,
+          'el-badge__clickable': props.clickable,
           [`${data.staticClass}`]: !!data.staticClass,
           [data.class]: !!data.class,
+        },
+        on: {
+          click(e) {
+            e.preventDefault()
+            e.stopPropagation()
+            if (!Object.keys(listeners).length) return
+            listeners['click']()
+          },
         },
       },
       [
@@ -50,8 +63,8 @@ export default {
                   click(e) {
                     e.preventDefault()
                     e.stopPropagation()
-                    if (!Object.keys(listeners).length || props.disabled) return
-                    listeners['click']()
+                    if (!Object.keys(listeners).length || !listeners['close']) return
+                    listeners['close']()
                   },
                 },
               },
@@ -83,6 +96,12 @@ export default {
   &__closable {
     padding-right: $space-28;
   }
+  &__clickable {
+    cursor: pointer;
+  }
+  &__clickable {
+    cursor: pointer;
+  }
   &__close {
     display: inline-block;
     cursor: pointer;
@@ -103,14 +122,12 @@ export default {
       }
     }
   }
-  @each $name, $color in $backgrounds {
+  @each $name, $color in $colors {
     &--#{$name} {
       background-color: #{$color};
-    }
-  }
-  @each $name, $color in $colors {
-    &__color--#{$name} {
-      #{$block-name}__content {
+      &-outline {
+        border: 1px solid #{$color};
+        background-color: transparent;
         color: #{$color};
       }
     }
