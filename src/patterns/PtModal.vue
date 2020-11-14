@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import ElSvgIcon from '../elements/ElSvgIcon'
+import ElSvgIcon from '../elements/ElSvgIcon.vue'
 export default {
   name: 'McModal',
   components: { ElSvgIcon },
