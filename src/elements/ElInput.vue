@@ -46,6 +46,10 @@ export default {
       type: Number,
       default: 5,
     },
+    size: {
+      type: String,
+      default: 'm',
+    },
   },
   render: function(h, { data, props, parent, slots }) {
     let inputTag = props.textarea ? 'textarea' : 'input'
@@ -55,6 +59,7 @@ export default {
       {
         class: {
           'el-input': true,
+          [`el-input--size-${props.size}`]: true,
           'el-input--disabled': props.disabled,
           'el-input--error': props.error,
           [`${data.staticClass}`]: !!data.staticClass,
@@ -109,13 +114,74 @@ export default {
   $block-name: &;
   width: 100%;
   border-radius: $radius-3;
-  padding: $space-14 $space-24;
   background-color: $color-white;
   position: relative;
   cursor: text;
   &--disabled {
     cursor: not-allowed;
     background-color: $color-gray;
+  }
+  &--size-m {
+    padding: $space-14 $space-24;
+    #{$block-name}__label {
+      padding-bottom: 1px;
+      padding-top: 1px;
+      padding-right: $space-24;
+      font-size: $fs-16;
+      line-height: $lh-14;
+      &-animated {
+        left: 0;
+        top: $space-14;
+        padding-left: $space-24;
+      }
+    }
+    #{$block-name}__slot-append {
+      .el-dropdown {
+        min-width: 90px;
+        height: 52px;
+      }
+    }
+    #{$block-name}__output {
+      &:not(:empty) ~ #{$block-name}__input,
+      &:not(:empty) ~ #{$block-name}__textarea,
+      ~ #{$block-name}__input:focus,
+      ~ #{$block-name}__textarea:focus {
+        ~ #{$block-name}__label {
+          font-size: $fs-12;
+        }
+      }
+    }
+  }
+  &--size-s {
+    padding: $space-8 $space-16;
+    #{$block-name}__label {
+      padding-bottom: 1px;
+      padding-top: 1px;
+      padding-right: $space-24;
+      font-size: $fs-14;
+      line-height: $lh-14;
+      &-animated {
+        left: 0;
+        top: $space-14;
+        padding-left: $space-16;
+      }
+    }
+    #{$block-name}__slot-append {
+      .el-dropdown {
+        min-width: 90px;
+        height: 40px;
+      }
+    }
+    #{$block-name}__output {
+      &:not(:empty) ~ #{$block-name}__input,
+      &:not(:empty) ~ #{$block-name}__textarea,
+      ~ #{$block-name}__input:focus,
+      ~ #{$block-name}__textarea:focus {
+        ~ #{$block-name}__label {
+          font-size: $fs-10;
+        }
+      }
+    }
   }
   &__output {
     position: absolute;
@@ -181,20 +247,12 @@ export default {
     position: absolute;
     left: 0;
     bottom: calc(100% + 5px);
-    padding-bottom: 1px;
-    padding-top: 1px;
-    padding-right: $space-24;
-    font-size: $fs-16;
-    line-height: $lh-14;
     color: $color-gray;
     transition: all 0.2s ease;
     cursor: text;
     height: max-content;
     border-radius: $radius-3;
     &-animated {
-      left: 0;
-      top: $space-14;
-      padding-left: $space-24;
       display: block;
       align-items: center;
       user-select: none;
@@ -252,8 +310,6 @@ export default {
     display: flex;
     align-items: center;
     .el-dropdown {
-      min-width: 90px;
-      height: 52px;
       background: #1e3685;
       border-radius: 0 3px 3px 0;
       transform: translateX($space-24);
