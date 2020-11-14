@@ -54,6 +54,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    preLine: {
+      type: Boolean,
+      default: false,
+    },
     maxWidth: {
       type: String,
       default: 'auto',
@@ -73,6 +77,7 @@ export default {
       'el-text--block': props.block,
       'el-text--nowrap': props.noWrap,
       'el-text--ellipsis': props.ellipsis,
+      'el-text--pre-line': props.preLine,
       [`${data.staticClass}`]: !!data.staticClass,
       ...data.class,
     }
@@ -129,6 +134,9 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
     word-wrap: normal;
+  }
+  &--pre-line {
+    white-space: pre-line;
   }
   @each $name, $color in $colors {
     &--#{$name} {

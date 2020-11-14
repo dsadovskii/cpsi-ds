@@ -292,8 +292,8 @@ export default {
       height: $size-40;
       padding: $space-14 $space-16;
       letter-spacing: normal;
-      font-size: $fs-12;
-      line-height: $lh-13;
+      font-size: $fs-14;
+      line-height: $lh-2;
       &-compact {
         @include size($size-40);
         padding: $space-14;

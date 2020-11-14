@@ -9,7 +9,19 @@ export default {
     },
     color: {
       type: String,
-      default: 'white',
+      default: null,
+    },
+    countVariant: {
+      type: String,
+      default: null,
+    },
+    countColor: {
+      type: String,
+      default: null,
+    },
+    count: {
+      type: [String, Number],
+      default: null,
     },
     text: {
       type: String,
@@ -36,7 +48,7 @@ export default {
           'el-badge': true,
           'el-badge--uppercase': props.uppercase,
           [`el-badge--${props.variant}`]: !!props.variant,
-          [`el-badge__color--${props.color}`]: !!props.color,
+          [`el-badge--color-${props.color}`]: !!props.color,
           'el-badge__closable': props.closable,
           'el-badge__clickable': props.clickable,
           [`${data.staticClass}`]: !!data.staticClass,
@@ -71,6 +83,18 @@ export default {
               '+',
             ),
         ]),
+        !props.count ||
+          h(
+            'span',
+            {
+              class: {
+                'el-badge__count': true,
+                [`el-badge__count--${props.countVariant}`]: !!props.countVariant,
+                [`el-badge__count--color-${props.countColor}`]: !!props.countColor,
+              },
+            },
+            props.count,
+          ),
       ],
     )
   },
@@ -81,11 +105,13 @@ export default {
 .el-badge {
   $block-name: &;
   display: inline-flex;
+  align-items: center;
   position: relative;
   padding: $space-8 $space-16;
   border-radius: $radius-4;
+  height: 40px;
   &__content {
-    font-size: $fs-12;
+    font-size: $fs-14;
     line-height: $lh-14;
   }
   &--uppercase {
@@ -101,6 +127,13 @@ export default {
   }
   &__clickable {
     cursor: pointer;
+  }
+  &__count {
+    font-size: $fs-14;
+    line-height: $lh-14;
+    padding: 1px $space-14;
+    border-radius: $radius-4;
+    margin-left: $space-16;
   }
   &__close {
     display: inline-block;
@@ -125,11 +158,26 @@ export default {
   @each $name, $color in $colors {
     &--#{$name} {
       background-color: #{$color};
+      color: $color-blue;
       &-outline {
         border: 1px solid #{$color};
         background-color: transparent;
         color: #{$color};
       }
+    }
+    &--color-#{$name} {
+      color: #{$color} !important;
+    }
+    &__count--#{$name} {
+      background-color: #{$color};
+      &-outline {
+        border: 1px solid #{$color};
+        background-color: transparent;
+        color: #{$color};
+      }
+    }
+    &__count--color-#{$name} {
+      color: #{$color};
     }
   }
 }

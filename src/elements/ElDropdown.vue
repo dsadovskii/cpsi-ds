@@ -205,7 +205,19 @@ export default {
   }
   &--size-s {
     .ant-select-selection {
-      min-height: 30px;
+      padding: 0;
+      &--multiple,
+      &--single {
+        min-height: 40px;
+        font-size: $space-14;
+        line-height: $lh-14;
+        margin: 0 !important;
+        padding: $space-4 $space-16;
+      }
+      &__placeholder {
+        margin-left: 0 !important;
+        margin-right: 0;
+      }
     }
   }
   .ant-select {

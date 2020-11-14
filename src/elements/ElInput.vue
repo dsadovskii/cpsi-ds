@@ -249,6 +249,8 @@ export default {
     right: $space-24;
     transform: translateY(-50%);
     transform-origin: center;
+    display: flex;
+    align-items: center;
     .el-dropdown {
       min-width: 90px;
       height: 52px;
