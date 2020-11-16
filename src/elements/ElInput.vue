@@ -50,6 +50,10 @@ export default {
       type: String,
       default: 'm',
     },
+    variant: {
+      type: String,
+      default: 'default',
+    },
   },
   render: function(h, { data, props, parent, slots }) {
     let inputTag = props.textarea ? 'textarea' : 'input'
@@ -59,6 +63,7 @@ export default {
       {
         class: {
           'el-input': true,
+          [`el-input--variant-${props.variant}`]: true,
           [`el-input--size-${props.size}`]: true,
           'el-input--disabled': props.disabled,
           'el-input--error': props.error,
@@ -114,7 +119,6 @@ export default {
   $block-name: &;
   width: 100%;
   border-radius: $radius-3;
-  background-color: $color-white;
   position: relative;
   cursor: text;
   &--disabled {
@@ -181,6 +185,10 @@ export default {
           font-size: $fs-10;
         }
       }
+    }
+    #{$block-name}__input,
+    #{$block-name}__input::placeholder {
+      font-size: $fs-14;
     }
   }
   &__output {
@@ -326,6 +334,26 @@ export default {
             fill: $color-gray;
           }
         }
+      }
+    }
+  }
+  &--variant-default {
+    background-color: $color-white;
+  }
+  &--variant-gray {
+    background-color: $bg-lighter-blue;
+    border: 1px solid $color-light-blue;
+    #{$block-name}__input::placeholder {
+      color: $color-steel-gray;
+    }
+    #{$block-name}__label {
+      color: $color-steel-gray;
+      bottom: calc(100% + 20px);
+    }
+    #{$block-name}__slot-append {
+      right: -1px;
+      .el-button {
+        border-radius: 0 $radius-3 $radius-3 0;
       }
     }
   }
