@@ -1,8 +1,14 @@
 <script>
+import { MediaGenerator } from '../helpers/mediaGenerator'
+
+let params = ['size', 'lh']
+let sizeProps = new MediaGenerator(params).generateProps(String)
+
 export default {
   name: 'ElText',
   functional: true,
   props: {
+    ...sizeProps,
     heading: {
       type: Boolean,
       default: false,
@@ -68,8 +74,18 @@ export default {
     tag = props.heading ? `h${props.level}` : props.tag
     let classes = {
       'el-text': true,
-      [`el-text--size-${props.size}`]: props.size,
-      [`el-text--line-height-${props.lh}`]: props.lh,
+      // [`el-text--size-${props.size}`]: props.size,
+      [`el-text--size-xs-${props.size}`]: props.size,
+      [`el-text--size-s-${props.sizeS}`]: props.sizeS,
+      [`el-text--size-m-${props.sizeM}`]: props.sizeM,
+      [`el-text--size-l-${props.sizeL}`]: props.sizeL,
+      [`el-text--size-xl-${props.sizeXl}`]: props.sizeXl,
+      // [`el-text--line-height-${props.lh}`]: props.lh,
+      [`el-text--line-height-xs-${props.lh}`]: props.lh,
+      [`el-text--line-height-s-${props.lhS}`]: props.lhS,
+      [`el-text--line-height-m-${props.lhM}`]: props.lhM,
+      [`el-text--line-height-l-${props.lhL}`]: props.lhL,
+      [`el-text--line-height-xl-${props.lhXl}`]: props.lhXl,
       [`el-text--font-weight-${props.fontWeight}`]: props.fontWeight,
       [`el-text--align-${props.align}`]: props.align,
       [`el-text--${props.color}`]: props.color,
@@ -104,6 +120,21 @@ export default {
 <style lang="scss">
 .el-text {
   $block-name: &;
+  @each $media, $value in $medias {
+    @media (min-width: $value) {
+      @each $size, $option in $font-sizes {
+        &--size-#{$media}-#{$size} {
+          font-size: $option;
+        }
+      }
+      @each $height, $option in $line-heights {
+        &--line-height-#{$media}-#{$height} {
+          line-height: $option;
+        }
+      }
+    }
+  }
+
   margin-bottom: 0;
   &--bold {
     font-weight: bold;
@@ -143,16 +174,16 @@ export default {
       color: #{$color};
     }
   }
-  @each $size, $param in $font-sizes {
-    &--size-#{$size} {
-      font-size: $param;
-    }
-  }
-  @each $height, $param in $line-heights {
-    &--line-height-#{$height} {
-      line-height: $param;
-    }
-  }
+  //@each $size, $param in $font-sizes {
+  //  &--size-#{$size} {
+  //    font-size: $param;
+  //  }
+  //}
+  //@each $height, $param in $line-heights {
+  //  &--line-height-#{$height} {
+  //    line-height: $param;
+  //  }
+  //}
   @each $weight, $param in $font-weights {
     &--font-weight-#{$weight} {
       font-weight: $param;

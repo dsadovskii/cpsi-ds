@@ -3,10 +3,16 @@
 </template>
 
 <script>
+import { MediaGenerator } from '../helpers/mediaGenerator'
+
+let params = ['size']
+let sizeProps = new MediaGenerator(params).generateProps(String)
+
 import svgIcons from '../plugins/load-icons'
 export default {
   name: 'ElSvgIcon',
   props: {
+    ...sizeProps,
     /**
      * Имя иконки
      * из assets
@@ -61,7 +67,12 @@ export default {
   computed: {
     classes() {
       return {
-        [`el-svg-icon--size-${this.size}`]: !!this.size,
+        // [`el-svg-icon--size-${this.size}`]: !!this.size,
+        [`el-svg-icon--size-xs-${this.size}`]: this.size,
+        [`el-svg-icon--size-s-${this.sizeS}`]: this.sizeS,
+        [`el-svg-icon--size-m-${this.sizeM}`]: this.sizeM,
+        [`el-svg-icon--size-l-${this.sizeL}`]: this.sizeL,
+        [`el-svg-icon--size-xl-${this.sizeXl}`]: this.sizeXl,
         [`el-svg-icon--color-${this.color}`]: !!this.color,
       }
     },
@@ -130,13 +141,22 @@ export default {
   svg {
     @include size(inherit);
   }
-  &--size {
-    @each $size, $value in $sizes {
-      &-#{$size} {
-        @include size($value, !important);
+  @each $media, $value in $medias {
+    @media (min-width: $value) {
+      @each $size, $option in $sizes {
+        &--size-#{$media}-#{$size} {
+          @include size($option, !important);
+        }
       }
     }
   }
+  //&--size {
+  //  @each $size, $value in $sizes {
+  //    &-#{$size} {
+  //      @include size($value, !important);
+  //    }
+  //  }
+  //}
   &--color {
     @each $color, $value in $colors {
       &-#{$color} {
