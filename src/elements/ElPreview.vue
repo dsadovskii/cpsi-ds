@@ -1,7 +1,7 @@
 <template>
   <article class="el-preview">
     <a-badge v-bind="previewNotifies">
-      <a-avatar v-if="src" :size="64" :src="src" shape="circle" />
+      <a-avatar v-if="src" :size="logoSize" :src="src" shape="circle" />
     </a-badge>
     <section class="el-preview__content">
       <div class="el-preview__content--top">
@@ -30,6 +30,10 @@ export default {
       type: Number,
       default: null,
     },
+    logoSize: {
+      type: Number,
+      default: 64,
+    }
   },
   computed: {
     previewNotifies() {

@@ -157,19 +157,20 @@ export default {
     }
   }
   &--size-s {
-    padding: $space-8 $space-16;
-    #{$block-name}__label {
-      padding-bottom: 1px;
-      padding-top: 1px;
-      padding-right: $space-24;
-      font-size: $fs-14;
-      line-height: $lh-14;
-      &-animated {
-        left: 0;
-        top: $space-14;
-        padding-left: $space-16;
-      }
-    }
+		padding: $space-8 $space-16;
+		height: $size-40;
+		#{$block-name}__label {
+			padding-bottom: 1px;
+			padding-top: 1px;
+			padding-right: $space-24;
+			font-size: $fs-14;
+			line-height: $lh-14;
+			&-animated {
+				left: 0;
+				top: 9px;
+				padding-left: $space-16;
+			}
+		}
     #{$block-name}__slot-append {
       .el-dropdown {
         min-width: 90px;
@@ -351,7 +352,6 @@ export default {
       bottom: calc(100% + 20px);
     }
     #{$block-name}__slot-append {
-      right: -1px;
       .el-button {
         border-radius: 0 $radius-3 $radius-3 0;
       }

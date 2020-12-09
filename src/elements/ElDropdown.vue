@@ -10,6 +10,7 @@
       :style="styles"
       :placeholder="computedPlaceholder"
       :show-search="searchable"
+      :disabled="disabled"
       :filter-option="!searchable && mode === 'multiple'"
       @change="handleChange"
       @search="handleSearch"
@@ -75,6 +76,10 @@ export default {
       default: false,
     },
     invertedColors: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
       type: Boolean,
       default: false,
     },

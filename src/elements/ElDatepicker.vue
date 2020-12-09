@@ -41,6 +41,10 @@ export default {
       type: String,
       default: 'date',
     },
+    size: {
+      type: String,
+      default: 'm',
+    },
     name: {
       type: String,
       default: null,
@@ -80,7 +84,7 @@ export default {
   },
   computed: {
     computedClasses() {
-      return [{ 'el-datepicker--error': this.error }]
+      return [{ 'el-datepicker--error': this.error }, { [`el-datepicker--size-${this.size}`]: true }]
     },
     date: {
       get() {
@@ -103,59 +107,119 @@ export default {
 .el-datepicker {
   $block-name: &;
   position: relative;
-  .mx-datepicker {
-    width: 100%;
-    .mx-input {
-      padding: $space-14 $space-24;
-      font-size: $fs-16;
-      line-height: $lh-14;
-      border-radius: $radius-3;
-      background-color: transparent;
-      border: 1px solid $color-gray;
-      box-shadow: none;
-      outline: none;
-      color: $color-black;
-      height: 52px;
-      &::placeholder {
-        color: $color-gray;
-        font-size: $fs-16;
-      }
-    }
-    .mx-icon-calendar,
-    .mx-icon-clear {
-      right: 24px;
-      color: $color-black;
-    }
-    &-main {
+  width: 100%;
+  &--size-m {
+    .mx-datepicker {
       width: 100%;
-      max-width: 300px;
-      .mx-calendar {
+      .mx-input {
+        padding: $space-14 $space-24;
+        font-size: $fs-16;
+        line-height: $lh-14;
+        border-radius: $radius-3;
+        background-color: transparent;
+        border: 1px solid $color-gray;
+        box-shadow: none;
+        outline: none;
+        color: $color-black;
+        height: 52px;
+        &::placeholder {
+          color: $color-gray;
+          font-size: $fs-16;
+        }
+      }
+      .mx-icon-calendar,
+      .mx-icon-clear {
+        right: 24px;
+        color: $color-black;
+      }
+      &-main {
         width: 100%;
-        &-content {
-          height: auto;
-          .mx-table {
-            &-date {
-              td,
-              th {
-                font-size: $fs-16;
-                line-height: $lh-2;
+        max-width: 300px;
+        .mx-calendar {
+          width: 100%;
+          &-content {
+            height: auto;
+            .mx-table {
+              &-date {
+                td,
+                th {
+                  font-size: $fs-16;
+                  line-height: $lh-2;
+                }
               }
             }
           }
         }
       }
+      .mx-icon-calendar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90px;
+        height: 52px;
+        right: 0;
+        color: $color-white;
+        background: $color-blue;
+        border-radius: 0 $radius-3 $radius-3 0;
+        pointer-events: none;
+      }
     }
-    .mx-icon-calendar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 90px;
-      height: 52px;
-      right: 0;
-      color: $color-white;
-      background: $color-blue;
-      border-radius: 0 $radius-3 $radius-3 0;
-      pointer-events: none;
+  }
+  &--size-s {
+    .mx-datepicker {
+      width: 100%;
+      .mx-input {
+        padding: $space-8 $space-20;
+        font-size: $fs-14;
+        line-height: $lh-14;
+        border-radius: $radius-3;
+        background-color: transparent;
+        border: 1px solid $color-gray;
+        box-shadow: none;
+        outline: none;
+        color: $color-black;
+        height: 40px;
+        &::placeholder {
+          color: $color-gray;
+          font-size: $fs-14;
+        }
+      }
+      .mx-icon-calendar,
+      .mx-icon-clear {
+        right: 24px;
+        color: $color-black;
+      }
+      &-main {
+        width: 100%;
+        max-width: 300px;
+        .mx-calendar {
+          width: 100%;
+          &-content {
+            height: auto;
+            .mx-table {
+              &-date {
+                td,
+                th {
+                  font-size: $fs-16;
+                  line-height: $lh-2;
+                }
+              }
+            }
+          }
+        }
+      }
+      .mx-icon-calendar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90px;
+        height: 40px;
+        right: 0;
+        color: $color-white;
+        background: $color-blue;
+        border-radius: 0 $radius-3 $radius-3 0;
+        pointer-events: none;
+      }
     }
   }
   &--error {

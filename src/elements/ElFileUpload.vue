@@ -28,7 +28,7 @@
     <template v-if="hasFiles">
       <el-badge
         v-for="(file, index) in files"
-        @click="() => removeFile(index, file)"
+        @close="() => removeFile(index, file)"
         variant="light-blue"
         color="blue"
         :closable="!disabled"
@@ -132,7 +132,8 @@ export default {
   &__icon-append {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     height: 52px;
     width: 90px;
     .el-button {
@@ -142,6 +143,7 @@ export default {
     }
   }
   &__file {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;

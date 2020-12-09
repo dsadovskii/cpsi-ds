@@ -1,11 +1,11 @@
 $color-white: #ffffff;
 $color-red: #ED694B;
 $color-light-red: rgba(238, 63, 88, 0.25);
-$color-blue: #0050B2;
-$color-light-blue: #CED9F0;
+$color-blue: #3B5491;
+$color-light-blue: #A1CEEC;
 $color-black: #333333;
-$color-gray: #A7A7AB;
-$color-steel-gray: #7F8FA4;
+$color-gray: #A6AEBF;
+$color-steel-gray: #EBEEF3;
 $color-transparent: transparent;
 
 $colors: (
@@ -16,5 +16,6 @@ $colors: (
   'light-blue': $color-light-blue,
   'black': $color-black,
   'gray': $color-gray,
+  'steel-gray': $color-steel-gray,
   'transparent': transparent,
 );

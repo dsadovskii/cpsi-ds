@@ -58,7 +58,7 @@ export default {
           click(e) {
             e.preventDefault()
             e.stopPropagation()
-            if (!Object.keys(listeners).length) return
+            if (!Object.keys(listeners).length || !listeners['click']) return
             listeners['click']()
           },
         },
