@@ -33,7 +33,7 @@ export default {
     logoSize: {
       type: Number,
       default: 64,
-    }
+    },
   },
   computed: {
     previewNotifies() {

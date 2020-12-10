@@ -9,9 +9,9 @@
           {{ text }}
         </span>
         <span class="el-file-upload__icon-append">
-          <el-button :disabled="disabled" full-width @click.stop.prevent="setInputFocus">
-            <el-svg-icon name="pin" size="20" />
-          </el-button>
+          <div class="icon-box">
+            <el-svg-icon slot="icon-append" name="pin" size="16" color="white" />
+          </div>
         </span>
       </label>
       <input
@@ -29,11 +29,11 @@
       <el-badge
         v-for="(file, index) in files"
         @close="() => removeFile(index, file)"
-        variant="light-blue"
-        color="blue"
+        variant="blue"
+        color="white"
         :closable="!disabled"
         :key="`file${file}`"
-        class="mt-24 mr-16"
+        class="mt-16 mr-16"
       >
         {{ fileName(file) }}
       </el-badge>
@@ -42,13 +42,11 @@
 </template>
 
 <script>
-import ElButton from './ElButton.vue'
 import ElBadge from './ElBadge.vue'
 import ElSvgIcon from './ElSvgIcon.vue'
 export default {
   name: 'ElFileUpload',
   components: {
-    ElButton,
     ElBadge,
     ElSvgIcon,
   },
@@ -102,9 +100,6 @@ export default {
     clearFile() {
       this.$emit('input', null)
     },
-    setInputFocus() {
-      this.$refs[this.name].click()
-    },
     // eslint-disable-next-line no-unused-vars
     removeFile(index, file) {
       let files = [...this.files]
@@ -118,6 +113,7 @@ export default {
 <style lang="scss">
 .el-file-upload {
   $block-name: &;
+  position: relative;
   &__input {
     display: none;
   }
@@ -131,15 +127,18 @@ export default {
   }
   &__icon-append {
     position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 52px;
-    width: 90px;
-    .el-button {
+    right: 2px;
+    top: 1px;
+    /* transform: translateY(-50%); */
+    height: calc(100% - 2px);
+    width: 35px;
+    .icon-box {
       height: inherit;
-      border-radius: 0 $radius-3 $radius-3 0;
-      pointer-events: none;
+      width: inherit;
+      background-color: $bg-blue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
   &__file {
@@ -148,11 +147,10 @@ export default {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color: transparent;
+    background-color: $bg-lighter-blue;
     border: 1px solid $color-gray;
-    border-radius: $radius-3;
-    padding: $space-14 $space-24;
-    height: 52px;
+    padding: 0 $space-20;
+    height: 40px;
   }
   &__label {
     font-size: $fs-16;
@@ -163,6 +161,8 @@ export default {
     width: 100%;
     #{$block-name}__content {
       flex-grow: 2;
+      color: $color-gray;
+      font-size: $fs-14;
     }
     @media #{$desktop} {
       &:hover {

@@ -15,18 +15,31 @@
       @change="handleChange"
       @search="handleSearch"
     >
+      <div slot="suffixIcon" class="custom-select-arrow">
+        <el-svg-icon name="chevron_down" size="12" color="white" />
+      </div>
       <a-select-option v-for="item in options" :key="item.id || item.key" :value="getValue(item)">
         {{ getTitle(item) }}
       </a-select-option>
     </a-select>
+    <div v-if="searchable" class="searchable-icon">
+      <el-svg-icon name="search" size="12" color="white" />
+    </div>
+    <div v-if="mode === 'multiple' && !searchable" class="searchable-icon">
+      <el-svg-icon name="chevron_down" size="12" color="white" />
+    </div>
   </div>
 </template>
 
 <script>
 import _has from 'lodash/has'
 import _get from 'lodash/get'
+import ElSvgIcon from './ElSvgIcon'
 export default {
   name: 'ElDropdown',
+  components: {
+    ElSvgIcon,
+  },
   props: {
     value: {
       type: [String, Number, Object, Array],
@@ -85,7 +98,7 @@ export default {
     },
     size: {
       type: String,
-      default: 'm',
+      default: 's',
     },
   },
   computed: {
@@ -157,6 +170,7 @@ export default {
 <style lang="scss">
 .el-dropdown {
   $block-name: &;
+  position: relative;
   &--no-bg {
     .ant-select-selection {
       background: none !important;
@@ -193,6 +207,8 @@ export default {
   }
   &--size-m {
     .ant-select-selection {
+      border-color: $color-gray !important;
+      border-radius: 0 !important;
       padding: 0;
       &--multiple,
       &--single {
@@ -210,28 +226,41 @@ export default {
   }
   &--size-s {
     .ant-select-selection {
+      border-color: $color-gray !important;
+      background-color: $bg-lighter-blue;
+      border-radius: 0 !important;
       padding: 0;
+      box-shadow: none !important;
       &--multiple,
       &--single {
         min-height: 40px;
         font-size: $space-14;
         line-height: $lh-14;
         margin: 0 !important;
-        padding: $space-4 $space-16;
+        padding: $space-4 $space-20;
+      }
+      &__rendered {
+        margin: 0 !important;
       }
       &__placeholder {
         margin-left: 0 !important;
         margin-right: 0;
       }
     }
+    .ant-select-arrow {
+      margin: 0 !important;
+      width: 35px;
+      background-color: $bg-blue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 2px;
+      right: 2px;
+      height: calc(100% - 4px);
+    }
   }
   .ant-select {
     width: 100%;
-    &-selection {
-      &-selected-value {
-        color: $color-gray;
-      }
-    }
     &-arrow,
     .anticon {
       display: inline-flex;
@@ -240,6 +269,17 @@ export default {
     &-arrow {
       margin-top: -5px;
     }
+  }
+  .searchable-icon {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 35px;
+    background-color: $bg-blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 6px);
   }
 }
 </style>

@@ -48,7 +48,7 @@ export default {
     },
     size: {
       type: String,
-      default: 'm',
+      default: 's',
     },
     variant: {
       type: String,
@@ -118,7 +118,6 @@ export default {
 .el-input {
   $block-name: &;
   width: 100%;
-  border-radius: $radius-3;
   position: relative;
   cursor: text;
   &--disabled {
@@ -157,20 +156,20 @@ export default {
     }
   }
   &--size-s {
-		padding: $space-8 $space-16;
-		height: $size-40;
-		#{$block-name}__label {
-			padding-bottom: 1px;
-			padding-top: 1px;
-			padding-right: $space-24;
-			font-size: $fs-14;
-			line-height: $lh-14;
-			&-animated {
-				left: 0;
-				top: 9px;
-				padding-left: $space-16;
-			}
-		}
+    padding: $space-8 $space-20;
+    height: $size-40;
+    #{$block-name}__label {
+      padding-bottom: 1px;
+      padding-top: 1px;
+      padding-right: $space-24;
+      font-size: $fs-14;
+      line-height: $lh-14;
+      &-animated {
+        left: 0;
+        top: 9px;
+        padding-left: $space-16;
+      }
+    }
     #{$block-name}__slot-append {
       .el-dropdown {
         min-width: 90px;
@@ -248,7 +247,6 @@ export default {
       background-color: $color-gray;
     }
     &::-webkit-scrollbar-thumb {
-      border-radius: $radius-3;
       background-color: $color-blue;
     }
   }
@@ -260,7 +258,6 @@ export default {
     transition: all 0.2s ease;
     cursor: text;
     height: max-content;
-    border-radius: $radius-3;
     &-animated {
       display: block;
       align-items: center;
@@ -312,49 +309,30 @@ export default {
   }
   &__slot-append {
     position: absolute;
-    top: 50%;
-    right: $space-24;
-    transform: translateY(-50%);
+    top: 2px;
+    right: 2px;
+    height: calc(100% - 4px);
     transform-origin: center;
     display: flex;
     align-items: center;
-    .el-dropdown {
-      background: #1e3685;
-      border-radius: 0 3px 3px 0;
-      transform: translateX($space-24);
-      .ant-select {
-        height: inherit;
-        display: inline-flex;
-        align-items: center;
-        color: #ffffff;
-        &-selection {
-          min-width: 100%;
-        }
-        .ant-select-arrow-icon {
-          svg {
-            fill: $color-gray;
-          }
-        }
-      }
-    }
+    justify-content: center;
+    overflow: hidden;
   }
-  &--variant-default {
-    background-color: $color-white;
-  }
-  &--variant-gray {
-    background-color: $bg-lighter-blue;
-    border: 1px solid $color-light-blue;
+  &--variant {
     #{$block-name}__input::placeholder {
-      color: $color-steel-gray;
+      color: $color-gray;
     }
     #{$block-name}__label {
-      color: $color-steel-gray;
+      color: $color-gray;
       bottom: calc(100% + 20px);
     }
-    #{$block-name}__slot-append {
-      .el-button {
-        border-radius: 0 $radius-3 $radius-3 0;
-      }
+    &-default {
+      background-color: $color-white;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    &-lightblue {
+      background-color: $bg-lighter-blue;
+      border: 1px solid $color-gray;
     }
   }
 }

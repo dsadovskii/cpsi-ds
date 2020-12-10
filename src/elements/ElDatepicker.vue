@@ -43,7 +43,7 @@ export default {
     },
     size: {
       type: String,
-      default: 'm',
+      default: 's',
     },
     name: {
       type: String,
@@ -115,7 +115,6 @@ export default {
         padding: $space-14 $space-24;
         font-size: $fs-16;
         line-height: $lh-14;
-        border-radius: $radius-3;
         background-color: transparent;
         border: 1px solid $color-gray;
         box-shadow: none;
@@ -160,7 +159,6 @@ export default {
         right: 0;
         color: $color-white;
         background: $color-blue;
-        border-radius: 0 $radius-3 $radius-3 0;
         pointer-events: none;
       }
     }
@@ -168,17 +166,18 @@ export default {
   &--size-s {
     .mx-datepicker {
       width: 100%;
+      background-color: $bg-lighter-blue;
       .mx-input {
         padding: $space-8 $space-20;
         font-size: $fs-14;
         line-height: $lh-14;
-        border-radius: $radius-3;
         background-color: transparent;
         border: 1px solid $color-gray;
         box-shadow: none;
         outline: none;
         color: $color-black;
         height: 40px;
+        border-radius: 0;
         &::placeholder {
           color: $color-gray;
           font-size: $fs-14;
@@ -212,12 +211,11 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 90px;
-        height: 40px;
-        right: 0;
+        width: 35px;
+        height: calc(100% - 6px);
+        right: 3px;
         color: $color-white;
         background: $color-blue;
-        border-radius: 0 $radius-3 $radius-3 0;
         pointer-events: none;
       }
     }

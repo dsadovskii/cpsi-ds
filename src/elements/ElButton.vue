@@ -114,7 +114,6 @@ export default {
   align-items: center;
   flex-wrap: nowrap;
   max-width: 100%;
-  border-radius: $radius-4;
   white-space: nowrap;
   user-select: none;
   text-decoration: none;

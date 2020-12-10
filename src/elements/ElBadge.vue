@@ -108,7 +108,6 @@ export default {
   align-items: center;
   position: relative;
   padding: $space-8 $space-16;
-  border-radius: $radius-4;
   height: 40px;
   &__content {
     font-size: $fs-14;
@@ -132,7 +131,6 @@ export default {
     font-size: $fs-14;
     line-height: $lh-14;
     padding: 1px $space-14;
-    border-radius: $radius-4;
     margin-left: $space-16;
   }
   &__close {
