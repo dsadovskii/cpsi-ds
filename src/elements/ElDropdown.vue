@@ -34,7 +34,7 @@
 <script>
 import _has from 'lodash/has'
 import _get from 'lodash/get'
-import ElSvgIcon from './ElSvgIcon'
+import ElSvgIcon from './ElSvgIcon.vue'
 export default {
   name: 'ElDropdown',
   components: {
