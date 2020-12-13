@@ -4,7 +4,7 @@ export default {
   functional: true,
   props: {
     value: {
-      type: String,
+      type: [String, Number],
     },
     name: {
       type: String,
@@ -52,7 +52,7 @@ export default {
     },
     variant: {
       type: String,
-      default: 'default',
+      default: 'lightblue',
     },
   },
   render: function(h, { data, props, parent, slots }) {
