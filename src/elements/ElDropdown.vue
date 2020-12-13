@@ -67,7 +67,7 @@ export default {
     },
     minWidth: {
       type: String,
-      default: '230px',
+      default: '1px',
     },
     /**
      * multiple, default
@@ -171,6 +171,8 @@ export default {
 .el-dropdown {
   $block-name: &;
   position: relative;
+  min-width: 1px;
+  width: 100%;
   &--no-bg {
     .ant-select-selection {
       background: none !important;
@@ -237,7 +239,7 @@ export default {
         font-size: $space-14;
         line-height: $lh-14;
         margin: 0 !important;
-        padding: $space-4 $space-20;
+        padding: $space-4 41px $space-4 $space-20;
       }
       &__rendered {
         margin: 0 !important;
