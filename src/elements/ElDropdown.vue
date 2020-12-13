@@ -195,11 +195,11 @@ export default {
   }
   &--no-arrow-bg {
     .ant-select-arrow {
-      background-color: transparent;
+      background-color: transparent !important;
     }
   }
   &--inverted-colors {
-    color: $color-white !important;
+    color: $color-white !important;˜
     .ant-select {
       &-selection {
         background-color: $color-gray;
