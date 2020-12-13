@@ -61,6 +61,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    noArrowBg: {
+      type: Boolean,
+      default: false,
+    },
     matchWidth: {
       type: Boolean,
       default: false,
@@ -117,6 +121,7 @@ export default {
     classes() {
       return {
         'el-dropdown--no-bg': this.noBg,
+        'el-dropdown--no-arrow-bg': this.noArrowBg,
         'el-dropdown--inverted-colors': this.invertedColors,
         [`el-dropdown--size-${this.size}`]: true,
       }
@@ -187,6 +192,11 @@ export default {
       }
     }
     min-width: auto !important;
+  }
+  &--no-arrow-bg {
+    .ant-select-arrow {
+      background-color: transparent;
+    }
   }
   &--inverted-colors {
     color: $color-white !important;
