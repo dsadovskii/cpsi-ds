@@ -65,6 +65,7 @@ export default {
           'el-input': true,
           [`el-input--variant-${props.variant}`]: true,
           [`el-input--size-${props.size}`]: true,
+          'el-input--textarea': props.textarea,
           'el-input--disabled': props.disabled,
           'el-input--error': props.error,
           [`${data.staticClass}`]: !!data.staticClass,
@@ -190,6 +191,9 @@ export default {
     #{$block-name}__input::placeholder {
       font-size: $fs-14;
     }
+  }
+  &--textarea {
+    height: auto;
   }
   &__output {
     position: absolute;
