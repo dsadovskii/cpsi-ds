@@ -381,7 +381,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    @include size($size: $size-16);
+    @include size($size: $size-28);
     div {
       position: absolute;
       width: inherit;
