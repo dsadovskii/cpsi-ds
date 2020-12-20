@@ -11,6 +11,7 @@
       :placeholder="computedPlaceholder"
       :show-search="searchable"
       :disabled="disabled"
+      :required="required"
       :filter-option="!searchable && mode === 'multiple'"
       @change="handleChange"
       @search="handleSearch"
@@ -100,6 +101,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    required: {
+      type: Boolean,
+      default: false,
+    },
     size: {
       type: String,
       default: 's',
@@ -133,7 +138,7 @@ export default {
     },
     computedPlaceholder() {
       if (!this.placeholder) {
-        return this.searchable ? 'Start typing' : 'Select'
+        return this.searchable ? 'Начните вводить' : 'Выберите'
       }
       return this.placeholder
     },
