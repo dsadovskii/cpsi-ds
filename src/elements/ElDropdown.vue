@@ -19,7 +19,7 @@
       <div slot="suffixIcon" class="custom-select-arrow">
         <el-svg-icon name="chevron_down" size="12" color="white" />
       </div>
-      <a-select-option v-for="item in options" :key="item.id || item.key" :value="getValue(item)">
+      <a-select-option v-for="item in options" :key="item.id || item.value + item.id" :value="getValue(item)">
         {{ getTitle(item) }}
       </a-select-option>
     </a-select>
@@ -204,8 +204,8 @@ export default {
     }
   }
   &--inverted-colors {
-    color: $color-white !important;˜
-    .ant-select {
+    color: $color-white !important;
+    ˜ .ant-select {
       &-selection {
         background-color: $color-gray;
         border-color: $color-gray;
