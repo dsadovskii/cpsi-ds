@@ -91,7 +91,7 @@ export default {
         return moment(this.value, this.toFormat).format(this.format)
       },
       set(value) {
-        this.$emit('input', moment(value, this.format).format(this.toFormat))
+        this.$emit('input', value ? moment(value, this.format).format(this.toFormat) : value)
       },
     },
   },
