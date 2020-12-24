@@ -109,6 +109,7 @@ export default {
   position: relative;
   padding: $space-8 $space-16;
   height: 40px;
+  border-radius: 3px;
   &__content {
     font-size: $fs-14;
     line-height: $lh-14;

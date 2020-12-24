@@ -183,6 +183,19 @@ export default {
   position: relative;
   min-width: 1px;
   width: 100%;
+  .ant-select-selection {
+    &-selected-value {
+      color: black;
+    }
+    &__choice {
+      color: $color-white !important;
+      border-radius: 3px !important;
+      background-color: $bg-blue !important;
+      &__remove {
+        color: $color-white !important;
+      }
+    }
+  }
   &--no-bg {
     .ant-select-selection {
       background: none !important;
@@ -225,7 +238,7 @@ export default {
   &--size-m {
     .ant-select-selection {
       border-color: $color-gray !important;
-      border-radius: 0 !important;
+      border-radius: 3px !important;
       padding: 0;
       &--multiple,
       &--single {
@@ -245,7 +258,7 @@ export default {
     .ant-select-selection {
       border-color: $color-gray !important;
       background-color: $bg-lighter-blue;
-      border-radius: 0 !important;
+      border-radius: 3px !important;
       padding: 0;
       box-shadow: none !important;
       &--multiple,
@@ -274,6 +287,7 @@ export default {
       top: 2px;
       right: 2px;
       height: calc(100% - 4px);
+      border-radius: 3px;
     }
   }
   .ant-select {
@@ -297,6 +311,7 @@ export default {
     align-items: center;
     justify-content: center;
     height: calc(100% - 6px);
+    border-radius: 3px;
   }
 }
 </style>

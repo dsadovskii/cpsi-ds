@@ -139,6 +139,7 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      border-radius: 3px;
     }
   }
   &__file {
@@ -151,6 +152,7 @@ export default {
     border: 1px solid $color-gray;
     padding: 0 $space-20;
     height: 40px;
+    border-radius: 3px;
   }
   &__label {
     font-size: $fs-16;

@@ -121,6 +121,7 @@ export default {
   width: 100%;
   position: relative;
   cursor: text;
+  border-radius: 3px;
   &--disabled {
     cursor: not-allowed;
     background-color: $color-gray;
@@ -230,6 +231,7 @@ export default {
     box-shadow: none;
     outline: none;
     font-family: 'Inter', sans-serif;
+    color: $color-black;
     &-disabled {
       cursor: inherit;
       resize: none;
@@ -321,6 +323,7 @@ export default {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    border-radius: 3px;
   }
   &--variant {
     #{$block-name}__input::placeholder {

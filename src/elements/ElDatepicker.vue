@@ -121,6 +121,7 @@ export default {
         outline: none;
         color: $color-black;
         height: 52px;
+        border-radius: 3px;
         &::placeholder {
           color: $color-gray;
           font-size: $fs-16;
@@ -160,6 +161,7 @@ export default {
         color: $color-white;
         background: $color-blue;
         pointer-events: none;
+        border-radius: 3px;
       }
     }
   }
@@ -177,7 +179,7 @@ export default {
         outline: none;
         color: $color-black;
         height: 40px;
-        border-radius: 0;
+        border-radius: 3px;
         &::placeholder {
           color: $color-gray;
           font-size: $fs-14;
@@ -217,6 +219,7 @@ export default {
         color: $color-white;
         background: $color-blue;
         pointer-events: none;
+        border-radius: 3px;
       }
     }
   }
