@@ -19,7 +19,8 @@
       <div slot="suffixIcon" class="custom-select-arrow">
         <el-svg-icon name="chevron_down" size="12" color="white" />
       </div>
-      <a-select-option v-for="item in options" :key="item.id || item.value + item.id" :value="getValue(item)">
+      <!--eslint-disable-next-line-->
+      <a-select-option v-for="(item, i) in options" :key="new Date().getTime() + i" :value="getValue(item)">
         {{ getTitle(item) }}
       </a-select-option>
     </a-select>
@@ -178,6 +179,9 @@ export default {
 </script>
 
 <style lang="scss">
+.ant-select-dropdown-menu-item {
+  color: $color-black !important;
+}
 .el-dropdown {
   $block-name: &;
   position: relative;

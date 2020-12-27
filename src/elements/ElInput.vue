@@ -54,6 +54,10 @@ export default {
       type: String,
       default: 'lightblue',
     },
+    mask: {
+      type: String,
+      default: '',
+    },
   },
   render: function(h, { data, props, parent, slots }) {
     let inputTag = props.textarea ? 'textarea' : 'input'
@@ -97,6 +101,12 @@ export default {
               props.disabled || data.model.callback(event.target.value)
             },
           },
+          [!props.mask ? '' : 'directives']: [
+            {
+              name: 'mask',
+              value: props.mask,
+            },
+          ],
         }),
         !props.label ||
           h(
