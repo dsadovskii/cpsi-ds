@@ -10,7 +10,7 @@
       <slot name="icon-append" />
     </span>
   </a>
-  <component :is="linkTag" v-else :class="computedClasses" :to="to">
+  <component :is="linkTag" v-else :class="computedClasses" :to="to" :target="blank ? '_blank' : '_self'">
     <span v-if="iconPrepend" class="el-link__icon-prepend">
       <slot name="icon-prepend" />
     </span>
