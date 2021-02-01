@@ -130,6 +130,7 @@ export default {
         'el-dropdown--no-arrow-bg': this.noArrowBg,
         'el-dropdown--inverted-colors': this.invertedColors,
         [`el-dropdown--size-${this.size}`]: true,
+        'el-dropdown--show-placeholder': !this.value,
       }
     },
     styles() {
@@ -198,6 +199,11 @@ export default {
       &__remove {
         color: $color-white !important;
       }
+    }
+  }
+  &--show-placeholder {
+    .ant-select-selection__placeholder {
+      display: block !important;
     }
   }
   &--no-bg {
