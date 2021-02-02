@@ -25,11 +25,8 @@
         {{ getTitle(item) }}
       </a-select-option>
     </a-select>
-    <div v-if="searchable" class="searchable-icon">
+    <div v-if="mode === 'multiple' || searchable" class="searchable-icon">
       <el-svg-icon name="search" size="12" color="white" />
-    </div>
-    <div v-if="mode === 'multiple' && !searchable" class="searchable-icon">
-      <el-svg-icon name="chevron_down" size="12" color="white" />
     </div>
   </div>
 </template>
@@ -324,6 +321,7 @@ export default {
     justify-content: center;
     height: calc(100% - 6px);
     border-radius: 3px;
+    pointer-events: none;
   }
 }
 .ant-select-dropdown-menu-item {
