@@ -13,6 +13,7 @@
       :disabled="disabled"
       :required="required"
       :filter-option="!searchable && mode === 'multiple'"
+      :not-found-content="computedNotFoundContent"
       @change="handleChange"
       @search="handleSearch"
     >
@@ -110,8 +111,15 @@ export default {
       type: String,
       default: 's',
     },
+    notFoundContent: {
+      type: String,
+      default: 'Ничего не найдено',
+    },
   },
   computed: {
+    computedNotFoundContent() {
+      return this.searchable ? this.notFoundContent : null
+    },
     computedValue: {
       get() {
         return this.returnObject
@@ -316,6 +324,11 @@ export default {
     justify-content: center;
     height: calc(100% - 6px);
     border-radius: 3px;
+  }
+}
+.ant-select-dropdown-menu-item {
+  &-disabled {
+    color: $color-gray !important;
   }
 }
 </style>
