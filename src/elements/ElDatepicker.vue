@@ -26,6 +26,7 @@
 <script>
 import DatePicker from 'vue2-datepicker'
 import 'vue2-datepicker/index.css'
+import 'vue2-datepicker/locale/ru'
 import moment from 'moment'
 export default {
   name: 'ElDatepicker',
@@ -81,6 +82,16 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data() {
+    return {
+      lang: {
+        formatLocale: {
+          firstDayOfWeek: 1,
+        },
+        monthBeforeYear: false,
+      },
+    }
   },
   computed: {
     computedClasses() {
