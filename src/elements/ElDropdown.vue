@@ -9,7 +9,7 @@
       :class="classes"
       :style="styles"
       :placeholder="computedPlaceholder"
-      :show-search="true"
+      :show-search="filterable || searchable"
       :disabled="disabled"
       :required="required"
       :filter-option="!searchable"
@@ -58,6 +58,10 @@ export default {
       default: 'title',
     },
     noBg: {
+      type: Boolean,
+      default: false,
+    },
+    filterable: {
       type: Boolean,
       default: false,
     },
