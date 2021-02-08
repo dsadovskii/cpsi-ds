@@ -232,6 +232,9 @@ export default {
         pointer-events: none;
         border-radius: 3px;
       }
+      &-popup {
+        min-width: 350px;
+      }
     }
   }
   &--error {
