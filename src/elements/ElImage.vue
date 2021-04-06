@@ -17,7 +17,6 @@ export default {
     src2x: {
       type: String,
       default: null,
-      required: true,
     },
     alt: {
       type: String,
@@ -45,16 +44,9 @@ export default {
     },
   },
   render(h, { props, listeners, data }) {
-    let srcset = `${props.src} 1x, ${props.src} 2x`
+    let srcset = props.src
     if (props.src2x) {
-      srcset = srcset = `${props.src} 1x, ${props.src2x} 2x`
-    } else {
-      let regexp = new RegExp(/(.*)(.png|.jpg|.jpeg|.webp|.gif)/gi)
-      let execArray = regexp.exec(props.src)
-
-      if (execArray) {
-        srcset = `${props.src} 1x, ${execArray[1]}@2x${execArray[2]} 2x`
-      }
+      srcset = `${props.src} 1x, ${props.src2x} 2x`
     }
     if (!props.src || !props.src.length) return false
     return h(
@@ -80,7 +72,7 @@ export default {
       [
         h('img', {
           attrs: {
-            srcset: srcset,
+            [props.src2x ? 'srcset' : 'src']: srcset,
             alt: props.alt,
           },
           style: {
