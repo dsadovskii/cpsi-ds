@@ -14,6 +14,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    type: {
+      type: String,
+      default: 'text',
+    },
     label: {
       type: String,
       default: null,
@@ -99,6 +103,11 @@ export default {
           on: {
             input: event => {
               props.disabled || data.model.callback(event.target.value)
+            },
+            keydown: event => {
+              if (event.keyCode === 13) {
+                listeners && listeners.enter && listeners.enter()
+              }
             },
           },
           [!props.mask ? '' : 'directives']: [
