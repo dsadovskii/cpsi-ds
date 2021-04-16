@@ -33,6 +33,10 @@ export default {
       type: String,
       default: 'left',
     },
+    title: {
+      type: String,
+      default: '',
+    },
     block: {
       type: Boolean,
       default: false,
@@ -57,6 +61,10 @@ export default {
       default: false,
     },
     ellipsis: {
+      type: Boolean,
+      default: false,
+    },
+    uppercase: {
       type: Boolean,
       default: false,
     },
@@ -93,6 +101,7 @@ export default {
       'el-text--block': props.block,
       'el-text--nowrap': props.noWrap,
       'el-text--ellipsis': props.ellipsis,
+      'el-text--uppercase': props.uppercase,
       'el-text--pre-line': props.preLine,
       [`${data.staticClass}`]: !!data.staticClass,
       ...data.class,
@@ -110,9 +119,20 @@ export default {
         style: {
           maxWidth: props.maxWidth,
         },
+        attrs: {
+          title: props.title,
+        },
         ...htmlContent,
       },
-      slots()['default'],
+      [
+        h(
+          'div',
+          {
+            class: 'el-text__content',
+          },
+          [slots()['icon-prepend'], slots()['default'], slots()['icon-append']],
+        ),
+      ],
     )
   },
 }
@@ -134,56 +154,73 @@ export default {
       }
     }
   }
-
+  &__content {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
   margin-bottom: 0;
   &--bold {
-    font-weight: bold;
+    #{$block-name}__content {
+      font-weight: bold;
+    }
   }
   &--block {
-    display: inline-flex;
-    width: 100%;
+    #{$block-name}__content {
+      display: inline-flex;
+      width: 100%;
+    }
   }
   &--align-left {
-    text-align: left;
-    justify-content: flex-start;
+    #{$block-name}__content {
+      text-align: left;
+      justify-content: flex-start;
+    }
   }
   &--align-center {
-    text-align: center;
-    justify-content: center;
+    #{$block-name}__content {
+      text-align: center;
+      justify-content: center;
+    }
   }
   &--align-right {
-    text-align: right;
-    justify-content: flex-end;
+    #{$block-name}__content {
+      text-align: right;
+      justify-content: flex-end;
+    }
   }
   &--nowrap {
-    white-space: nowrap;
-    flex-wrap: nowrap;
+    #{$block-name}__content {
+      white-space: nowrap;
+      flex-wrap: nowrap;
+    }
+  }
+  &--uppercase {
+    #{$block-name}__content {
+      text-transform: uppercase;
+    }
   }
   &--ellipsis {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    word-wrap: normal;
+    #{$block-name}__content {
+      display: block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-wrap: normal;
+      flex-wrap: nowrap;
+    }
   }
   &--pre-line {
-    white-space: pre-line;
+    #{$block-name}__content {
+      white-space: pre-line;
+    }
   }
   @each $name, $color in $colors {
     &--#{$name} {
       color: #{$color};
     }
   }
-  //@each $size, $param in $font-sizes {
-  //  &--size-#{$size} {
-  //    font-size: $param;
-  //  }
-  //}
-  //@each $height, $param in $line-heights {
-  //  &--line-height-#{$height} {
-  //    line-height: $param;
-  //  }
-  //}
   @each $weight, $param in $font-weights {
     &--font-weight-#{$weight} {
       font-weight: $param;
