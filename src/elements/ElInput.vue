@@ -319,7 +319,7 @@ export default {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-size: $fs-14;
+      font-size: $fs-12;
     }
     @keyframes slideDown {
       from {

@@ -19,7 +19,7 @@
       @pick="emit('pick', $event)"
       @focus="emit('focus', $event)"
     />
-    <small class="el-datepicker--error-msg">{{ error }}</small>
+    <small class="el-datepicker--error-msg">{{ errorMessage }}</small>
   </section>
 </template>
 
@@ -94,6 +94,10 @@ export default {
     }
   },
   computed: {
+    errorMessage() {
+      const err = this.error
+      return err && err.constructor === Array ? err[0] : err
+    },
     computedClasses() {
       return [{ 'el-datepicker--error': this.error }, { [`el-datepicker--size-${this.size}`]: true }]
     },
@@ -248,8 +252,7 @@ export default {
       color: $color-red !important;
     }
     &-msg {
-      font-size: $fs-14;
-      position: absolute;
+      font-size: $fs-12;
       left: 0;
       animation: slideDown 0.3s forwards;
     }
