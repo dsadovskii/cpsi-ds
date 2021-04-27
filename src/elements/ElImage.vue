@@ -124,7 +124,7 @@ export default {
     box-shadow: 0px 5px 15px rgba($color-black, 0.3);
   }
   img {
-    width: 100%;
+    width: auto;
     height: auto;
     user-select: none;
   }
