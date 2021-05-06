@@ -178,10 +178,8 @@ export default {
     }
   }
   &--align-center {
-    #{$block-name}__content {
-      text-align: center;
-      justify-content: center;
-    }
+    text-align: center;
+    justify-content: center;
   }
   &--align-right {
     #{$block-name}__content {
