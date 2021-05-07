@@ -28,6 +28,7 @@
     <div v-if="mode === 'multiple' || searchable" class="searchable-icon">
       <el-svg-icon name="search" size="12" color="white" />
     </div>
+    <small class="el-dropdown--error-msg">{{ errorMessage }}</small>
   </div>
 </template>
 
@@ -116,8 +117,16 @@ export default {
       type: String,
       default: 'Ничего не найдено',
     },
+    error: {
+      type: String,
+      default: null,
+    },
   },
   computed: {
+    errorMessage() {
+      const err = this.error
+      return err && err.constructor === Array ? err[0] : err
+    },
     computedNotFoundContent() {
       return this.searchable ? this.notFoundContent : null
     },
@@ -139,6 +148,7 @@ export default {
         'el-dropdown--no-arrow-bg': this.noArrowBg,
         'el-dropdown--inverted-colors': this.invertedColors,
         [`el-dropdown--size-${this.size}`]: true,
+        ['el-dropdown--error']: !!this.error,
       }
     },
     styles() {
@@ -326,6 +336,36 @@ export default {
     height: calc(100% - 6px);
     border-radius: 3px;
     pointer-events: none;
+  }
+  &--error {
+    .ant-select-selection {
+      border-color: $color-red !important;
+      &__placeholder {
+        color: $color-red !important;
+      }
+    }
+    &-msg {
+      color: $color-red;
+      position: absolute;
+      left: 0;
+      display: block;
+      max-width: 100%;
+      animation: slideDown 0.3s forwards;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: $fs-12;
+    }
+    @keyframes slideDown {
+      from {
+        top: 100%;
+        opacity: 0;
+      }
+      to {
+        top: calc(100% + 5px);
+        opacity: 1;
+      }
+    }
   }
 }
 .ant-select-dropdown-menu-item {
