@@ -81,7 +81,7 @@ export default {
         },
         on: {
           click: () => {
-            parent.$refs[`el-input_${props.name}`].focus()
+            parent.$refs[`el-input_${props.name}`] && parent.$refs[`el-input_${props.name}`].focus()
           },
         },
       },
