@@ -22,6 +22,10 @@ export default {
       type: String,
       default: null,
     },
+    title: {
+      type: String,
+      default: null,
+    },
     placeholder: {
       type: String,
       default: '',
@@ -66,70 +70,81 @@ export default {
   render: function(h, { data, props, parent, slots }) {
     let inputTag = props.textarea ? 'textarea' : 'input'
     let errorMessage = props.error && props.error.constructor === Array ? props.error[0] : props.error
-    return h(
-      'section',
-      {
-        class: {
-          'el-input': true,
-          [`el-input--variant-${props.variant}`]: true,
-          [`el-input--size-${props.size}`]: true,
-          'el-input--textarea': props.textarea,
-          'el-input--disabled': props.disabled,
-          'el-input--error': props.error,
-          [`${data.staticClass}`]: !!data.staticClass,
-          ...data.class,
-        },
-        on: {
-          click: () => {
-            parent.$refs[`el-input_${props.name}`] && parent.$refs[`el-input_${props.name}`].focus()
+    return h('section', [
+      !!props.title &&
+        h(
+          'span',
+          {
+            class: 'el-input__title',
           },
-        },
-      },
-      [
-        !props.animated || h('output', { class: 'el-input__output', attrs: { tabIndex: -1 } }, props.value),
-        h(inputTag, {
-          attrs: {
-            name: props.name,
-            id: props.name,
-            required: props.required,
-            pattern: props.rule,
-            placeholder: props.animated ? '' : props.placeholder,
-            disabled: props.disabled,
-            rows: props.rows,
+          props.title,
+        ),
+      h(
+        'section',
+        {
+          class: {
+            'el-input': true,
+            [`el-input--variant-${props.variant}`]: true,
+            [`el-input--size-${props.size}`]: true,
+            'el-input--textarea': props.textarea,
+            'el-input--disabled': props.disabled,
+            'el-input--error': props.error,
+            'el-input--with-title': !!props.title,
+            [`${data.staticClass}`]: !!data.staticClass,
+            ...data.class,
           },
-          class: [`el-input__${inputTag}`, { 'el-input__input-disabled': props.disabled }],
-          ref: `el-input_${props.name}`,
-          domProps: { value: data.model.value },
           on: {
-            input: event => {
-              props.disabled || data.model.callback(event.target.value)
-            },
-            keydown: event => {
-              if (event.keyCode === 13) {
-                listeners && listeners.enter && listeners.enter()
-              }
+            click: () => {
+              parent.$refs[`el-input_${props.name}`] && parent.$refs[`el-input_${props.name}`].focus()
             },
           },
-          [!props.mask ? '' : 'directives']: [
-            {
-              name: 'mask',
-              value: props.mask,
+        },
+        [
+          !props.animated || h('output', { class: 'el-input__output', attrs: { tabIndex: -1 } }, props.value),
+          h(inputTag, {
+            attrs: {
+              name: props.name,
+              id: props.name,
+              required: props.required,
+              pattern: props.rule,
+              placeholder: props.animated ? '' : props.placeholder,
+              disabled: props.disabled,
+              rows: props.rows,
             },
-          ],
-        }),
-        !props.label ||
-          h(
-            'label',
-            {
-              class: ['el-input__label', { 'el-input__label-animated': props.animated }],
-              attrs: { for: props.name },
+            class: [`el-input__${inputTag}`, { 'el-input__input-disabled': props.disabled }],
+            ref: `el-input_${props.name}`,
+            domProps: { value: data.model.value },
+            on: {
+              input: event => {
+                props.disabled || data.model.callback(event.target.value)
+              },
+              keydown: event => {
+                if (event.keyCode === 13) {
+                  listeners && listeners.enter && listeners.enter()
+                }
+              },
             },
-            props.label,
-          ),
-        !props.error || h('small', { class: 'el-input--error-msg' }, errorMessage),
-        !slots()['append-btn'] || h('div', { class: { 'el-input__slot-append': true } }, slots()['append-btn']),
-      ],
-    )
+            [!props.mask ? '' : 'directives']: [
+              {
+                name: 'mask',
+                value: props.mask,
+              },
+            ],
+          }),
+          !props.label ||
+            h(
+              'label',
+              {
+                class: ['el-input__label', { 'el-input__label-animated': props.animated }],
+                attrs: { for: props.name },
+              },
+              props.label,
+            ),
+          !props.error || h('small', { class: 'el-input--error-msg' }, errorMessage),
+          !slots()['append-btn'] || h('div', { class: { 'el-input__slot-append': true } }, slots()['append-btn']),
+        ],
+      ),
+    ])
   },
 }
 </script>
@@ -144,6 +159,17 @@ export default {
   &--disabled {
     cursor: not-allowed;
     background-color: $color-gray;
+  }
+  &--with-title {
+    margin-top: $space-10;
+  }
+  &__title {
+    font-size: $fs-14;
+    line-height: $lh-14;
+    color: $color-dark-gray;
+    max-width: 100%;
+    white-space: normal;
+    word-break: break-word;
   }
   &--size-m {
     padding: $space-14 $space-24;

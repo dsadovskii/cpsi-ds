@@ -1,34 +1,37 @@
 <template>
   <div class="el-dropdown" @click.stop.prevent>
-    <a-select
-      :mode="mode"
-      class="no-select-styles"
-      :dropdown-match-select-width="matchWidth"
-      :default-value="computedValue"
-      :value="computedValue"
-      :class="classes"
-      :style="styles"
-      :placeholder="computedPlaceholder"
-      :show-search="filterable || searchable"
-      :disabled="disabled"
-      :required="required"
-      :filter-option="!searchable"
-      :not-found-content="computedNotFoundContent"
-      @change="handleChange"
-      @search="handleSearch"
-    >
-      <div slot="suffixIcon" class="custom-select-arrow">
-        <el-svg-icon name="chevron_down" size="12" color="white" />
+    <span class="el-dropdown__title">{{ title }}</span>
+    <section class="el-dropdown__content" :class="{ 'el-dropdown--with-title': !!this.title }">
+      <a-select
+        :mode="mode"
+        class="no-select-styles"
+        :dropdown-match-select-width="matchWidth"
+        :default-value="computedValue"
+        :value="computedValue"
+        :class="classes"
+        :style="styles"
+        :placeholder="computedPlaceholder"
+        :show-search="filterable || searchable"
+        :disabled="disabled"
+        :required="required"
+        :filter-option="!searchable"
+        :not-found-content="computedNotFoundContent"
+        @change="handleChange"
+        @search="handleSearch"
+      >
+        <div slot="suffixIcon" class="custom-select-arrow">
+          <el-svg-icon name="chevron_down" size="12" color="white" />
+        </div>
+        <!--eslint-disable-next-line-->
+        <a-select-option v-for="(item, i) in options" :key="new Date().getTime() + i" :value="getValue(item)">
+          {{ getTitle(item) }}
+        </a-select-option>
+      </a-select>
+      <div v-if="mode === 'multiple' || searchable" class="searchable-icon">
+        <el-svg-icon name="search" size="12" color="white" />
       </div>
-      <!--eslint-disable-next-line-->
-      <a-select-option v-for="(item, i) in options" :key="new Date().getTime() + i" :value="getValue(item)">
-        {{ getTitle(item) }}
-      </a-select-option>
-    </a-select>
-    <div v-if="mode === 'multiple' || searchable" class="searchable-icon">
-      <el-svg-icon name="search" size="12" color="white" />
-    </div>
-    <small class="el-dropdown--error-msg">{{ errorMessage }}</small>
+      <small class="el-dropdown--error-msg">{{ errorMessage }}</small>
+    </section>
   </div>
 </template>
 
@@ -88,6 +91,10 @@ export default {
     searchable: {
       type: Boolean,
       default: false,
+    },
+    title: {
+      type: String,
+      default: null,
     },
     placeholder: {
       type: String,
@@ -206,6 +213,20 @@ export default {
   position: relative;
   min-width: 1px;
   width: 100%;
+  &--with-title {
+    margin-top: $space-10;
+  }
+  &__title {
+    font-size: $fs-14;
+    line-height: $lh-14;
+    color: $color-dark-gray;
+    max-width: 100%;
+    white-space: normal;
+    word-break: break-all;
+  }
+  &__content {
+    position: relative;
+  }
   .ant-select-selection {
     &-selected-value {
       color: black;
@@ -303,7 +324,7 @@ export default {
     .ant-select-arrow {
       margin: 0 !important;
       width: 35px;
-      background-color: $bg-blue;
+      background-color: $bg-light-blue;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -329,7 +350,7 @@ export default {
     top: 3px;
     right: 3px;
     width: 35px;
-    background-color: $bg-blue;
+    background-color: $bg-light-blue;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -362,7 +383,7 @@ export default {
         opacity: 0;
       }
       to {
-        top: calc(100% + 5px);
+        top: 100%;
         opacity: 1;
       }
     }

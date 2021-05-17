@@ -1,5 +1,6 @@
 <template>
   <section class="el-datepicker" :class="computedClasses">
+    <span class="el-datepicker__title">{{ title }}</span>
     <date-picker
       :id="name"
       :ref="name"
@@ -12,6 +13,7 @@
       :placeholder="placeholder"
       :format="format"
       :append-to-body="appendToBody"
+      :class="{ 'el-datepicker--with-title': !!this.title }"
       @change="emit('change', $event)"
       @open="emit('open', $event)"
       @close="emit('close', $event)"
@@ -61,6 +63,10 @@ export default {
     valueType: {
       type: String,
       default: 'format',
+    },
+    title: {
+      type: String,
+      default: null,
     },
     placeholder: {
       type: String,
@@ -123,6 +129,17 @@ export default {
   $block-name: &;
   position: relative;
   width: 100%;
+  &--with-title {
+    margin-top: $space-10;
+  }
+  &__title {
+    font-size: $fs-14;
+    line-height: $lh-14;
+    color: $color-dark-gray;
+    max-width: 100%;
+    white-space: normal;
+    word-break: break-all;
+  }
   &--size-m {
     .mx-datepicker {
       width: 100%;
@@ -174,7 +191,7 @@ export default {
         height: 52px;
         right: 0;
         color: $color-white;
-        background: $color-blue;
+        background: $color-light-blue;
         pointer-events: none;
         border-radius: 3px;
       }
@@ -232,7 +249,7 @@ export default {
         height: calc(100% - 6px);
         right: 3px;
         color: $color-white;
-        background: $color-blue;
+        background: $color-light-blue;
         pointer-events: none;
         border-radius: 3px;
       }
