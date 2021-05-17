@@ -97,7 +97,7 @@ export default {
   }
   &__header,
   &__footer {
-    display: flex;`
+    display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
