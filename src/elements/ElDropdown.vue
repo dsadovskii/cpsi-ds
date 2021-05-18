@@ -20,7 +20,7 @@
         @search="handleSearch"
       >
         <div slot="suffixIcon" class="custom-select-arrow">
-          <el-svg-icon name="chevron_down" size="12" color="white" />
+          <el-svg-icon name="chevron_down" size="14" color="white" />
         </div>
         <!--eslint-disable-next-line-->
         <a-select-option v-for="(item, i) in options" :key="new Date().getTime() + i" :value="getValue(item)">
@@ -324,6 +324,42 @@ export default {
     .ant-select-arrow {
       margin: 0 !important;
       width: 35px;
+      background-color: $bg-light-blue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 2px;
+      right: 2px;
+      height: calc(100% - 4px);
+      border-radius: 3px;
+    }
+  }
+  &--size-xs {
+    .ant-select-selection {
+      border-color: $color-gray !important;
+      background-color: $bg-lighter-blue;
+      border-radius: 3px !important;
+      padding: 0;
+      box-shadow: none !important;
+      &--multiple,
+      &--single {
+        min-height: 32px;
+        font-size: $space-14;
+        line-height: $lh-14;
+        margin: 0 !important;
+        padding: 0 $space-36 $space-4 $space-10;
+      }
+      &__rendered {
+        margin: 0 !important;
+      }
+      &__placeholder {
+        margin-left: 0 !important;
+        margin-right: 0;
+      }
+    }
+    .ant-select-arrow {
+      margin: 0 !important;
+      width: $space-24;
       background-color: $bg-light-blue;
       display: flex;
       align-items: center;
