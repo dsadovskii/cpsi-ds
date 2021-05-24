@@ -143,7 +143,9 @@ export default {
           ? this.mode === 'multiple'
             ? [...this.value].map(val => val[this.valueField])
             : (this.value && this.value[this.valueField]) || ''
-          : this.value || undefined
+          : this.value || this.value === 0
+          ? this.value
+          : undefined
       },
       set(value) {
         this.$emit('input', value)
