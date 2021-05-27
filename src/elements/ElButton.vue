@@ -265,7 +265,7 @@ export default {
   &--size {
     &-xs {
       height: $size-32;
-      padding: $space-8 $space-14;
+      padding: 0 $space-14;
       letter-spacing: normal;
       font-size: $fs-12;
       line-height: $lh-13;
@@ -290,7 +290,7 @@ export default {
     }
     &-s {
       height: $size-40;
-      padding: $space-14 $space-16;
+      padding: 0 $space-16;
       letter-spacing: normal;
       font-size: $fs-14;
       line-height: $lh-2;
@@ -315,7 +315,7 @@ export default {
     }
     &-m {
       height: $size-44;
-      padding: $space-8 $space-16;
+      padding: 0 $space-16;
       font-size: $fs-16;
       line-height: $lh-13;
       &-compact {
@@ -339,7 +339,7 @@ export default {
     }
     &-l {
       height: $size-48;
-      padding: $space-14 $space-24;
+      padding: 0 $space-24;
       font-size: $fs-24;
       line-height: $lh-13;
       &-compact {
