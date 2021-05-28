@@ -211,6 +211,9 @@ export default {
       @include reset-btn();
       color: #{$color};
       height: auto !important;
+      #{$block-name}__content {
+        margin: 0;
+      }
       @media #{$desktop} {
         &:hover {
           background-color: transparent;
