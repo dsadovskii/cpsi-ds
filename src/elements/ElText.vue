@@ -172,20 +172,16 @@ export default {
     }
   }
   &--align-left {
-    #{$block-name}__content {
-      text-align: left;
-      justify-content: flex-start;
-    }
+    text-align: left;
+    justify-content: flex-start;
   }
   &--align-center {
     text-align: center;
     justify-content: center;
   }
   &--align-right {
-    #{$block-name}__content {
-      text-align: right;
-      justify-content: flex-end;
-    }
+    text-align: right;
+    justify-content: flex-end;
   }
   &--nowrap {
     #{$block-name}__content {
