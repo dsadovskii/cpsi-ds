@@ -39,21 +39,22 @@ export default {
     &-nav {
     }
     &-tab {
-      font-size: $fs-16;
-      line-height: $lh-13;
-      color: $color-blue;
+      font-size: $fs-14;
+      line-height: $lh-14;
+      color: $color-black;
       &:hover {
         color: $color-blue;
       }
       &-active {
         font-weight: $fw-semi-bold;
+        color: $color-blue;
       }
     }
     &-ink-bar-animated {
       background-color: $color-blue;
     }
     &-top-bar {
-      border-color: $color-light-blue;
+      border-color: $color-gray-3;
     }
   }
 }
