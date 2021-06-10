@@ -2,6 +2,7 @@
   <section class="pt-tabs">
     <a-tabs v-model="currentTab" :default-active-key="defaultActiveKey">
       <slot />
+      <slot name="tabBarExtraContent" slot="tabBarExtraContent" />
     </a-tabs>
   </section>
 </template>
