@@ -37,7 +37,7 @@ export default {
   },
   props: {
     value: {
-      type: [String, Date],
+      type: [String, Date, Number],
       default: null,
     },
     type: {
