@@ -67,7 +67,7 @@ export default {
       default: '',
     },
   },
-  render: function(h, { data, props, parent, slots }) {
+  render: function(h, { data, props, parent, slots, listeners }) {
     let inputTag = props.textarea ? 'textarea' : 'input'
     let errorMessage = props.error && props.error.constructor === Array ? props.error[0] : props.error
     return h('section', [
