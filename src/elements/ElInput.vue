@@ -117,7 +117,18 @@ export default {
             domProps: { value: data.model.value },
             on: {
               input: event => {
-                props.disabled || data.model.callback(event.target.value)
+                if (!props.disabled) {
+                  data.model.callback(event.target.value)
+                  if (
+                    data &&
+                    data.on &&
+                    data.on.input &&
+                    data.on.input[1] &&
+                    data.on.input[1].constructor === Function
+                  ) {
+                    data.on.input[1](event.target.value)
+                  }
+                }
               },
               keydown: event => {
                 if (event.keyCode === 13) {
