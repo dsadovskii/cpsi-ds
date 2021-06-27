@@ -50,6 +50,11 @@ export default {
         font-weight: $fw-semi-bold;
         color: $color-blue;
       }
+      &-disabled {
+        opacity: 0.3;
+        user-select: none;
+        pointer-events: none;
+      }
     }
     &-ink-bar-animated {
       background-color: $color-blue;
