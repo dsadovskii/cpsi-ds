@@ -1,5 +1,11 @@
 <template>
-  <a v-if="href" :href="href" :class="computedClasses" :target="blank ? '_blank' : '_self'" :download="download">
+  <a
+    v-if="href"
+    :href="href"
+    :class="computedClasses"
+    :target="blank ? '_blank' : '_self'"
+    :download="download ? download : href"
+  >
     <span v-if="iconPrepend" class="el-link__icon-prepend">
       <slot name="icon-prepend" />
     </span>
@@ -67,8 +73,8 @@ export default {
       default: false,
     },
     download: {
-      type: Boolean,
-      default: false,
+      type: [Boolean, String],
+      default: null,
     },
   },
   computed: {
