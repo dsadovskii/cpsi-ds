@@ -184,7 +184,7 @@ export default {
     word-break: break-word;
   }
   &--size-m {
-    padding: $space-14 $space-24;
+    padding: $space-14 $space-20;
     #{$block-name}__label {
       padding-bottom: 1px;
       padding-top: 1px;
@@ -215,7 +215,7 @@ export default {
     }
   }
   &--size-s {
-    padding: $space-8 $space-20;
+    padding: $space-8 $space-14;
     height: $size-40;
     #{$block-name}__label {
       padding-bottom: 1px;
