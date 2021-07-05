@@ -223,7 +223,7 @@ export default {
     line-height: $lh-14;
     color: $color-dark-gray;
     max-width: 100%;
-    white-space: normal;
+    white-space: pre-line;
     word-break: break-all;
   }
   &__content {
