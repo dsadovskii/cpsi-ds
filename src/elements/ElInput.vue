@@ -114,7 +114,7 @@ export default {
             },
             class: [`el-input__${inputTag}`, { 'el-input__input-disabled': props.disabled }],
             ref: `el-input_${props.name}`,
-            domProps: { value: data.model.value },
+            domProps: { value: data?.model?.value || null },
             on: {
               input: event => {
                 if (!props.disabled) {
@@ -180,7 +180,7 @@ export default {
     line-height: $lh-14;
     color: $color-dark-gray;
     max-width: 100%;
-    white-space: normal;
+    white-space: pre-line;
     word-break: break-word;
   }
   &--size-m {
