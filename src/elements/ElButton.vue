@@ -266,6 +266,31 @@ export default {
     user-select: none;
   }
   &--size {
+    &-xxs {
+      height: $size-20;
+      padding: 0 $space-10;
+      letter-spacing: normal;
+      font-size: $fs-12;
+      line-height: $lh-13;
+      &-compact {
+        @include size($size-20);
+        padding: 6px;
+        .mc-svg-icon {
+          @include size($size-16);
+        }
+      }
+      .mc-svg-icon {
+        @include size($size-16);
+      }
+      #{$block-name} {
+        &__prepend {
+          margin-right: $space-4;
+        }
+        &__append {
+          margin-left: $space-4;
+        }
+      }
+    }
     &-xs {
       height: $size-32;
       padding: 0 $space-14;
