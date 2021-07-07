@@ -1,6 +1,6 @@
 <template>
   <section class="pt-tabs">
-    <a-tabs v-model="currentTab" :default-active-key="defaultActiveKey">
+    <a-tabs v-model="currentTab" :default-active-key="defaultActiveKey" :animated="animated">
       <slot />
       <slot name="tabBarExtraContent" slot="tabBarExtraContent" />
     </a-tabs>
@@ -18,6 +18,10 @@ export default {
     },
     value: {
       type: [String, Number],
+    },
+    animated: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {
