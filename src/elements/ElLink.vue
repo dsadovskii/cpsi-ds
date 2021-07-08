@@ -4,7 +4,7 @@
     :href="href"
     :class="computedClasses"
     :target="blank ? '_blank' : '_self'"
-    :download="download ? download : href"
+    :download="download ? download || href : null"
   >
     <span v-if="iconPrepend" class="el-link__icon-prepend">
       <slot name="icon-prepend" />
