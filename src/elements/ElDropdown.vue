@@ -370,6 +370,9 @@ export default {
       right: 2px;
       height: calc(100% - 4px);
       border-radius: 3px;
+      &:hover {
+        filter: brightness(1.3);
+      }
     }
   }
   .ant-select {

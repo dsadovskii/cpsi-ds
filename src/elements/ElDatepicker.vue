@@ -252,6 +252,9 @@ export default {
         background: $color-light-blue;
         pointer-events: none;
         border-radius: 3px;
+        &:hover {
+          filter: brightness(1.3);
+        }
       }
       &-popup {
         min-width: 350px;
