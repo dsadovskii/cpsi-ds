@@ -250,8 +250,8 @@ export default {
         right: 3px;
         color: $color-white;
         background: $color-light-blue;
-        pointer-events: none;
         border-radius: 3px;
+        cursor: pointer;
         &:hover {
           filter: brightness(1.3);
         }
