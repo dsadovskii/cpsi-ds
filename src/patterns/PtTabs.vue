@@ -60,8 +60,11 @@ export default {
         pointer-events: none;
       }
     }
-    &-ink-bar-animated {
+    &-ink-bar {
       background-color: $color-blue;
+      &-animated {
+        background-color: $color-blue;
+      }
     }
     &-top-bar {
       border-color: $color-gray-3;
