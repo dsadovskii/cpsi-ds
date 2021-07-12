@@ -125,7 +125,7 @@ export default {
       default: 'Ничего не найдено',
     },
     error: {
-      type: String,
+      type: [String, Array],
       default: null,
     },
   },
