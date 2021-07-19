@@ -136,7 +136,6 @@ export default {
   &__content {
     font-size: inherit;
     line-height: inherit;
-    margin: 0 $space-10;
   }
   /*TODO*/
   &--disabled {
@@ -264,6 +263,12 @@ export default {
     display: inline-flex;
     align-items: center;
     user-select: none;
+  }
+  &__content + &__icon-append {
+    margin-left: $space-10;
+  }
+  &__icon-prepend + &__content {
+    margin-left: $space-10;
   }
   &--size {
     &-xxs {
