@@ -1,14 +1,20 @@
 <template>
   <div class="el-dropdown" @click.stop.prevent>
     <span class="el-dropdown__title">{{ title }}</span>
-    <section class="el-dropdown__content" :class="{ 'el-dropdown--with-title': !!this.title }">
+    <section
+      class="el-dropdown__content"
+      :class="{
+        'el-dropdown--with-title': !!this.title,
+        'el-dropdown--with-append-btn': $slots['append-btn'],
+        ...sizeClass,
+      }"
+    >
       <a-select
         :mode="mode"
         class="no-select-styles"
         :dropdown-match-select-width="matchWidth"
         :default-value="computedValue"
         :value="computedValue"
-        :class="classes"
         :style="styles"
         :placeholder="computedPlaceholder"
         :show-search="filterable || searchable"
@@ -16,11 +22,12 @@
         :required="required"
         :filter-option="!searchable"
         :not-found-content="computedNotFoundContent"
+        :class="classes"
         @change="handleChange"
         @search="handleSearch"
       >
         <div slot="suffixIcon" class="custom-select-arrow">
-          <el-svg-icon name="chevron_down" size="14" color="white" />
+          <el-svg-icon name="chevron_down" size="14" :color="noArrowBg ? 'gray' : 'white'" />
         </div>
         <!--eslint-disable-next-line-->
         <a-select-option v-for="(item, i) in options" :key="new Date().getTime() + i" :value="getValue(item)">
@@ -31,6 +38,9 @@
         <el-svg-icon name="search" size="12" color="white" />
       </div>
       <small class="el-dropdown--error-msg">{{ errorMessage }}</small>
+      <div class="el-dropdown__append-btn" v-if="$slots['append-btn']">
+        <slot name="append-btn" />
+      </div>
     </section>
   </div>
 </template>
@@ -160,6 +170,11 @@ export default {
         ['el-dropdown--error']: !!this.error,
       }
     },
+    sizeClass() {
+      return {
+        [`size-${this.size}`]: true,
+      }
+    },
     styles() {
       return {
         'min-width': this.minWidth,
@@ -215,6 +230,7 @@ export default {
   position: relative;
   min-width: 1px;
   width: 100%;
+  background-color: $bg-lighter-blue;
   &--with-title {
     margin-top: $space-10;
   }
@@ -228,8 +244,49 @@ export default {
   }
   &__content {
     position: relative;
+    border: 1px solid $color-gray;
+    border-radius: 3px;
+    &.size-s {
+      &#{$block-name}--with-append-btn {
+        padding-right: 38px;
+      }
+      #{$block-name}__append-btn {
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        & > * {
+          padding: 0;
+          min-height: unset;
+          min-width: unset;
+          height: $space-36;
+          width: $space-36;
+          max-width: $space-36;
+        }
+      }
+    }
+    &.size-xs {
+      &#{$block-name}--with-append-btn {
+        padding-right: $space-30;
+      }
+      #{$block-name}__append-btn {
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        & > * {
+          padding: 0;
+          min-height: unset;
+          min-width: unset;
+          max-height: $space-28;
+          width: $space-28;
+          max-width: $space-28;
+        }
+      }
+    }
   }
   .ant-select-selection {
+    border: none;
+    box-shadow: none;
+    background: transparent;
     &-selected-value {
       color: black;
     }
@@ -283,8 +340,6 @@ export default {
   }
   &--size-m {
     .ant-select-selection {
-      border-color: $color-gray !important;
-      border-radius: 3px !important;
       padding: 0;
       &--multiple,
       &--single {
@@ -302,9 +357,6 @@ export default {
   }
   &--size-s {
     .ant-select-selection {
-      border-color: $color-gray !important;
-      background-color: $bg-lighter-blue;
-      border-radius: 3px !important;
       padding: 0;
       box-shadow: none !important;
       &--multiple,
@@ -341,9 +393,6 @@ export default {
   }
   &--size-xs {
     .ant-select-selection {
-      border-color: $color-gray !important;
-      background-color: $bg-lighter-blue;
-      border-radius: 3px !important;
       padding: 0;
       box-shadow: none !important;
       &--multiple,
