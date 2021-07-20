@@ -230,7 +230,6 @@ export default {
   position: relative;
   min-width: 1px;
   width: 100%;
-  background-color: $bg-lighter-blue;
   &--with-title {
     margin-top: $space-10;
   }
@@ -246,6 +245,7 @@ export default {
     position: relative;
     border: 1px solid $color-gray;
     border-radius: 3px;
+    background-color: $bg-lighter-blue;
     &.size-s {
       &#{$block-name}--with-append-btn {
         padding-right: 38px;
