@@ -118,15 +118,11 @@ export default {
             on: {
               input: event => {
                 if (!props.disabled) {
-                  data.model.callback(event.target.value)
-                  if (
-                    data &&
-                    data.on &&
-                    data.on.input &&
-                    data.on.input[1] &&
-                    data.on.input[1].constructor === Function
-                  ) {
-                    data.on.input[1](event.target.value)
+                  if (data.model) data.model.callback(event.target.value)
+                  if (data && data.on && data.on.input) {
+                    if (data.on.input[1] && data.on.input[1].constructor === Function)
+                      data.on.input[1](event.target.value)
+                    if (data.on.input.constructor === Function) data.on.input(event.target.value)
                   }
                 }
               },
