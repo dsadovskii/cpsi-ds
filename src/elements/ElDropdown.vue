@@ -163,7 +163,6 @@ export default {
     },
     classes() {
       return {
-        'el-dropdown--no-bg': this.noBg,
         'el-dropdown--no-arrow-bg': this.noArrowBg,
         'el-dropdown--inverted-colors': this.invertedColors,
         [`el-dropdown--size-${this.size}`]: true,
@@ -173,6 +172,7 @@ export default {
     sizeClass() {
       return {
         [`size-${this.size}`]: true,
+        'el-dropdown__content--no-bg': this.noBg,
       }
     },
     styles() {
@@ -246,6 +246,23 @@ export default {
     border: 1px solid $color-gray;
     border-radius: 3px;
     background-color: $bg-lighter-blue;
+    &--no-bg {
+      background: transparent;
+      border: none;
+      .ant-select-selection {
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        height: auto;
+        &__rendered {
+          margin-right: 30px !important;
+        }
+        &-selected-value {
+          color: $color-blue !important;
+        }
+      }
+      min-width: auto !important;
+    }
     &.size-s {
       &#{$block-name}--with-append-btn {
         padding-right: 38px;
@@ -298,21 +315,6 @@ export default {
         color: $color-white !important;
       }
     }
-  }
-  &--no-bg {
-    .ant-select-selection {
-      background: none !important;
-      box-shadow: none !important;
-      border: none !important;
-      height: auto;
-      &__rendered {
-        margin-right: 30px !important;
-      }
-      &-selected-value {
-        color: $color-blue !important;
-      }
-    }
-    min-width: auto !important;
   }
   &--no-arrow-bg {
     .ant-select-arrow {
