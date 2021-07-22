@@ -247,6 +247,7 @@ export default {
         justify-content: center;
         width: 35px;
         height: calc(100% - 6px);
+        max-height: 35px;
         right: 3px;
         color: $color-white;
         background: $color-light-blue;
