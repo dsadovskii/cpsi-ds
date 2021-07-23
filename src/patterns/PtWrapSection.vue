@@ -1,9 +1,9 @@
 <template>
-  <div class="pt-wrap-section" :class="classes">
+  <section class="pt-wrap-section" :class="classes">
     <div v-if="$slots.left || $slots.right || title" class="pt-wrap-section__head">
       <div v-if="$slots.left || title" class="pt-wrap-section__left">
         <slot name="left">
-          <el-text>{{ title }}</el-text>
+          <el-text tag="h3">{{ title }}</el-text>
         </slot>
       </div>
       <div v-if="$slots.right" class="pt-wrap-section__right">
@@ -11,7 +11,7 @@
       </div>
     </div>
     <slot />
-  </div>
+  </section>
 </template>
 
 <script>
