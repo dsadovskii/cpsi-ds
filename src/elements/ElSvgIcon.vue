@@ -150,13 +150,6 @@ export default {
       }
     }
   }
-  //&--size {
-  //  @each $size, $value in $sizes {
-  //    &-#{$size} {
-  //      @include size($value, !important);
-  //    }
-  //  }
-  //}
   &--color {
     @each $color, $value in $colors {
       &-#{$color} {

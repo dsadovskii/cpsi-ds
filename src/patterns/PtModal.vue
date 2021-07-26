@@ -30,7 +30,7 @@
         <slot name="footer" />
       </div>
       <button v-if="closeVisible" type="button" class="pt-modal__btn-close" @click.prevent="close">
-        <el-svg-icon class="pt-modal__icon-close" size="12" name="close" />
+        <el-svg-icon class="pt-modal__icon-close" size="18" name="close" color="gray-3" />
       </button>
     </div>
   </modal>
@@ -144,14 +144,27 @@ export default {
     box-shadow: none;
     line-height: 0;
     position: absolute;
-    top: $space-20;
-    right: $space-20;
-    padding: 5px;
+    top: $space-28;
+    right: $space-24;
+    padding: 0;
     cursor: pointer;
     z-index: 1;
+    @media #{$mobile} {
+      &:active {
+        #{$block-name}__icon-close {
+          color: $color-dark-gray;
+        }
+      }
+    }
+    @media #{$desktop} {
+      &:hover {
+        #{$block-name}__icon-close {
+          color: $color-dark-gray;
+        }
+      }
+    }
   }
   &__icon-close {
-    @include size($size-24);
     transition: color 0.3s;
   }
   &.overlay-fade-enter-active,
@@ -233,10 +246,13 @@ export default {
     box-shadow: none;
     padding: 0;
   }
+  &__body {
+    padding: $space-24;
+  }
   &__header {
-    padding-bottom: $space-16;
     position: relative;
-    /*padding-right: 35px;*/
+    padding: $space-24;
+    border-bottom: 1px solid $color-gray-3;
   }
   &__title {
     margin-top: 0;
@@ -246,7 +262,6 @@ export default {
   &__inner {
     position: relative;
     box-shadow: 0 6px 12px rgba(110, 110, 110, 0.61);
-    padding: $space-40 $space-28 $space-30 $space-24;
     background-color: $color-white;
     margin: 0 12px 0 12px;
     border-radius: $radius-8;
