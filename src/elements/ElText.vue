@@ -1,5 +1,5 @@
 <script>
-import { MediaGenerator } from '../helpers/mediaGenerator'
+import { MediaGenerator } from '@/helpers/mediaGenerator'
 
 let params = ['size', 'lh']
 let sizeProps = new MediaGenerator(params).generateProps(String)
@@ -19,7 +19,7 @@ export default {
     },
     tag: {
       type: String,
-      default: 'p',
+      default: 'h3',
     },
     size: {
       type: String,
@@ -126,7 +126,7 @@ export default {
       },
       [
         h(
-          'div',
+          'span',
           {
             class: 'el-text__content',
           },
