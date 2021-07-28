@@ -11,6 +11,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    ignoreLoading: {
+      type: Boolean,
+      default: false,
+    },
     disabled: {
       type: Boolean,
       default: false,
@@ -87,6 +91,11 @@ export default {
         },
         on: {
           click(e) {
+            if (props.loading && !props.ignoreLoading) {
+              e.preventDefault()
+              e.stopPropagation()
+              return
+            }
             if (!Object.keys(listeners).length || props.disabled) return
             listeners['click'](e)
           },
@@ -247,6 +256,7 @@ export default {
     }
   }
   &--loading {
+    overflow: hidden;
     #{$block-name} {
       &__content,
       &__icon-prepend,
@@ -422,24 +432,24 @@ export default {
       height: inherit;
       border-radius: 50%;
       &.ring {
-        border-width: 3px;
+        border-width: 2px;
         border-style: solid;
         border-color: transparent;
         animation: 1s fancy infinite alternate;
         &:nth-child(1) {
-          border-left-color: $color-light-blue;
-          border-right-color: $color-light-blue;
+          border-left-color: $color-white;
+          border-right-color: $color-white;
         }
         &:nth-child(2) {
-          border-top-color: $color-light-blue;
-          border-bottom-color: $color-light-blue;
+          border-top-color: $color-white;
+          border-bottom-color: $color-white;
           animation-delay: 500ms;
         }
       }
       &.dot {
         width: 0.5rem;
         height: 0.5rem;
-        background: $color-light-blue;
+        background: $color-white;
       }
     }
   }
