@@ -20,7 +20,7 @@
         :show-search="filterable || searchable"
         :disabled="disabled"
         :required="required"
-        :filter-option="!searchable"
+        :filter-option="false"
         :not-found-content="computedNotFoundContent"
         :class="classes"
         @change="handleChange"
@@ -30,7 +30,7 @@
           <el-svg-icon name="chevron_down" size="14" :color="noArrowBg ? 'gray' : 'white'" />
         </div>
         <!--eslint-disable-next-line-->
-        <a-select-option v-for="(item, i) in options" :key="new Date().getTime() + i" :value="getValue(item)">
+        <a-select-option v-for="(item, i) in computedOptions" :key="new Date().getTime() + i" :value="getValue(item)">
           {{ getTitle(item) }}
         </a-select-option>
       </a-select>
@@ -139,7 +139,18 @@ export default {
       default: null,
     },
   },
+  data() {
+    return {
+      filter_search: null,
+    }
+  },
   computed: {
+    computedOptions() {
+      if (!this.filter_search) return this.options
+      return [...(this.options || [])].filter(o =>
+        o[this.titleField]?.toLowerCase().match(this.filter_search?.toLowerCase()),
+      )
+    },
     errorMessage() {
       const err = this.error
       return err && err.constructor === Array ? err[0] : err
@@ -198,6 +209,7 @@ export default {
       return _get(item, prop)
     },
     handleChange(value) {
+      this.filter_search = null
       if (this.returnObject) {
         if (this.mode === 'multiple') {
           value = this.options.filter(o => {
@@ -215,6 +227,7 @@ export default {
       this.$emit('change', value)
     },
     handleSearch(value) {
+      if (this.filterable) return (this.filter_search = value)
       this.$emit('search', value)
     },
   },
