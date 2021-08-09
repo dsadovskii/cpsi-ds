@@ -124,6 +124,11 @@ export default {
                       data.on.input[1](event.target.value)
                     if (data.on.input.constructor === Function) data.on.input(event.target.value)
                   }
+                  if (data && data.nativeOn && data.nativeOn.input) {
+                    if (data.nativeOn.input[1] && data.nativeOn.input[1].constructor === Function)
+                      data.nativeOn.input[1](event, event.target.value)
+                    if (data.nativeOn.input.constructor === Function) data.nativeOn.input(event, event.target.value)
+                  }
                 }
               },
               keydown: event => {
