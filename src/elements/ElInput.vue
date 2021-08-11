@@ -16,7 +16,7 @@ export default {
     },
     type: {
       type: String,
-      default: 'text',
+      default: 'text', // all input types and custom "num" for only numbers
     },
     label: {
       type: String,
@@ -118,16 +118,20 @@ export default {
             on: {
               input: event => {
                 if (!props.disabled) {
-                  if (data.model) data.model.callback(event.target.value)
+                  const value =
+                    props.type === 'num'
+                      ? String(event.target.value).replace(new RegExp(/[^\d^.]/, 'gm'), '')
+                      : event.target.value
+                  event.target.value = value
+                  if (data.model) data.model.callback(value)
                   if (data && data.on && data.on.input) {
-                    if (data.on.input[1] && data.on.input[1].constructor === Function)
-                      data.on.input[1](event.target.value)
-                    if (data.on.input.constructor === Function) data.on.input(event.target.value)
+                    if (data.on.input[1] && data.on.input[1].constructor === Function) data.on.input[1](value)
+                    if (data.on.input.constructor === Function) data.on.input(value)
                   }
                   if (data && data.nativeOn && data.nativeOn.input) {
                     if (data.nativeOn.input[1] && data.nativeOn.input[1].constructor === Function)
-                      data.nativeOn.input[1](event, event.target.value)
-                    if (data.nativeOn.input.constructor === Function) data.nativeOn.input(event, event.target.value)
+                      data.nativeOn.input[1](event, value)
+                    if (data.nativeOn.input.constructor === Function) data.nativeOn.input(event, value)
                   }
                 }
               },
