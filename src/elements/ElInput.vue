@@ -120,7 +120,10 @@ export default {
                 if (!props.disabled) {
                   const value =
                     props.type === 'num'
-                      ? String(event.target.value).replace(new RegExp(/[^\d^.]/, 'gm'), '')
+                      ? (() => {
+                          const [first] = /\d*[\.]?\d*/.exec(String(event.target.value)) || []
+                          return first
+                        })()
                       : event.target.value
                   event.target.value = value
                   if (data.model) data.model.callback(value)
