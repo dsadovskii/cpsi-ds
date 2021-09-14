@@ -41,6 +41,10 @@ export default {
       type: String,
       default: null,
     },
+    ellipsis: {
+      type: Boolean,
+      default: false,
+    },
     blank: {
       type: Boolean,
       default: false,
@@ -85,6 +89,7 @@ export default {
         [`el-link--line-height-${this.lh}`]: !!this.lh,
         [`el-link--font-weight-${this.fontWeight}`]: !!this.fontWeight,
         [`el-link--variant-${this.variant}`]: !!this.variant,
+        ['el-link--ellipsis']: this.ellipsis,
         'el-link--full-width': this.fullWidth,
       }
     },
@@ -138,6 +143,14 @@ export default {
   @each $weight, $param in $font-weights {
     &--font-weight-#{$weight} {
       font-weight: $param;
+    }
+  }
+  &--ellipsis {
+    max-width: 100%;
+    .el-link__content {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
   &--full-width {
