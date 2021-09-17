@@ -1,5 +1,5 @@
 <script>
-import { MediaGenerator } from '@/helpers/mediaGenerator'
+import { MediaGenerator } from '../helpers/mediaGenerator'
 
 let params = ['size', 'lh']
 let sizeProps = new MediaGenerator(params).generateProps(String)

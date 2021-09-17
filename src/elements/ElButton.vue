@@ -51,6 +51,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    wrapText: {
+      type: Boolean,
+      default: false,
+    },
   },
   render(h, { props, slots, listeners, data }) {
     let prepend = slots()['icon-prepend']
@@ -85,6 +89,7 @@ export default {
           'el-button--rounded': props.rounded,
           'el-button--full-width': props.fullWidth,
           'el-button--auto-height': props.autoHeight,
+          'el-button--wrap-text': props.wrapText,
           [`${data.staticClass}`]: !!data.staticClass,
           ...data.class,
         },
@@ -128,7 +133,7 @@ export default {
   align-items: center;
   flex-wrap: nowrap;
   max-width: 100%;
-  //white-space: nowrap;
+  white-space: nowrap;
   user-select: none;
   text-decoration: none;
   text-transform: none;
@@ -146,6 +151,9 @@ export default {
     &--weight-#{$name} {
       font-weight: #{$weight};
     }
+  }
+  &--wrap-text {
+    white-space: normal;
   }
   &__content {
     font-size: inherit;
