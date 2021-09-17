@@ -47,6 +47,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    autoHeight: {
+      type: Boolean,
+      default: false,
+    },
   },
   render(h, { props, slots, listeners, data }) {
     let prepend = slots()['icon-prepend']
@@ -80,6 +84,7 @@ export default {
           'el-button--loading': props.loading,
           'el-button--rounded': props.rounded,
           'el-button--full-width': props.fullWidth,
+          'el-button--auto-height': props.autoHeight,
           [`${data.staticClass}`]: !!data.staticClass,
           ...data.class,
         },
@@ -123,7 +128,7 @@ export default {
   align-items: center;
   flex-wrap: nowrap;
   max-width: 100%;
-  white-space: nowrap;
+  //white-space: nowrap;
   user-select: none;
   text-decoration: none;
   text-transform: none;
@@ -267,6 +272,9 @@ export default {
   }
   &--full-width {
     width: 100%;
+  }
+  &--auto-height {
+    height: auto !important;
   }
   &__icon-append,
   &__icon-prepend {
