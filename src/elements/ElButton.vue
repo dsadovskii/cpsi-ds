@@ -275,6 +275,23 @@ export default {
   }
   &--auto-height {
     height: auto !important;
+    &#{$block-name}--size {
+      &-xxs {
+        min-height: $size-20;
+      }
+      &-xs {
+        min-height: $size-32;
+      }
+      &-s {
+        min-height: $size-40;
+      }
+      &-m {
+        min-height: $size-44;
+      }
+      &-l {
+        min-height: $size-48;
+      }
+    }
   }
   &__icon-append,
   &__icon-prepend {
@@ -412,6 +429,8 @@ export default {
         }
       }
     }
+    &-xxs,
+    &-xs,
     &-s,
     &-m,
     &-l {
