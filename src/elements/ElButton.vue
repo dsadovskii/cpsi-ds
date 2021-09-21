@@ -7,6 +7,10 @@ export default {
       type: String,
       default: 'blue',
     },
+    align: {
+      type: String,
+      default: 'center',
+    },
     loading: {
       type: Boolean,
       default: false,
@@ -90,6 +94,7 @@ export default {
           'el-button--full-width': props.fullWidth,
           'el-button--auto-height': props.autoHeight,
           'el-button--wrap-text': props.wrapText,
+          [`el-button--align-${props.align}`]: props.align,
           [`${data.staticClass}`]: !!data.staticClass,
           ...data.class,
         },
@@ -154,6 +159,30 @@ export default {
   }
   &--wrap-text {
     white-space: normal;
+    #{$block-name}__content {
+      white-space: normal;
+    }
+  }
+  &--align-left {
+    text-align: left;
+    justify-content: flex-start;
+    #{$block-name}__content {
+      text-align: left;
+    }
+  }
+  &--align-center {
+    text-align: center;
+    justify-content: center;
+    #{$block-name}__content {
+      text-align: center;
+    }
+  }
+  &--align-right {
+    text-align: right;
+    justify-content: flex-end;
+    #{$block-name}__content {
+      text-align: right;
+    }
   }
   &__content {
     font-size: inherit;
