@@ -247,6 +247,8 @@ export default {
     padding: 0;
   }
   &__body {
+    flex-grow: 1;
+    overflow-y: scroll;
     padding: $space-24;
   }
   &__header {
@@ -261,6 +263,8 @@ export default {
   }
   &__inner {
     position: relative;
+    display: flex;
+    flex-direction: column;
     box-shadow: 0 6px 12px rgba(110, 110, 110, 0.61);
     background-color: $color-white;
     margin: 0 12px 0 12px;
@@ -268,7 +272,7 @@ export default {
   }
   &__control {
     display: flex;
-    padding-top: $space-30;
+    padding-top: $space-24;
     margin-left: -3px;
     margin-right: -3px;
     &:empty {
