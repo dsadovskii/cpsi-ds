@@ -272,7 +272,7 @@ export default {
   }
   &__control {
     display: flex;
-    padding-top: $space-24;
+    padding: $space-24;
     margin-left: -3px;
     margin-right: -3px;
     &:empty {
