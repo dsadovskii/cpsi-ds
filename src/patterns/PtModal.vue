@@ -250,6 +250,10 @@ export default {
     flex-grow: 1;
     overflow-y: scroll;
     padding: $space-24;
+    padding-top: 0;
+    & > *:first-child {
+      margin-top: $space-24;
+    }
   }
   &__header {
     position: relative;
