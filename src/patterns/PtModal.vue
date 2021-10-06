@@ -21,7 +21,7 @@
           <slot name="title" />
         </div>
       </div>
-      <div class="pt-modal__body">
+      <div class="pt-modal__body" :class="{ scrollable }">
         <!-- @slot Слот контента -->
         <slot />
       </div>
@@ -76,6 +76,10 @@ export default {
     secondaryModal: {
       type: Boolean,
       default: false,
+    },
+    scrollable: {
+      type: Boolean,
+      default: true,
     },
   },
   computed: {
@@ -248,11 +252,13 @@ export default {
   }
   &__body {
     flex-grow: 1;
-    overflow-y: scroll;
     padding: $space-24;
     padding-top: 0;
     & > *:first-child {
       margin-top: $space-24;
+    }
+    &.scrollable {
+      overflow-y: scroll;
     }
   }
   &__header {
