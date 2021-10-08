@@ -132,6 +132,14 @@ export default {
 .v--modal-block-scroll {
   width: 100%;
 }
+.vm--overlay {
+  height: 100%;
+}
+.vm--container.scrollable {
+  height: auto;
+  max-height: fit-content;
+  overflow-y: auto;
+}
 .pt-modal {
   $block-name: &;
   $border-color: #dee1e9;
