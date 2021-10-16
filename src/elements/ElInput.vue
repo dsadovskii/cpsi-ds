@@ -346,7 +346,6 @@ export default {
     background-color: #{$color-red}20;
     color: $color-red;
     #{$block-name} {
-      &__input,
       &__input::placeholder,
       &__label,
       &__error-msg {
