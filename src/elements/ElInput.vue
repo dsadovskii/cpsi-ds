@@ -160,7 +160,7 @@ export default {
               },
               props.label,
             ),
-          !props.error || h('small', { class: 'el-input--error-msg' }, errorMessage),
+          !props.error || h('small', { class: 'el-input--error-msg', attrs: { title: errorMessage } }, errorMessage),
           !slots()['append-btn'] || h('div', { class: { 'el-input__slot-append': true } }, slots()['append-btn']),
         ],
       ),
