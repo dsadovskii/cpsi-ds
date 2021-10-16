@@ -349,7 +349,7 @@ export default {
       &__input::placeholder,
       &__label,
       &__error-msg {
-        color: inherit;
+        color: $color-red;
       }
       &__label {
         background-color: transparent;
