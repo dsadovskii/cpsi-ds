@@ -314,7 +314,7 @@ export default {
     height: auto !important;
     &#{$block-name}--size {
       &-xxs {
-        min-height: $size-20;
+        min-height: 26px;
       }
       &-xs {
         min-height: $size-32;
