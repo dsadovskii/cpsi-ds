@@ -344,7 +344,7 @@ export default {
   }
   &--size {
     &-xxs {
-      height: $size-20;
+      height: 26px;
       padding: 0 $space-10;
       letter-spacing: normal;
       font-size: $fs-12;
