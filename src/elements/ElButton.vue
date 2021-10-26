@@ -350,7 +350,7 @@ export default {
       font-size: $fs-12;
       line-height: $lh-13;
       &-compact {
-        @include size($size-20);
+        @include size(26px);
         padding: 6px;
         .mc-svg-icon {
           @include size($size-16);
