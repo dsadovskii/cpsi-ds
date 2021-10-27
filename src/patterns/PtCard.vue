@@ -108,7 +108,7 @@ export default {
     & > * {
       flex: 0 1 auto;
       max-width: 100%;
-      //min-width: 1px;
+      min-width: 1px;
       width: max-content;
     }
     &-center {
