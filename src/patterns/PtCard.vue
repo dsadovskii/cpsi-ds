@@ -69,7 +69,7 @@ export default {
         !(slots()['card-footer'] || slots()['card-footer-left'] || slots()['card-footer-right']) ||
           h('section', { class: 'pt-card__footer' }, [
             !slots()['card-footer-left'] || h('div', { class: 'pt-card__footer-left' }, slots()['card-footer-left']),
-            h('div', { class: 'pt-card__footer-center' }, slots()['card-footer']),
+            !slots()['card-footer'] || h('div', { class: 'pt-card__footer-center' }, slots()['card-footer']),
             !slots()['card-footer-right'] || h('div', { class: 'pt-card__footer-right' }, slots()['card-footer-right']),
           ]),
       ],
