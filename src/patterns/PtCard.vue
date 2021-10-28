@@ -117,6 +117,12 @@ export default {
       text-overflow: ellipsis;
       padding: $space-zero $space-16;
     }
+    &-left {
+      padding-right: $space-16;
+    }
+    &-right {
+      padding-left: $space-16;
+    }
   }
   &-header {
     &--valign-top {
