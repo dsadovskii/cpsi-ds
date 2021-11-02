@@ -1,8 +1,17 @@
 <script>
+import { MediaGenerator } from '../helpers/mediaGenerator'
+
+let params = ['size']
+let sizeProps = new MediaGenerator(params).generateProps(String)
 export default {
   name: 'ElBadge',
   functional: true,
   props: {
+    ...sizeProps,
+    size: {
+      type: String,
+      default: '16',
+    },
     variant: {
       type: String,
       default: 'blue',
@@ -39,6 +48,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    rounded: {
+      type: Boolean,
+      default: false,
+    },
   },
   render(h, { slots, props, data, listeners }) {
     return h(
@@ -50,9 +63,15 @@ export default {
           [`el-badge--${props.variant}`]: !!props.variant,
           [`el-badge--color-${props.color}`]: !!props.color,
           'el-badge__closable': props.closable,
+          'el-badge__rounded': props.rounded,
           'el-badge__clickable': props.clickable,
           [`${data.staticClass}`]: !!data.staticClass,
           [data.class]: !!data.class,
+          [`el-badge--size-xs-${props.size}`]: props.size,
+          [`el-badge--size-s-${props.sizeS}`]: props.sizeS,
+          [`el-badge--size-m-${props.sizeM}`]: props.sizeM,
+          [`el-badge--size-l-${props.sizeL}`]: props.sizeL,
+          [`el-badge--size-xl-${props.sizeXl}`]: props.sizeXl,
         },
         on: {
           click(e) {
@@ -107,9 +126,16 @@ export default {
   display: inline-flex;
   align-items: center;
   position: relative;
-  padding: $space-8 $space-16;
-  height: 40px;
   border-radius: 3px;
+  @each $media, $value in $medias {
+    @media (min-width: $value) {
+      @each $size, $option in $spaces {
+        &--size-#{$media}-#{$size} {
+          padding: calc((#{$option} / 2)) #{$option};
+        }
+      }
+    }
+  }
   &__content {
     font-size: $fs-14;
     line-height: $lh-14;
@@ -118,6 +144,9 @@ export default {
     #{$block-name}__content {
       text-transform: uppercase;
     }
+  }
+  &__rounded {
+    border-radius: $space-30;
   }
   &__closable {
     padding-right: $space-28;
