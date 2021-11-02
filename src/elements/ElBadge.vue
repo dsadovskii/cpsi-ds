@@ -131,7 +131,10 @@ export default {
     @media (min-width: $value) {
       @each $size, $option in $spaces {
         &--size-#{$media}-#{$size} {
-          padding: calc((#{$option} / 2)) #{$option};
+          justify-content: center;
+          height: #{$option};
+          min-width: #{$option};
+          padding: calc(#{$option} / 4);
         }
       }
     }
