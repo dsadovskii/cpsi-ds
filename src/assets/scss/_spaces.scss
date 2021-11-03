@@ -1,5 +1,3 @@
-$space-auto: auto;
-$space-zero: 0;
 $space-2: 2px;
 $space-4: 4px;
 $space-8: 8px;
@@ -26,8 +24,6 @@ $space-160: 160px;
 $space-225: 225px;
 
 $spaces: (
-  'auto': $space-auto,
-  'zero': $space-zero,
   '2': $space-2,
   '4': $space-4,
   '8': $space-8,
