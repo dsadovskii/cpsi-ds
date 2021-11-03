@@ -18,7 +18,7 @@
   ::-webkit-scrollbar-thumb:active {
   }
 }
-@mixin page-wrapper($padding: $space-50 $space-zero $space-54) {
+@mixin page-wrapper($padding: $space-50 0 $space-54) {
   max-width: 1120px;
   margin: 0 auto;
   padding: $padding;
@@ -56,22 +56,22 @@
   min-width: 0;
   max-width: 100%;
 }
-@mixin child-indent-right($space: $space-zero) {
+@mixin child-indent-right($space: 0) {
   & > *:not(:last-child) {
     margin-right: $space;
   }
 }
-@mixin child-indent-left($space: $space-zero) {
+@mixin child-indent-left($space: 0) {
   & > *:not(:first-child) {
     margin-left: $space;
   }
 }
-@mixin child-indent-bottom($space: $space-zero) {
+@mixin child-indent-bottom($space: 0) {
   & > *:not(:last-child) {
     margin-bottom: $space;
   }
 }
-@mixin child-indent-top($space: $space-zero) {
+@mixin child-indent-top($space: 0) {
   & > *:not(:first-child) {
     margin-top: $space;
   }

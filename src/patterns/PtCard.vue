@@ -115,7 +115,7 @@ export default {
       flex: 1 1 auto;
       overflow: hidden;
       text-overflow: ellipsis;
-      padding: $space-zero $space-16;
+      padding: 0 $space-16;
     }
     &-left {
       padding-right: $space-16;
@@ -160,7 +160,7 @@ export default {
     &-padding {
       #{$block-name}__header,
       #{$block-name}__content {
-        padding: $space-zero;
+        padding: 0;
       }
     }
     &-bg {

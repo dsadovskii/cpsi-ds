@@ -264,8 +264,8 @@ export default {
   &__output {
     position: absolute;
     visibility: hidden;
-    width: $space-zero;
-    height: $space-zero;
+    width: 0;
+    height: 0;
     z-index: -9;
     &:not(:empty) ~ #{$block-name}__input,
     &:not(:empty) ~ #{$block-name}__textarea,
