@@ -122,6 +122,7 @@ export default {
     }
     &-right {
       padding-left: $space-16;
+      min-width: unset;
     }
   }
   &-header {
