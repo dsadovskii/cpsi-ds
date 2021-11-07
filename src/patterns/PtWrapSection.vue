@@ -67,7 +67,7 @@ export default {
   }
   &__left {
     min-width: 0;
-    margin-right: $space-100;
+    margin-right: $space-24;
     max-width: 100%;
     width: 100%;
   }
