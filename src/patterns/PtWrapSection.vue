@@ -61,6 +61,7 @@ export default {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    width: max-content;
     & > * + * {
       margin-left: $space-10;
     }
@@ -69,7 +70,7 @@ export default {
     min-width: 0;
     margin-right: $space-24;
     max-width: 100%;
-    width: 100%;
+    width: max-content;
   }
 }
 </style>
