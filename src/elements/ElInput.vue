@@ -140,6 +140,7 @@ export default {
               },
               keydown: event => {
                 if (event.keyCode === 13 && !(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) {
+                  event.preventDefault()
                   listeners && listeners.enter && listeners.enter()
                 }
               },
