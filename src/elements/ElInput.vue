@@ -139,7 +139,7 @@ export default {
                 }
               },
               keydown: event => {
-                if (event.keyCode === 13) {
+                if (event.keyCode === 13 && !(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) {
                   listeners && listeners.enter && listeners.enter()
                 }
               },
