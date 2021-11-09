@@ -82,7 +82,6 @@ export default {
 .pt-card {
   $block-name: &;
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
