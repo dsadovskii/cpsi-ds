@@ -170,3 +170,9 @@
   white-space: normal;
   overflow: hidden;
 }
+
+@mixin grow-height() {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}

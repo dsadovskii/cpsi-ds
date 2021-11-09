@@ -40,7 +40,12 @@ export default {
 <style lang="scss">
 .pt-tabs {
   $block-name: &;
+  @include grow-height;
   .ant-tabs {
+    @include grow-height;
+    &-content {
+      @include grow-height;
+    }
     &-nav {
     }
     &-tab {
