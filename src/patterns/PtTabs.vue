@@ -46,6 +46,9 @@ export default {
     &-content {
       @include grow-height;
     }
+    &-tabpane-active {
+      @include grow-height;
+    }
     &-nav {
     }
     &-tab {
