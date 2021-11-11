@@ -20,6 +20,9 @@
           <!-- @slot Слот заголовка -->
           <slot name="title" />
         </div>
+        <button v-if="closeVisible" type="button" class="pt-modal__btn-close" @click.prevent="close">
+          <el-svg-icon class="pt-modal__icon-close" size="18" name="close" color="gray-3" />
+        </button>
       </div>
       <div class="pt-modal__body" :class="{ scrollable }">
         <!-- @slot Слот контента -->
@@ -29,9 +32,6 @@
         <!-- @slot Слот футера -->
         <slot name="footer" />
       </div>
-      <button v-if="closeVisible" type="button" class="pt-modal__btn-close" @click.prevent="close">
-        <el-svg-icon class="pt-modal__icon-close" size="18" name="close" color="gray-3" />
-      </button>
     </div>
   </modal>
 </template>
@@ -136,9 +136,8 @@ export default {
   height: 100%;
 }
 .vm--container.scrollable {
-  height: auto;
-  max-height: fit-content;
-  overflow-y: auto;
+  height: 100%;
+  max-height: 100vh;
 }
 .pt-modal {
   $block-name: &;
@@ -146,7 +145,9 @@ export default {
   $box-shadow-color: #20008c28;
   padding: 12px 0;
   .vm--modal {
+    overflow: unset;
     border-radius: $radius-16;
+    height: auto !important;
   }
   &__btn-close {
     background: none;
@@ -270,9 +271,12 @@ export default {
     }
   }
   &__header {
-    position: relative;
+    position: sticky;
+    top: -(#{$space-16});
     padding: $space-24;
     border-bottom: 1px solid $color-gray-3;
+    background-color: $bg-white;
+    z-index: 1;
   }
   &__title {
     margin-top: 0;
@@ -289,10 +293,13 @@ export default {
     border-radius: $radius-8;
   }
   &__control {
+    position: sticky;
+    bottom: -(#{$space-16});
     display: flex;
     padding: $space-24;
-    margin-left: -3px;
-    margin-right: -3px;
+    background-color: $bg-white;
+    border-top: 1px solid $color-gray-3;
+    z-index: 1;
     &:empty {
       display: none;
     }
