@@ -62,7 +62,7 @@ export default {
         !(slots()['card-header'] || slots()['card-header-left'] || slots()['card-header-right']) ||
           h('section', { class: 'pt-card__header' }, [
             !slots()['card-header-left'] || h('div', { class: 'pt-card__header-left' }, slots()['card-header-left']),
-            h('div', { class: 'pt-card__header-center' }, slots()['card-header']),
+            !slots()['card-header'] || h('div', { class: 'pt-card__header-center' }, slots()['card-header']),
             !slots()['card-header-right'] || h('div', { class: 'pt-card__header-right' }, slots()['card-header-right']),
           ]),
         !slots()['default'] || h('section', { class: 'pt-card__content' }, slots()['default']),
