@@ -170,9 +170,10 @@ export default {
     display: inline-block;
     cursor: pointer;
     transform-origin: center;
-    transform: rotate(45deg) translate(7px, 3px);
+    transform: rotate(45deg) translateY(-50%);
     position: absolute;
     right: 10px;
+    top: 50%;
     font-size: 20px;
     line-height: 0;
     @media #{$desktop} {
