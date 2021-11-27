@@ -113,7 +113,7 @@ export default {
     },
     date: {
       get() {
-        return moment(this.value, this.toFormat).format(this.format)
+        return moment(this.$moment(this.value), this.toFormat).format(this.format)
       },
       set(value) {
         this.$emit(
