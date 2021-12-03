@@ -88,10 +88,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    withTimeZone: {
-      type: Boolean,
-      default: false,
-    },
   },
   data() {
     return {
@@ -113,17 +109,10 @@ export default {
     },
     date: {
       get() {
-        return moment(this.value, this.toFormat).format(this.format)
+        return moment.utc(this.value, this.toFormat).format(this.format)
       },
       set(value) {
-        this.$emit(
-          'input',
-          value
-            ? this.withTimeZone
-              ? moment(value, this.format).format()
-              : moment(value, this.format).format(this.toFormat)
-            : value,
-        )
+        this.$emit('input', value ? moment.utc(value, this.format).format(this.toFormat) : value)
       },
     },
   },
