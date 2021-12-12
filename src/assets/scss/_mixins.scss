@@ -19,9 +19,11 @@
   }
 }
 @mixin page-wrapper($padding: $space-50 0 $space-54) {
-  max-width: 1120px;
+  max-width: 1180px;
   margin: 0 auto;
   padding: $padding;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 @mixin pseudo($display: block, $pos: absolute, $content: "") {
   content: $content;
