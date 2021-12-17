@@ -299,7 +299,7 @@ export default {
     padding: $space-24;
     background-color: $bg-white;
     border-top: 1px solid $color-gray-3;
-    z-index: 1;
+    z-index: 5;
     &:empty {
       display: none;
     }
