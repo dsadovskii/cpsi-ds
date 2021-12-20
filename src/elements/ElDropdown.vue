@@ -1,6 +1,6 @@
 <template>
   <div class="el-dropdown" @click.stop.prevent>
-    <span class="el-dropdown__title">{{ title }}</span>
+    <span class="el-dropdown__title" :class="{ required }">{{ title }}</span>
     <section
       class="el-dropdown__content"
       :class="{
@@ -253,6 +253,12 @@ export default {
     max-width: 100%;
     white-space: pre-line;
     word-break: break-all;
+    &.required {
+      &::after {
+        content: '*';
+        color: $color-red;
+      }
+    }
   }
   &__content {
     position: relative;

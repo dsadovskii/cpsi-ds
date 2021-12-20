@@ -1,6 +1,6 @@
 <template>
   <section class="el-datepicker" :class="computedClasses">
-    <span class="el-datepicker__title">{{ title }}</span>
+    <span class="el-datepicker__title" :class="{ required }">{{ title }}</span>
     <date-picker
       :id="name"
       :ref="name"
@@ -139,6 +139,12 @@ export default {
     max-width: 100%;
     white-space: normal;
     word-break: break-all;
+    &.required {
+      &::after {
+        content: '*';
+        color: $color-red;
+      }
+    }
   }
   &--size-m {
     .mx-datepicker {
