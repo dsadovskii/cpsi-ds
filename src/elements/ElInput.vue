@@ -123,7 +123,7 @@ export default {
               },
               class: [`el-input__${inputTag}`, { 'el-input__input-disabled': props.disabled }],
               ref: `el-input_${props.name}`,
-              domProps: { value: data?.model?.value || props.value || null },
+              domProps: { value: data?.model?.value || props.value || props.value === 0 ? props.value : null },
               on: {
                 input: event => {
                   if (!props.disabled) {
