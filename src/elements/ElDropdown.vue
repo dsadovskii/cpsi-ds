@@ -1,6 +1,9 @@
 <template>
   <div class="el-dropdown" @click.stop.prevent>
-    <span class="el-dropdown__title" :class="{ required }">{{ title }}</span>
+    <span class="el-dropdown__title" :class="{ required }">
+      {{ title }}
+      <slot name="title-append" />
+    </span>
     <section
       class="el-dropdown__content"
       :class="{
@@ -247,6 +250,7 @@ export default {
     margin-top: $space-10;
   }
   &__title {
+    display: flex;
     font-size: $fs-14;
     line-height: $lh-14;
     color: $color-dark-gray;
