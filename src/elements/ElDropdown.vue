@@ -1,5 +1,5 @@
 <template>
-  <div class="el-dropdown" @click.stop.prevent>
+  <div class="el-dropdown">
     <div class="el-dropdown__title-wrapper" :class="{ required }">
       <span class="el-dropdown__title">{{ title }}</span>
       <slot name="title-append" />
@@ -11,6 +11,7 @@
         'el-dropdown--with-append-btn': $slots['append-btn'],
         ...sizeClass,
       }"
+      @click.stop.prevent
     >
       <a-select
         :mode="mode"
