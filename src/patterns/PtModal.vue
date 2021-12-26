@@ -14,7 +14,7 @@
     @closed="handleClosed"
     @opened="handleOpened"
   >
-    <div class="pt-modal__inner">
+    <div class="pt-modal__inner" :class="{ 'with-scroll': scrollable }">
       <div v-if="$slots.title" class="pt-modal__header">
         <div class="pt-modal__title">
           <!-- @slot Слот заголовка -->
