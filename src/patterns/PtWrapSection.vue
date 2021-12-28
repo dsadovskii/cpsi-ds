@@ -68,9 +68,11 @@ export default {
   }
   &__left {
     min-width: 0;
-    margin-right: $space-24;
     max-width: 100%;
     width: max-content;
+    & + #{$block-name}__right {
+      margin-left: $space-24;
+    }
   }
 }
 </style>
