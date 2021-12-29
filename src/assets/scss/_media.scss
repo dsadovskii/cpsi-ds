@@ -5,6 +5,7 @@ $media-s: 480px;
 $media-m: 768px;
 $media-l: 1024px;
 $media-xl: 1440px;
+$media-xxl: 1920px;
 $media-s-down: 479px;
 $media-m-down: 767px;
 $media-l-down: 1023px;
@@ -20,4 +21,5 @@ $medias: (
   'm': $media-m,
   'l': $media-l,
   'xl': $media-xl,
+  'xxl': $media-xxl,
 );
