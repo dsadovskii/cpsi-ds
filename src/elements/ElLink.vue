@@ -1,10 +1,10 @@
 <template>
   <a
-    v-if="href"
-    :href="href"
-    :class="computedClasses"
-    :target="blank ? '_blank' : '_self'"
-    :download="download ? download || href : null"
+      v-if="href"
+      :href="href"
+      :class="computedClasses"
+      :target="blank ? '_blank' : '_self'"
+      :download="download ? download || href : null"
   >
     <span v-if="iconPrepend" class="el-link__icon-prepend">
       <slot name="icon-prepend" />
@@ -30,9 +30,14 @@
 </template>
 
 <script>
+import { MediaGenerator } from '../helpers/mediaGenerator'
+
+let params = ['size', 'lh']
+let sizeProps = new MediaGenerator(params).generateProps(String)
 export default {
   name: 'ElLink',
   props: {
+    ...sizeProps,
     to: {
       type: [String, Object],
       default: () => ({}),
@@ -86,7 +91,18 @@ export default {
       return {
         'el-link': true,
         [`el-link--size-${this.size}`]: !!this.size,
+        [`el-link--size-xs-${this.size}`]: this.size,
+        [`el-link--size-s-${this.sizeS}`]: this.sizeS,
+        [`el-link--size-m-${this.sizeM}`]: this.sizeM,
+        [`el-link--size-l-${this.sizeL}`]: this.sizeL,
+        [`el-link--size-xl-${this.sizeXl}`]: this.sizeXl,
+
         [`el-link--line-height-${this.lh}`]: !!this.lh,
+        [`el-link--line-height-xs-${this.lh}`]: this.lh,
+        [`el-link--line-height-s-${this.lhS}`]: this.lhS,
+        [`el-link--line-height-m-${this.lhM}`]: this.lhM,
+        [`el-link--line-height-l-${this.lhL}`]: this.lhL,
+
         [`el-link--font-weight-${this.fontWeight}`]: !!this.fontWeight,
         [`el-link--variant-${this.variant}`]: !!this.variant,
         ['el-link--ellipsis']: this.ellipsis,
@@ -114,9 +130,18 @@ export default {
   flex-wrap: wrap;
   position: relative;
   text-decoration: none;
-  @each $size, $param in $font-sizes {
-    &--size-#{$size} {
-      font-size: $param;
+  @each $media, $value in $medias {
+    @media (min-width: $value) {
+      @each $size, $option in $font-sizes {
+        &--size-#{$media}-#{$size} {
+          font-size: $option;
+        }
+      }
+      @each $height, $option in $line-heights {
+        &--line-height-#{$media}-#{$height} {
+          line-height: $option;
+        }
+      }
     }
   }
   @each $color, $param in $colors {
