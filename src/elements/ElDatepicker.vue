@@ -1,6 +1,6 @@
 <template>
   <section class="el-datepicker" :class="computedClasses">
-    <span class="el-datepicker__title" :class="{ required }">{{ title }}</span>
+    <span class="el-datepicker__title" :class="{ required: required && !!title }">{{ title }}</span>
     <date-picker
       :id="name"
       :ref="name"

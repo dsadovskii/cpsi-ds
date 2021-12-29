@@ -158,6 +158,9 @@ export default {
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   margin-bottom: 0;
   &--bold {

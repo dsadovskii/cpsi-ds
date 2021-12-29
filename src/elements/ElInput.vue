@@ -75,7 +75,7 @@ export default {
       {
         class: {
           'el-input__box': true,
-          'el-input__box--required': props.required,
+          'el-input__box--required': props.required && !!props.title,
         },
       },
       [

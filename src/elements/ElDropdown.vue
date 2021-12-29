@@ -1,7 +1,7 @@
 <template>
   <div class="el-dropdown">
     <div class="el-dropdown__title-wrapper">
-      <span class="el-dropdown__title" :class="{ required }">{{ title }}</span>
+      <span class="el-dropdown__title" :class="{ required: required && !!title }">{{ title }}</span>
       <slot name="title-append" />
     </div>
     <section
