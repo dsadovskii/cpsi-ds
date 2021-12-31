@@ -44,7 +44,7 @@
       <small class="el-dropdown--error-msg">{{ errorMessage }}</small>
       <div class="el-dropdown__append-btn" v-if="$slots['append-btn'] || (hasValue && mode !== 'multiple')">
         <button
-          v-if="hasValue && mode !== 'multiple' && clearable"
+          v-if="hasValue && mode !== 'multiple' && clearable && !disabled"
           class="el-dropdown__clear-button"
           title="Очистить поле"
           @click="handlerClearField"

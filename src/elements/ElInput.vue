@@ -174,6 +174,7 @@ export default {
             (slots()['append-btn'] || props.value || props.value === 0) &&
               h('div', { class: { 'el-input__slot-append': true } }, [
                 (props.value || props.value === 0) &&
+                  !props.disabled &&
                   h('button', {
                     class: 'el-input__clear-button',
                     attrs: {
