@@ -171,7 +171,23 @@ export default {
                 props.label,
               ),
             !props.error || h('small', { class: 'el-input--error-msg', attrs: { title: errorMessage } }, errorMessage),
-            !slots()['append-btn'] || h('div', { class: { 'el-input__slot-append': true } }, slots()['append-btn']),
+            (slots()['append-btn'] || props.value || props.value === 0) &&
+              h('div', { class: { 'el-input__slot-append': true } }, [
+                (props.value || props.value === 0) &&
+                  h('button', {
+                    class: 'el-input__clear-button',
+                    attrs: {
+                      title: 'Очистить поле',
+                    },
+                    on: {
+                      click: () => {
+                        document.getElementById(props.name).value = null
+                        listeners && listeners.input && listeners.input(null)
+                      },
+                    },
+                  }),
+                slots()['append-btn'],
+              ]),
           ],
         ),
       ],
@@ -196,6 +212,41 @@ export default {
       .el-input__title {
         &::after {
           content: '*';
+          color: $color-red;
+        }
+      }
+    }
+  }
+  &__clear-button {
+    @include size(32px);
+    margin-right: 2px;
+    box-shadow: none;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+    position: relative;
+    cursor: pointer;
+    &::after {
+      content: '+';
+      font-size: 32px;
+      transform: rotate(45deg);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      transition: all 0.3s ease;
+    }
+    @media #{$mobile} {
+      &:active {
+        &::after {
+          color: $color-red;
+        }
+      }
+    }
+    @media #{$desktop} {
+      &:hover {
+        &::after {
           color: $color-red;
         }
       }
