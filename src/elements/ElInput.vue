@@ -231,7 +231,6 @@ export default {
     &::after {
       content: '+';
       font-size: 32px;
-      transform: rotate(45deg);
       position: absolute;
       left: 50%;
       transform: translateX(-50%) rotate(45deg);

@@ -42,7 +42,13 @@
         <el-svg-icon name="search" size="12" color="white" />
       </div>
       <small class="el-dropdown--error-msg">{{ errorMessage }}</small>
-      <div class="el-dropdown__append-btn" v-if="$slots['append-btn']">
+      <div class="el-dropdown__append-btn" v-if="$slots['append-btn'] || (hasValue && mode !== 'multiple')">
+        <button
+          v-if="hasValue && mode !== 'multiple' && clearable"
+          class="el-dropdown__clear-button"
+          title="Очистить поле"
+          @click="handlerClearField"
+        ></button>
         <slot name="append-btn" />
       </div>
     </section>
@@ -126,6 +132,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    clearable: {
+      type: Boolean,
+      default: true,
+    },
     required: {
       type: Boolean,
       default: false,
@@ -149,6 +159,11 @@ export default {
     }
   },
   computed: {
+    hasValue() {
+      return this.computedValue?.constructor === Array
+        ? this.computedValue?.length
+        : this.computedValue || this.computedValue === 0
+    },
     computedOptions() {
       if (!this.filter_search) return this.options
       return [...(this.options || [])].filter(o =>
@@ -233,6 +248,9 @@ export default {
     handleSearch(value) {
       if (this.filterable) return (this.filter_search = value)
       this.$emit('search', value)
+    },
+    handlerClearField() {
+      this.computedValue = this.mode === 'multiple' ? [] : null
     },
   },
 }
@@ -322,6 +340,41 @@ export default {
           max-height: $space-28;
           width: $space-28;
           max-width: $space-28;
+        }
+      }
+    }
+  }
+  &__clear-button {
+    @include size(32px);
+    margin-right: 2px;
+    box-shadow: none;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+    position: relative;
+    cursor: pointer;
+    transform: translateX(-32px);
+    &::after {
+      content: '+';
+      font-size: 32px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      transition: all 0.3s ease;
+    }
+    @media #{$mobile} {
+      &:active {
+        &::after {
+          color: $color-red;
+        }
+      }
+    }
+    @media #{$desktop} {
+      &:hover {
+        &::after {
+          color: $color-red;
         }
       }
     }
