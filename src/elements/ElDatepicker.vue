@@ -14,6 +14,7 @@
       :format="format"
       :append-to-body="appendToBody"
       :class="{ 'el-datepicker--with-title': !!this.title }"
+      :disabled-date="disabledDate"
       @change="emit('change', $event)"
       @open="emit('open', $event)"
       @close="emit('close', $event)"
@@ -88,6 +89,24 @@ export default {
       type: Boolean,
       default: false,
     },
+    disabledAfterToday: {
+      type: Boolean,
+      default: false,
+    },
+    disabledBeforeToday: {
+      type: Boolean,
+      default: false,
+    },
+    /**
+     * Функция проверяюая и устанавливающая доступна ли дата для выбора
+     * Params [String] date - текущая дата
+     * return Boolean, где true - дата заблокирована для выбора
+     * **/
+    disabledDates: {
+      type: Function,
+      // eslint-disable-next-line no-unused-vars
+      default: date => false,
+    },
   },
   data() {
     return {
@@ -119,6 +138,16 @@ export default {
   methods: {
     emit(event, value) {
       this.$emit(event, value)
+    },
+    disabledDate(date) {
+      switch (true) {
+        case this.disabledAfterToday:
+          return moment(date).isAfter(moment())
+        case this.disabledBeforeToday:
+          return moment(date).isBefore(moment().subtract(1, 'days'))
+        default:
+          return this.disabledDates && this.disabledDates()
+      }
     },
   },
 }
