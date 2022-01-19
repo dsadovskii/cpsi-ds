@@ -23,6 +23,7 @@
       @focus="emit('focus', $event)"
     />
     <small class="el-datepicker--error-msg">{{ errorMessage }}</small>
+    <small v-if="hint && !errorMessage" class="el-datepicker--hint-msg">{{ hint }}</small>
   </section>
 </template>
 
@@ -83,6 +84,10 @@ export default {
     },
     error: {
       type: [String, Array],
+      default: null,
+    },
+    hint: {
+      type: String,
       default: null,
     },
     appendToBody: {
@@ -146,7 +151,7 @@ export default {
         case this.disabledBeforeToday:
           return moment(date).isBefore(moment().subtract(1, 'days'))
         default:
-          return this.disabledDates && this.disabledDates()
+          return this.disabledDates && this.disabledDates(date)
       }
     },
   },
@@ -237,7 +242,7 @@ export default {
       width: 100%;
       background-color: $bg-lighter-blue;
       .mx-input {
-        padding: $space-8 $space-20;
+        padding: $space-8 $space-14;
         font-size: $fs-14;
         line-height: $lh-14;
         background-color: transparent;
@@ -321,6 +326,14 @@ export default {
         top: calc(100% + 5px);
         opacity: 1;
       }
+    }
+  }
+  &--hint {
+    &-msg {
+      color: $color-gray;
+      font-size: $fs-12;
+      left: 0;
+      animation: slideDown 0.3s forwards;
     }
   }
 }

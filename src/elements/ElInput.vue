@@ -46,6 +46,10 @@ export default {
       type: [String, Array],
       default: null,
     },
+    hint: {
+      type: String,
+      default: null,
+    },
     textarea: {
       type: Boolean,
       default: false,
@@ -171,6 +175,9 @@ export default {
                 props.label,
               ),
             !props.error || h('small', { class: 'el-input--error-msg', attrs: { title: errorMessage } }, errorMessage),
+            props.hint &&
+              !props.error &&
+              h('small', { class: 'el-input--hint-msg', attrs: { title: props.hint } }, props.hint),
             (slots()['append-btn'] || props.value || props.value === 0) &&
               h('div', { class: { 'el-input__slot-append': true } }, [
                 (props.value || props.value === 0) &&
@@ -448,6 +455,18 @@ export default {
         opacity: 1;
       }
     }
+  }
+  &--hint-msg {
+    position: absolute;
+    left: 0;
+    display: block;
+    max-width: 100%;
+    animation: slideDown 0.3s forwards;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: $fs-12;
+    color: $color-gray;
   }
   &__slot-append {
     position: absolute;

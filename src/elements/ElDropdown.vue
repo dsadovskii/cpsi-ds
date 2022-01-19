@@ -7,8 +7,9 @@
     <section
       class="el-dropdown__content"
       :class="{
-        'el-dropdown--with-title': !!this.title,
+        'el-dropdown--with-title': !!title,
         'el-dropdown--with-append-btn': $slots['append-btn'],
+        'el-dropdown--error': !!error,
         ...sizeClass,
       }"
       @click.stop.prevent
@@ -42,6 +43,7 @@
         <el-svg-icon name="search" size="12" color="white" />
       </div>
       <small class="el-dropdown--error-msg">{{ errorMessage }}</small>
+      <small v-if="hint && !errorMessage" class="el-dropdown--hint-msg">{{ hint }}</small>
       <div class="el-dropdown__append-btn" v-if="$slots['append-btn'] || (hasValue && mode !== 'multiple')">
         <button
           v-if="hasValue && mode !== 'multiple' && clearable && !disabled"
@@ -152,6 +154,10 @@ export default {
       type: [String, Array],
       default: null,
     },
+    hint: {
+      type: String,
+      default: null,
+    },
   },
   data() {
     return {
@@ -196,7 +202,6 @@ export default {
         'el-dropdown--no-arrow-bg': this.noArrowBg,
         'el-dropdown--inverted-colors': this.invertedColors,
         [`el-dropdown--size-${this.size}`]: true,
-        ['el-dropdown--error']: !!this.error,
       }
     },
     sizeClass() {
@@ -446,7 +451,7 @@ export default {
         font-size: $space-14;
         line-height: $lh-14;
         margin: 0 !important;
-        padding: $space-4 41px $space-4 $space-20;
+        padding: $space-4 41px $space-4 $space-14;
       }
       &__rendered {
         margin: 0 !important;
@@ -533,6 +538,7 @@ export default {
     pointer-events: none;
   }
   &--error {
+    border-color: $color-red !important;
     .ant-select-selection {
       border-color: $color-red !important;
       &__placeholder {
@@ -561,6 +567,18 @@ export default {
         opacity: 1;
       }
     }
+  }
+  &--hint-msg {
+    color: $color-gray;
+    position: absolute;
+    left: 0;
+    display: block;
+    max-width: 100%;
+    animation: slideDown 0.3s forwards;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: $fs-12;
   }
 }
 .ant-select-dropdown-menu-item {
