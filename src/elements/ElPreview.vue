@@ -1,8 +1,10 @@
 <template>
   <article class="el-preview">
-    <a-badge v-bind="previewNotifies">
-      <a-avatar v-if="src" :size="logoSize" :src="src" shape="circle" />
-    </a-badge>
+    <slot name="left">
+      <a-badge v-bind="previewNotifies">
+        <a-avatar v-if="src" :size="logoSize" :src="src" shape="circle" />
+      </a-badge>
+    </slot>
     <section class="el-preview__content">
       <div class="el-preview__content--top">
         <slot name="top" />
@@ -11,6 +13,9 @@
         <slot name="bottom" />
       </div>
     </section>
+    <div class="el-preview__content--right">
+      <slot name="right" />
+    </div>
   </article>
 </template>
 
@@ -62,6 +67,9 @@ export default {
       align-items: center;
       flex: 1 1 auto;
       max-width: 100%;
+    }
+    &--right {
+      margin-left: auto;
     }
   }
 }
