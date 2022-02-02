@@ -276,7 +276,7 @@ export default {
   &__title {
     font-size: $fs-14;
     line-height: $lh-14;
-    color: $color-dark-gray;
+    color: $bg-gray-5;
     max-width: 100%;
     white-space: pre-line;
     word-break: break-all;
@@ -360,7 +360,8 @@ export default {
     line-height: 0;
     position: relative;
     cursor: pointer;
-    transform: translateX(-32px);
+    transform: translateX(-36px);
+    background: $bg-gray-5;
     &::after {
       content: '+';
       font-size: 32px;

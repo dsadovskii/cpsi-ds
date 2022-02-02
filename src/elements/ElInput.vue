@@ -211,6 +211,7 @@ export default {
   position: relative;
   cursor: text;
   border-radius: 3px;
+  display: inline-flex;
   &--disabled {
     cursor: not-allowed;
     background-color: $color-gray;
@@ -226,7 +227,8 @@ export default {
     }
   }
   &__clear-button {
-    @include size(32px);
+    width: 32px;
+    height: 32px;
     margin-right: 2px;
     box-shadow: none;
     background: none;
@@ -270,37 +272,6 @@ export default {
     white-space: pre-line;
     word-break: break-word;
   }
-  &--size-m {
-    padding: $space-14 $space-20;
-    #{$block-name}__label {
-      padding-bottom: 1px;
-      padding-top: 1px;
-      padding-right: $space-24;
-      font-size: $fs-16;
-      line-height: $lh-14;
-      &-animated {
-        left: 0;
-        top: $space-14;
-        padding-left: $space-24;
-      }
-    }
-    #{$block-name}__slot-append {
-      .el-dropdown {
-        min-width: 90px;
-        height: 52px;
-      }
-    }
-    #{$block-name}__output {
-      &:not(:empty) ~ #{$block-name}__input,
-      &:not(:empty) ~ #{$block-name}__textarea,
-      ~ #{$block-name}__input:focus,
-      ~ #{$block-name}__textarea:focus {
-        ~ #{$block-name}__label {
-          font-size: $fs-12;
-        }
-      }
-    }
-  }
   &--size-s {
     padding: $space-8 $space-14;
     height: $size-40;
@@ -320,6 +291,16 @@ export default {
       .el-dropdown {
         min-width: 90px;
         height: 40px;
+      }
+      & > * {
+        min-height: 34px;
+        height: 34px;
+        max-height: 34px;
+      }
+      & > *[class*='-compact'] {
+        min-width: 34px;
+        width: 34px;
+        max-width: 34px;
       }
     }
     #{$block-name}__output {
@@ -469,16 +450,17 @@ export default {
     color: $color-gray;
   }
   &__slot-append {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    height: calc(100% - 4px);
-    transform-origin: center;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     border-radius: 3px;
+    margin: -8px -14px -8px 0;
+    padding: 2px;
+    & > * {
+      height: 100%;
+      min-height: auto;
+    }
   }
   &--variant {
     #{$block-name}__input::placeholder {
