@@ -276,7 +276,7 @@ export default {
   &__title {
     font-size: $fs-14;
     line-height: $lh-14;
-    color: $bg-gray-5;
+    color: $color-dark-gray;
     max-width: 100%;
     white-space: pre-line;
     word-break: break-all;
