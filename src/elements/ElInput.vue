@@ -460,6 +460,9 @@ export default {
     & > * {
       height: 100%;
       min-height: auto;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
     }
   }
   &--variant {
