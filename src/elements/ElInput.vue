@@ -190,7 +190,10 @@ export default {
                     on: {
                       click: () => {
                         document.getElementById(props.name).value = null
-                        listeners && listeners.input && listeners.input(null)
+                        listeners && listeners.input && listeners.input.constructor === Function
+                          ? listeners.input(null)
+                          : listeners.input.constructor === Array &&
+                            listeners.input.forEach(l => l && l.constructor === Function && l(null))
                       },
                     },
                   }),
