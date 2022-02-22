@@ -149,7 +149,7 @@ export default {
         case this.disabledAfterToday:
           return moment(date).isAfter(moment())
         case this.disabledBeforeToday:
-          return moment(date).isBefore(moment().subtract(1, 'days'))
+          return moment(date).isBefore(moment().subtract(1, this.format === 'YYYY' ? 'year' : 'days'))
         default:
           return this.disabledDates && this.disabledDates(date)
       }
