@@ -259,7 +259,7 @@ export default {
       }
       .mx-icon-calendar,
       .mx-icon-clear {
-        right: 24px;
+        right: 12px;
         color: $color-black;
       }
       &-main {
@@ -286,6 +286,71 @@ export default {
         align-items: center;
         justify-content: center;
         width: 35px;
+        height: calc(100% - 6px);
+        max-height: 35px;
+        right: 3px;
+        color: $color-white;
+        background: $color-light-blue;
+        border-radius: 3px;
+        cursor: pointer;
+        &:hover {
+          filter: brightness(1.3);
+        }
+      }
+      &-popup {
+        min-width: 350px;
+      }
+    }
+  }
+  &--size-xs {
+    .mx-datepicker {
+      width: 100%;
+      background-color: $bg-lighter-blue;
+      .mx-input {
+        padding: $space-8 $space-14;
+        font-size: $fs-14;
+        line-height: $lh-14;
+        background-color: transparent;
+        border: 1px solid $color-gray;
+        box-shadow: none;
+        outline: none;
+        color: $color-black;
+        height: 34px;
+        border-radius: 3px;
+        &::placeholder {
+          color: $color-gray;
+          font-size: $fs-14;
+        }
+      }
+      .mx-icon-calendar,
+      .mx-icon-clear {
+        right: 10px;
+        color: $color-black;
+      }
+      &-main {
+        width: 100%;
+        max-width: 300px;
+        .mx-calendar {
+          width: 100%;
+          &-content {
+            height: auto;
+            .mx-table {
+              &-date {
+                td,
+                th {
+                  font-size: $fs-16;
+                  line-height: $lh-2;
+                }
+              }
+            }
+          }
+        }
+      }
+      .mx-icon-calendar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
         height: calc(100% - 6px);
         max-height: 35px;
         right: 3px;
