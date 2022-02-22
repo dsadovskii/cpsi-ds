@@ -500,7 +500,7 @@ export default {
     }
     .ant-select-arrow {
       margin: 0 !important;
-      width: $space-24;
+      width: $space-28;
       background-color: $bg-light-blue;
       display: flex;
       align-items: center;
@@ -537,6 +537,12 @@ export default {
     height: calc(100% - 6px);
     border-radius: 3px;
     pointer-events: none;
+  }
+
+  .size-xs {
+    .searchable-icon {
+      width: 25px;
+    }
   }
   &--error {
     border-color: $color-red !important;
