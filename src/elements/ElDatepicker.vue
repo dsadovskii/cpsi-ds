@@ -363,7 +363,7 @@ export default {
         }
       }
       &-popup {
-        min-width: 350px;
+        min-width: 250px;
       }
     }
   }
