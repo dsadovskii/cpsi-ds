@@ -1,10 +1,21 @@
 <template>
+  <span v-if="disabled" :class="computedClasses">
+    <span v-if="iconPrepend" class="el-link__icon-prepend">
+      <slot name="icon-prepend" />
+    </span>
+    <span class="el-link__content">
+      <slot />
+    </span>
+    <span v-if="iconAppend" class="el-link__icon-append">
+      <slot name="icon-append" />
+    </span>
+  </span>
   <a
-      v-if="href"
-      :href="href"
-      :class="computedClasses"
-      :target="blank ? '_blank' : '_self'"
-      :download="download ? download || href : null"
+    v-else-if="href"
+    :href="href"
+    :class="computedClasses"
+    :target="blank ? '_blank' : '_self'"
+    :download="download ? download || href : null"
   >
     <span v-if="iconPrepend" class="el-link__icon-prepend">
       <slot name="icon-prepend" />
@@ -16,7 +27,7 @@
       <slot name="icon-append" />
     </span>
   </a>
-  <component :is="linkTag" v-else :class="computedClasses" :to="to" :target="blank ? '_blank' : '_self'">
+  <component v-else :is="linkTag" :class="computedClasses" :to="to" :target="blank ? '_blank' : '_self'">
     <span v-if="iconPrepend" class="el-link__icon-prepend">
       <slot name="icon-prepend" />
     </span>
@@ -57,6 +68,10 @@ export default {
     nuxt: {
       type: Boolean,
       default: true,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
     variant: {
       type: String,
@@ -107,6 +122,7 @@ export default {
         [`el-link--variant-${this.variant}`]: !!this.variant,
         ['el-link--ellipsis']: this.ellipsis,
         'el-link--full-width': this.fullWidth,
+        'el-link--disabled': this.disabled,
       }
     },
     iconPrepend() {
@@ -180,6 +196,13 @@ export default {
   }
   &--full-width {
     width: 100%;
+  }
+  &--disabled {
+    color: $color-gray;
+    cursor: not-allowed;
+    &:hover {
+      color: $color-gray;
+    }
   }
   &__icon-prepend {
     & + #{$block-name}__content {
