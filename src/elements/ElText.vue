@@ -41,6 +41,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    inline: {
+      type: Boolean,
+      default: false,
+    },
     textBold: {
       type: Boolean,
       default: false,
@@ -99,6 +103,7 @@ export default {
       [`el-text--${props.color}`]: props.color,
       'el-text--bold': props.textBold,
       'el-text--block': props.block,
+      'el-text--inline': props.inline,
       'el-text--nowrap': props.noWrap,
       'el-text--ellipsis': props.ellipsis,
       'el-text--uppercase': props.uppercase,
@@ -172,6 +177,11 @@ export default {
     #{$block-name}__content {
       display: inline-flex;
       width: 100%;
+    }
+  }
+  &--inline {
+    #{$block-name}__content {
+      display: inline;
     }
   }
   &--align-left {
