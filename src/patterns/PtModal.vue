@@ -259,6 +259,10 @@ export default {
     box-shadow: none;
     padding: 0;
   }
+  .vm--modal {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
   &__body {
     flex-grow: 1;
     padding: $space-24;
@@ -289,7 +293,6 @@ export default {
     flex-direction: column;
     box-shadow: 0 6px 12px rgba(110, 110, 110, 0.61);
     background-color: $color-white;
-    margin: 0 12px 0 12px;
     border-radius: $radius-8;
   }
   &__control {
