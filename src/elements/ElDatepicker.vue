@@ -378,9 +378,16 @@ export default {
       color: $color-red !important;
     }
     &-msg {
-      font-size: $fs-12;
+      color: $color-red;
+      position: absolute;
       left: 0;
+      display: block;
+      max-width: 100%;
       animation: slideDown 0.3s forwards;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: $fs-12;
     }
     @keyframes slideDown {
       from {
