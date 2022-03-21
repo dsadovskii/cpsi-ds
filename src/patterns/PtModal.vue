@@ -271,7 +271,7 @@ export default {
       margin-top: $space-24;
     }
     &.scrollable {
-      overflow-y: scroll;
+      overflow-y: auto;
     }
   }
   &__header {
