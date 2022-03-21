@@ -281,6 +281,7 @@ export default {
     border-bottom: 1px solid $color-gray-3;
     background-color: $bg-white;
     z-index: 1;
+    border-radius: $radius-3 $radius-3 0 0;
   }
   &__title {
     margin-top: 0;
@@ -293,7 +294,7 @@ export default {
     flex-direction: column;
     box-shadow: 0 6px 12px rgba(110, 110, 110, 0.61);
     background-color: $color-white;
-    border-radius: $radius-8;
+    border-radius: $radius-3;
   }
   &__control {
     position: sticky;
@@ -303,6 +304,7 @@ export default {
     background-color: $bg-white;
     border-top: 1px solid $color-gray-3;
     z-index: 5;
+    border-radius: 0 0 $radius-3 $radius-3;
     &:empty {
       display: none;
     }
