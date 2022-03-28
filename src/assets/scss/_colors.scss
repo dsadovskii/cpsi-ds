@@ -1,3 +1,4 @@
+$color-orange: #FFA000;
 $color-green: #00CD60;
 $color-red: #EA3323;
 $color-light-red: rgba(238, 63, 88, 0.25);
@@ -17,6 +18,7 @@ $color-steel-gray: #EBEEF3;
 $color-transparent: transparent;
 
 $colors: (
+  'orange': $color-orange,
   'green': $color-green,
   'red': $color-red,
   'light-red': $color-light-red,
