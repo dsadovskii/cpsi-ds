@@ -1,4 +1,5 @@
 <script>
+import { mask } from 'vue-the-mask'
 export default {
   name: 'ElInput',
   functional: true,
