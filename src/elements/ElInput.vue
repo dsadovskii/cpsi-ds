@@ -139,7 +139,7 @@ export default {
                             return first
                           })()
                         : event.target.value
-                    event.target.value = value
+                    props.type === 'num' && (event.target.value = value)
                     if (data.model) data.model.callback(value)
                     if (data && data.on && data.on.input) {
                       if (data.on.input[1] && data.on.input[1].constructor === Function) data.on.input[1](value)
