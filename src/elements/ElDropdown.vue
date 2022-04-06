@@ -320,6 +320,7 @@ export default {
         position: absolute;
         right: 2px;
         top: 2px;
+        pointer-events: none;
         & > * {
           padding: 0;
           min-height: unset;
@@ -327,6 +328,7 @@ export default {
           height: $space-36;
           width: $space-36;
           max-width: $space-36;
+          pointer-events: all;
         }
       }
     }
