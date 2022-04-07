@@ -17,7 +17,7 @@ export default {
     },
     type: {
       type: String,
-      default: 'text', // all input types and custom "num" for only numbers
+      default: 'text', // all input types and custom "num" for only numbers, custom "amount_format" - for formatted amount
     },
     label: {
       type: String,
@@ -128,18 +128,55 @@ export default {
               },
               class: [`el-input__${inputTag}`, { 'el-input__input-disabled': props.disabled }],
               ref: `el-input_${props.name}`,
-              domProps: { value: data?.model?.value || props.value || props.value === 0 ? props.value : null },
+              domProps: {
+                value: (() => {
+                  const isAmountFormat = props.type === 'amount_format'
+                  const hasValue = props.value || props.value === 0
+                  const value = (() => {
+                    if (hasValue && isAmountFormat) {
+                      const [first] =
+                        /\d*[\.]?\d*/.exec(
+                          String(props.value)
+                            ?.replace(/ /gm, '')
+                            ?.trim(),
+                        ) || []
+                      const preparedValue = String(first)
+                        .replace(/[^\d\.]/g, '')
+                        .replace(/\B(?=(?:\d{3})+(?!\d))/g, ' ')
+                      return preparedValue
+                    } else return props.value || props.value === 0 ? props.value : null
+                  })()
+                  return value
+                })(),
+              },
               on: {
                 input: event => {
                   if (!props.disabled) {
-                    const value =
-                      props.type === 'num'
-                        ? (() => {
-                            const [first] = /\d*[\.]?\d*/.exec(String(event.target.value)) || []
-                            return first
-                          })()
-                        : event.target.value
-                    props.type === 'num' && (event.target.value = value)
+                    let value = event.target.value
+                    switch (props.type) {
+                      case 'num':
+                        value = (() => {
+                          const [first] = /\d*[\.]?\d*/.exec(String(event.target.value)) || []
+                          return first
+                        })()
+                        event.target.value = value
+                        break
+                      case 'amount_format':
+                        value = (() => {
+                          const [first] =
+                            /\d*[\.]?\d*/.exec(
+                              String(event.target.value)
+                                ?.replace(/ /gm, '')
+                                ?.trim(),
+                            ) || []
+                          event.target.value = first
+                          return first ? parseFloat(first) : null
+                        })()
+                        break
+                      default:
+                        value = event.target.value
+                        break
+                    }
                     if (data.model) data.model.callback(value)
                     if (data && data.on && data.on.input) {
                       if (data.on.input[1] && data.on.input[1].constructor === Function) data.on.input[1](value)
