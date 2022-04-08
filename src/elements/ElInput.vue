@@ -15,9 +15,16 @@ export default {
       type: Boolean,
       default: false,
     },
+    /**
+     * All default input types
+     *
+     * Custom:
+     * "num" only for numbers,
+     * "amount_format" - for formatted amount (for example 100 000 000)
+     * */
     type: {
       type: String,
-      default: 'text', // all input types and custom "num" for only numbers, custom "amount_format" - for formatted amount
+      default: 'text',
     },
     label: {
       type: String,
