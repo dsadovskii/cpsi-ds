@@ -128,7 +128,7 @@ export default {
                 id: props.name,
                 required: props.required,
                 pattern: props.rule,
-                type: props.type,
+                type: props.mask ? 'tel' : props.type,
                 placeholder: props.animated ? '' : props.placeholder,
                 disabled: props.disabled,
                 rows: props.rows,
