@@ -133,10 +133,10 @@ export default {
     },
     date: {
       get() {
-        return moment.utc(this.value, this.toFormat).format(this.format)
+        return moment(this.value, this.toFormat).format(this.format)
       },
       set(value) {
-        this.$emit('input', value ? moment.utc(value, this.format).format(this.toFormat) : value)
+        this.$emit('input', value ? this.toFormat ? moment(value, this.format).format(this.toFormat) : moment(value, this.format).format() : value)
       },
     },
   },
