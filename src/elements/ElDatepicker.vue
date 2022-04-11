@@ -136,7 +136,14 @@ export default {
         return moment(this.value, this.toFormat).format(this.format)
       },
       set(value) {
-        this.$emit('input', value ? this.toFormat ? moment(value, this.format).format(this.toFormat) : moment(value, this.format).format() : value)
+        this.$emit(
+          'input',
+          value
+            ? this.toFormat
+              ? moment(value, this.format).format(this.toFormat)
+              : moment(value, this.format).format()
+            : value,
+        )
       },
     },
   },
