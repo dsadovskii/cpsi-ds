@@ -2,14 +2,16 @@
   <section :class="boxClasses">
     <span v-if="title" class="el-input__title">{{ title }}</span>
     <section :class="inputWrapperClasses" @click="handlerWrapperClick">
-      <output v-if="props.animated" class="el-input__output" tabindex="-1">{{ props.value }}</output>
+      <output v-if="animated" class="el-input__output" tabindex="-1">{{ value }}</output>
       <the-mask
         v-model="inputValue"
         :ref="`el-input_${name}`"
         :mask="mask"
+        :masked="masked"
         :tokens="tokens"
         :class="inputClasses"
         :disabled="disabled"
+        :placeholder="placeholder"
         :name="name"
         :id="name"
         :required="required"
@@ -18,16 +20,8 @@
       <label v-if="label" :for="name" :class="labelClasses">{{ label }}</label>
       <small v-if="error" class="el-input--error-msg" :title="errorMessage">{{ errorMessage }}</small>
       <small v-if="hint && !error" class="el-input--hint-msg" :title="hint">{{ hint }}</small>
-      <div v-if="$slots['append-btn'] || value || value === 0">
-        <button
-          v-if="value || (value === 0 && !disabled)"
-          class="el-input__clear-button"
-          title="Очистить поле"
-          @click="handleClearField"
-        ></button>
-        <div class="el-input__slot-append">
-          <slot name="append-btn" />
-        </div>
+      <div v-if="$slots['append-btn']" class="el-input__slot-append">
+        <slot name="append-btn" />
       </div>
     </section>
   </section>
@@ -108,8 +102,15 @@ export default {
       default: 'lightblue',
     },
     mask: {
-      type: String,
+      type: [String, Array],
       default: '',
+    },
+    /**
+     * Должно ли возвращаемое значение быть в виде маски, или же просто введенный текст без форматирования
+     * **/
+    masked: {
+      type: Boolean,
+      default: false,
     },
     customTokens: {
       type: Object,
@@ -146,8 +147,6 @@ export default {
       }
     },
     inputWrapperClasses() {
-      //TODO classes from attrs
-      console.log(this.$attrs)
       return {
         'el-input': true,
         [`el-input--variant-${this.variant}`]: true,
@@ -157,12 +156,12 @@ export default {
         'el-input--required': this.required,
         'el-input--error': this.error,
         'el-input--with-title': !!this.title,
-        [`${data.staticClass}`]: !!data.staticClass,
-        ...data.class,
+        ...(this.$attrs || {}),
       }
     },
     inputClasses() {
       return {
+        'el-input__input': true,
         'el-input__input-disabled': this.disabled,
       }
     },
@@ -175,11 +174,7 @@ export default {
   },
   methods: {
     handlerWrapperClick() {
-      this.$refs[`el-input_${this.name}`] && this.$refs[`el-input_${this.name}`].focus()
-    },
-    handleClearField() {
-      document.getElementById(this.name).value = null
-      this.inputValue = null
+      this.$refs[`el-input_${this.name}`] && this.$refs[`el-input_${this.name}`].$el.focus()
     },
   },
 }
