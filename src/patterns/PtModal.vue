@@ -138,7 +138,7 @@ export default {
 .vm--container.scrollable {
   height: 100%;
   max-height: 100vh;
-  z-index: 1;
+  z-index: 1001;
 }
 .pt-modal {
   $block-name: &;
