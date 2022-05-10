@@ -28,6 +28,7 @@
         :filter-option="false"
         :not-found-content="computedNotFoundContent"
         :class="classes"
+        :getPopupContainer="getPopupContainer"
         @change="handleChange"
         @search="handleSearch"
       >
@@ -231,6 +232,9 @@ export default {
     },
     getValueByProp(item, prop) {
       return _get(item, prop)
+    },
+    getPopupContainer() {
+      return document.querySelector('.el-dropdown')
     },
     handleChange(value) {
       this.filter_search = null
