@@ -31,7 +31,8 @@
 import DatePicker from 'vue2-datepicker'
 import 'vue2-datepicker/index.css'
 import 'vue2-datepicker/locale/ru'
-import moment from 'moment-timezone'
+import moment from 'moment'
+import momentTz from 'moment-timezone'
 export default {
   name: 'ElDatepicker',
   components: {
@@ -114,7 +115,7 @@ export default {
     },
     timezone: {
       type: String,
-      default: 'UTC',
+      default: momentTz.tz.guess(),
     },
   },
   data() {
@@ -136,21 +137,14 @@ export default {
       return [{ 'el-datepicker--error': this.error }, { [`el-datepicker--size-${this.size}`]: true }]
     },
     currentTimezone() {
-      return this.timezone || moment.tz.guess() || 'UTC'
+      return this.timezone || 'UTC'
     },
     date: {
       get() {
-        return moment.tz(this.value, this.currentTimezone).format(this.format)
+        return momentTz.tz(moment(this.value, 'YYYY-MM-DD HH-mm-SS')._i, this.timezone).format(this.format)
       },
       set(value) {
-        this.$emit(
-          'input',
-          value
-            ? this.toFormat
-              ? moment.tz(value, this.currentTimezone).format(this.toFormat)
-              : moment.tz(value, this.currentTimezone).format()
-            : value,
-        )
+        this.$emit('input', value ? momentTz.tz(moment(value, this.format), 'UTC').format() : value)
       },
     },
   },
@@ -161,9 +155,9 @@ export default {
     disabledDate(date) {
       switch (true) {
         case this.disabledAfterToday:
-          return moment.tz(date).isAfter(moment.tz())
+          return moment(date).isAfter(moment())
         case this.disabledBeforeToday:
-          return moment.tz(date).isBefore(moment.tz().subtract(1, this.format === 'YYYY' ? 'year' : 'days'))
+          return moment(date).isBefore(moment().subtract(1, this.format === 'YYYY' ? 'year' : 'days'))
         default:
           return this.disabledDates && this.disabledDates(date)
       }
