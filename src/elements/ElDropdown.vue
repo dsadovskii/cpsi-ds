@@ -1,5 +1,5 @@
 <template>
-  <div class="el-dropdown">
+  <div class="el-dropdown" :id="id">
     <div class="el-dropdown__title-wrapper">
       <span class="el-dropdown__title" :class="{ required: required && !!title }">{{ title }}</span>
       <slot name="title-append" />
@@ -163,6 +163,7 @@ export default {
   data() {
     return {
       filter_search: null,
+      id: `el_dropdown_${Date.now()}`,
     }
   },
   computed: {
@@ -234,7 +235,7 @@ export default {
       return _get(item, prop)
     },
     getPopupContainer() {
-      return document.querySelector('.el-dropdown')
+      return document.getElementById(this.id)
     },
     handleChange(value) {
       this.filter_search = null
