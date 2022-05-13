@@ -175,7 +175,8 @@ export default {
     computedOptions() {
       const options = [...(this.options || [])].map(o => ({
         ...o,
-        [this.valueField]: String(o[this.valueField]),
+        [this.valueField]:
+          isNaN(+o[this.valueField]) || o[this.valueField] === null ? o[this.valueField] : +o[this.valueField],
       }))
       if (!this.filter_search) return options
       return options.filter(o => o[this.titleField]?.toLowerCase().indexOf(this.filter_search?.toLowerCase()) !== -1)
@@ -191,10 +192,16 @@ export default {
       get() {
         return this.returnObject
           ? this.mode === 'multiple'
-            ? [...this.value].map(val => String(val[this.valueField]))
+            ? [...this.value].map(val =>
+                isNaN(+val[this.valueField]) || val[this.valueField] === null
+                  ? val[this.valueField]
+                  : +val[this.valueField],
+              )
             : (this.value && this.value[this.valueField]) || ''
           : this.value || this.value === 0
-          ? String(this.value)
+          ? isNaN(+this.value) || this.value === null
+            ? this.value
+            : +this.value
           : undefined
       },
       set(value) {

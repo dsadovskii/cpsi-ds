@@ -141,16 +141,20 @@ export default {
     },
     date: {
       get() {
-        return momentTz.tz(moment(this.value, 'YYYY-MM-DD HH:mm:SS')._i, this.currentTimezone).format(this.format)
+        return this.format === 'YYYY'
+          ? moment(this.value, 'YYYY').format(this.format)
+          : momentTz.tz(moment(this.value, 'YYYY-MM-DD HH:mm:SS')._i, this.currentTimezone).format(this.format)
       },
       set(value) {
         this.$emit(
           'input',
-          value
+          value && this.format !== 'YYYY'
             ? momentTz
                 .tz(moment(value, this.format).format('YYYY-MM-DD HH:mm:SS'), this.currentTimezone)
                 .utc()
                 .format()
+            : this.format === 'YYYY'
+            ? moment(value, this.format).format(this.toFormat)
             : value,
         )
       },
