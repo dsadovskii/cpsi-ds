@@ -139,23 +139,26 @@ export default {
     currentTimezone() {
       return this.timezone || 'UTC'
     },
+    useTimezone() {
+      return !!this.format.match(/((HH|hh)(:|-))?(mm)((:|-)(SS|ss))?/)
+    },
     date: {
       get() {
-        return this.format === 'YYYY'
-          ? moment(this.value, 'YYYY').format(this.format)
-          : momentTz.tz(moment(this.value, 'YYYY-MM-DD HH:mm:SS')._i, this.currentTimezone).format(this.format)
+        return this.useTimezone
+          ? momentTz.tz(moment(this.value, 'YYYY-MM-DD HH:mm:SS')._i, this.currentTimezone).format(this.format)
+          : moment(this.value, this.toFormat).format(this.format)
       },
       set(value) {
         this.$emit(
           'input',
-          value && this.format !== 'YYYY'
+          this.useTimezone
             ? momentTz
                 .tz(moment(value, this.format).format('YYYY-MM-DD HH:mm:SS'), this.currentTimezone)
                 .utc()
                 .format()
-            : this.format === 'YYYY'
+            : this.toFormat
             ? moment(value, this.format).format(this.toFormat)
-            : value,
+            : moment(value, this.format).format(),
         )
       },
     },
