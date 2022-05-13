@@ -173,10 +173,12 @@ export default {
         : this.computedValue || this.computedValue === 0
     },
     computedOptions() {
-      if (!this.filter_search) return this.options
-      return [...(this.options || [])].filter(o =>
-        o[this.titleField]?.toLowerCase().match(this.filter_search?.toLowerCase()),
-      )
+      const options = [...(this.options || [])].map(o => ({
+        ...o,
+        [this.valueField]: String(o[this.valueField]),
+      }))
+      if (!this.filter_search) return options
+      return options.filter(o => o[this.titleField]?.toLowerCase().indexOf(this.filter_search?.toLowerCase()) !== -1)
     },
     errorMessage() {
       const err = this.error
@@ -189,10 +191,10 @@ export default {
       get() {
         return this.returnObject
           ? this.mode === 'multiple'
-            ? [...this.value].map(val => val[this.valueField])
+            ? [...this.value].map(val => String(val[this.valueField]))
             : (this.value && this.value[this.valueField]) || ''
           : this.value || this.value === 0
-          ? this.value
+          ? String(this.value)
           : undefined
       },
       set(value) {

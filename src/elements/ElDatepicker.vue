@@ -117,6 +117,10 @@ export default {
       type: String,
       default: momentTz.tz.guess(),
     },
+    toTimezone: {
+      type: String,
+      default: 'UTC',
+    },
   },
   data() {
     return {
@@ -141,10 +145,10 @@ export default {
     },
     date: {
       get() {
-        return momentTz.tz(moment(this.value, 'YYYY-MM-DD HH-mm-SS')._i, this.timezone).format(this.format)
+        return momentTz.tz(moment(this.value, 'YYYY-MM-DD HH:mm:SS')._i, this.currentTimezone).format(this.format)
       },
       set(value) {
-        this.$emit('input', value ? momentTz.tz(moment(value, this.format), 'UTC').format() : value)
+        this.$emit('input', value ? momentTz.tz(moment(value, this.format).format('YYYY-MM-DD HH:mm:SS'), this.toTimezone).format() : value)
       },
     },
   },
