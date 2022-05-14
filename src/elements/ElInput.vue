@@ -78,6 +78,10 @@ export default {
       type: String,
       default: '',
     },
+    clearable: {
+      type: Boolean,
+      default: true,
+    },
   },
   render: function(h, { data, props, parent, slots, listeners }) {
     let inputTag = props.textarea ? 'textarea' : 'input'
@@ -226,6 +230,7 @@ export default {
             (slots()['append-btn'] || props.value || props.value === 0) &&
               h('div', { class: { 'el-input__slot-append': true } }, [
                 (props.value || props.value === 0) &&
+                  props.clearable &&
                   !props.disabled &&
                   h('button', {
                     class: 'el-input__clear-button',
