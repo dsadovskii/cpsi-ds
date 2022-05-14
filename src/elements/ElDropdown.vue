@@ -173,13 +173,10 @@ export default {
         : this.computedValue || this.computedValue === 0
     },
     computedOptions() {
-      const options = [...(this.options || [])].map(o => ({
-        ...o,
-        [this.valueField]:
-          isNaN(+o[this.valueField]) || o[this.valueField] === null ? o[this.valueField] : +o[this.valueField],
-      }))
-      if (!this.filter_search) return options
-      return options.filter(o => o[this.titleField]?.toLowerCase().indexOf(this.filter_search?.toLowerCase()) !== -1)
+      if (!this.filter_search) return this.options
+      return [...(this.options || [])].filter(o =>
+        o[this.titleField]?.toLowerCase().match(this.filter_search?.toLowerCase()),
+      )
     },
     errorMessage() {
       const err = this.error
@@ -192,20 +189,15 @@ export default {
       get() {
         return this.returnObject
           ? this.mode === 'multiple'
-            ? [...this.value].map(val =>
-                isNaN(+val[this.valueField]) || val[this.valueField] === null
-                  ? val[this.valueField]
-                  : +val[this.valueField],
-              )
+            ? [...this.value].map(val => val[this.valueField])
             : (this.value && this.value[this.valueField]) || ''
           : this.value || this.value === 0
-          ? isNaN(+this.value) || this.value === null
-            ? this.value
-            : +this.value
+          ? String(this.value)
           : undefined
       },
       set(value) {
-        this.$emit('input', value)
+        const val = value ? (isNaN(+value) ? value : Number(value)) : value
+        this.$emit('input', val)
       },
     },
     classes() {
@@ -241,7 +233,7 @@ export default {
       return _has(item, this.titleField) ? this.getValueByProp(item, this.titleField) : null
     },
     getValueByProp(item, prop) {
-      return _get(item, prop)
+      return String(_get(item, prop))
     },
     getPopupContainer() {
       return document.getElementById(this.id)
