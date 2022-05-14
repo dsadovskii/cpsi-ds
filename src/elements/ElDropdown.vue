@@ -192,11 +192,18 @@ export default {
             ? [...this.value].map(val => val[this.valueField])
             : (this.value && this.value[this.valueField]) || ''
           : this.value || this.value === 0
-          ? String(this.value)
+          ? this.value?.constructor === Array
+            ? this.value.map(v => String(v))
+            : String(this.value)
           : undefined
       },
       set(value) {
-        const val = value ? (isNaN(+value) ? value : Number(value)) : value
+        const get_right_val = v => (isNaN(+v) ? v : Number(v))
+        const val = value
+          ? value?.constructor === Array
+            ? value.map(v => get_right_val(v))
+            : get_right_val(value)
+          : value
         this.$emit('input', val)
       },
     },
