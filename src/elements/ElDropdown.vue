@@ -268,7 +268,9 @@ export default {
       this.$emit('search', value)
     },
     handlerClearField() {
-      this.computedValue = this.mode === 'multiple' ? [] : null
+      const value = this.mode === 'multiple' ? [] : null
+      this.computedValue = value
+      this.$emit('change', value)
     },
   },
 }
