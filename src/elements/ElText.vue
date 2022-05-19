@@ -125,7 +125,7 @@ export default {
           maxWidth: props.maxWidth,
         },
         attrs: {
-          title: props.title,
+          title: props.title || htmlContent || slots()['default'],
         },
         ...htmlContent,
       },

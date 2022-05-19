@@ -146,6 +146,7 @@ export default {
   flex-wrap: wrap;
   position: relative;
   text-decoration: none;
+  width: max-content;
   @each $media, $value in $medias {
     @media (min-width: $value) {
       @each $size, $option in $font-sizes {
