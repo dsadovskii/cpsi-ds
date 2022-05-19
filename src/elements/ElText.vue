@@ -117,6 +117,7 @@ export default {
         innerHTML: data.domProps.innerHTML,
       }
     }
+    const defaultText = slots()['default']?.[0]?.text
     return h(
       tag,
       {
@@ -125,7 +126,7 @@ export default {
           maxWidth: props.maxWidth,
         },
         attrs: {
-          title: props.title || htmlContent || slots()['default'],
+          title: props.title || defaultText,
         },
         ...htmlContent,
       },
