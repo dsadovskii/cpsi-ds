@@ -73,6 +73,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    inline: {
+      type: Boolean,
+      default: false,
+    },
     variant: {
       type: String,
       default: 'blue',
@@ -120,7 +124,8 @@ export default {
 
         [`el-link--font-weight-${this.fontWeight}`]: !!this.fontWeight,
         [`el-link--variant-${this.variant}`]: !!this.variant,
-        ['el-link--ellipsis']: this.ellipsis,
+        'el-link--ellipsis': this.ellipsis,
+        'el-link--inline': this.inline,
         'el-link--full-width': this.fullWidth,
         'el-link--disabled': this.disabled,
       }
@@ -146,7 +151,6 @@ export default {
   flex-wrap: wrap;
   position: relative;
   text-decoration: none;
-  width: max-content;
   @each $media, $value in $medias {
     @media (min-width: $value) {
       @each $size, $option in $font-sizes {
@@ -186,6 +190,10 @@ export default {
     &--font-weight-#{$weight} {
       font-weight: $param;
     }
+  }
+  &--inline {
+    display: inline;
+    width: max-content;
   }
   &--ellipsis {
     max-width: 100%;
