@@ -6,7 +6,7 @@
       <the-mask
         v-model="inputValue"
         :ref="`el-input_${name}`"
-        :mask="mask"
+        :mask="preparedMaskVariable"
         :masked="masked"
         :tokens="tokens"
         :class="inputClasses"
@@ -124,6 +124,11 @@ export default {
       },
       set(val) {
         this.$emit('input', val)
+      },
+    },
+    preparedMaskVariable: {
+      get() {
+        return this.mask?.constructor === Array ? [...this.mask] : this.mask
       },
     },
     tokens() {
