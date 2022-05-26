@@ -260,8 +260,14 @@ export default {
           }
         }
       }
-      this.computedValue = value
-      this.$emit('change', value)
+      const get_right_val = v => (isNaN(+v) ? v : Number(v))
+      const val = value
+        ? value?.constructor === Array
+          ? value.map(v => get_right_val(v))
+          : get_right_val(value)
+        : value
+      this.computedValue = val
+      this.$emit('change', val)
     },
     handleSearch(value) {
       if (this.filterable) return (this.filter_search = value)
