@@ -81,11 +81,11 @@ export default {
           on: {
             click() {
               if (!Object.keys(listeners).length || props.disabled) return
-              listeners['click']()
+              listeners['click'] && listeners['click']()
             },
             load() {
               if (!Object.keys(listeners).length || props.disabled) return
-              listeners['load']()
+              listeners['load'] && listeners['load']()
             },
           },
         }),
