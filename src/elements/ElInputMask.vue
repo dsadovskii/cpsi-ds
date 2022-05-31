@@ -18,12 +18,12 @@
       >
       </the-mask>
       <label v-if="label" :for="name" :class="labelClasses">{{ label }}</label>
-      <small v-if="error" class="el-input--error-msg" :title="errorMessage">{{ errorMessage }}</small>
-      <small v-if="hint && !error" class="el-input--hint-msg" :title="hint">{{ hint }}</small>
       <div v-if="$slots['append-btn']" class="el-input__slot-append">
         <slot name="append-btn" />
       </div>
     </section>
+    <small v-if="error" class="el-input--error-msg" :title="errorMessage">{{ errorMessage }}</small>
+    <small v-if="hint && !error" class="el-input--hint-msg" :title="hint">{{ hint }}</small>
   </section>
 </template>
 
@@ -397,15 +397,12 @@ export default {
       }
     }
     &-msg {
-      position: absolute;
-      left: 0;
       display: block;
       max-width: 100%;
       animation: slideDown 0.3s forwards;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       font-size: $fs-12;
+      color: $color-red;
+      margin-top: $space-4;
     }
     @keyframes slideDown {
       from {
@@ -419,15 +416,11 @@ export default {
     }
   }
   &--hint-msg {
-    position: absolute;
-    left: 0;
     display: block;
     max-width: 100%;
     animation: slideDown 0.3s forwards;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     font-size: $fs-12;
+    margin-top: $space-4;
     color: $color-gray;
   }
   &__slot-append {

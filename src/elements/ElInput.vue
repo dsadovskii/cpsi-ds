@@ -1,5 +1,4 @@
 <script>
-import { mask } from 'vue-the-mask'
 export default {
   name: 'ElInput',
   functional: true,
@@ -223,10 +222,6 @@ export default {
                 },
                 props.label,
               ),
-            !props.error || h('small', { class: 'el-input--error-msg', attrs: { title: errorMessage } }, errorMessage),
-            props.hint &&
-              !props.error &&
-              h('small', { class: 'el-input--hint-msg', attrs: { title: props.hint } }, props.hint),
             (slots()['append-btn'] || props.value || props.value === 0) &&
               h('div', { class: { 'el-input__slot-append': true } }, [
                 (props.value || props.value === 0) &&
@@ -251,6 +246,8 @@ export default {
               ]),
           ],
         ),
+        props.error && h('small', { class: 'el-input--error-msg', attrs: { title: errorMessage } }, errorMessage),
+        props.hint && h('small', { class: 'el-input--hint-msg', attrs: { title: props.hint } }, props.hint),
       ],
     )
   },
@@ -469,15 +466,12 @@ export default {
       }
     }
     &-msg {
-      position: absolute;
-      left: 0;
       display: block;
       max-width: 100%;
       animation: slideDown 0.3s forwards;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       font-size: $fs-12;
+      color: $color-red;
+      margin-top: $space-4;
     }
     @keyframes slideDown {
       from {
@@ -491,16 +485,12 @@ export default {
     }
   }
   &--hint-msg {
-    position: absolute;
-    left: 0;
     display: block;
     max-width: 100%;
     animation: slideDown 0.3s forwards;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     font-size: $fs-12;
     color: $color-gray;
+    margin-top: $space-4;
   }
   &__slot-append {
     display: flex;
