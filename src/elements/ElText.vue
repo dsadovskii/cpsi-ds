@@ -126,7 +126,7 @@ export default {
           maxWidth: props.maxWidth,
         },
         attrs: {
-          title: props.title || defaultText,
+          title: (props.title || defaultText || '').replace(/(<(\/?[^>]+)>)/gm, ''),
         },
         ...htmlContent,
       },
