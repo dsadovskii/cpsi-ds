@@ -190,7 +190,7 @@ export default {
         return this.returnObject
           ? this.mode === 'multiple'
             ? [...this.value].map(val => val[this.valueField])
-            : (this.value && this.value[this.valueField]) || ''
+            : ((this.value || this.value === 0) && this.value[this.valueField]) || ''
           : this.value || this.value === 0
           ? this.value?.constructor === Array
             ? this.value.map(v => String(v))
@@ -198,11 +198,10 @@ export default {
           : undefined
       },
       set(value) {
-        const get_right_val = v => (isNaN(+v) ? v : Number(v))
         const val = value
           ? value?.constructor === Array
-            ? value.map(v => get_right_val(v))
-            : get_right_val(value)
+            ? value.map(v => this.getRightValue(v))
+            : this.getRightValue(value)
           : value
         this.$emit('input', val)
       },
@@ -260,11 +259,10 @@ export default {
           }
         }
       }
-      const get_right_val = v => (isNaN(+v) ? v : Number(v))
       const val = value
         ? value?.constructor === Array
-          ? value.map(v => get_right_val(v))
-          : get_right_val(value)
+          ? value.map(v => this.getRightValue(v))
+          : this.getRightValue(value)
         : value
       this.computedValue = val
       this.$emit('change', val)
@@ -277,6 +275,11 @@ export default {
       const value = this.mode === 'multiple' ? [] : null
       this.computedValue = value
       this.$emit('change', value)
+    },
+    getRightValue(v) {
+      if (v === null || v === 'null') return null
+      if (isNaN(+v)) return v
+      return Number(v)?.length === v?.length ? Number(v) : v
     },
   },
 }
