@@ -279,7 +279,7 @@ export default {
     getRightValue(v) {
       if (v === null || v === 'null') return null
       if (isNaN(+v)) return v
-      return Number(v)?.length === v?.length ? Number(v) : v
+      return String(+v)?.length === v?.length ? +v : v
     },
   },
 }
