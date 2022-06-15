@@ -149,6 +149,7 @@ export default {
           : moment(this.value, this.toFormat).format(this.format)
       },
       set(value) {
+        if (!value) return this.$emit('input', null)
         this.$emit(
           'input',
           this.useTimezone
