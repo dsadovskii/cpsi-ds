@@ -136,7 +136,11 @@ export default {
           {
             class: 'el-text__content',
           },
-          [slots()['icon-prepend'], slots()['default'], slots()['icon-append']],
+          [
+            slots()['icon-prepend'] && h('div', { class: 'el-text__content-slot-left' }, [slots()['icon-prepend']]),
+            slots()['default'],
+            slots()['icon-append'] && h('div', { class: 'el-text__content-slot-right' }, [slots()['icon-append']]),
+          ],
         ),
       ],
     )
@@ -163,10 +167,22 @@ export default {
   &__content {
     display: inline-flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     word-wrap: break-word;
     overflow-wrap: break-word;
     word-break: break-word;
+    &-slot-right {
+      margin-right: auto;
+      & > * {
+        display: block;
+      }
+    }
+    &-slot-left {
+      margin-left: auto;
+      & > * {
+        display: block;
+      }
+    }
   }
   margin-bottom: 0;
   &--bold {
