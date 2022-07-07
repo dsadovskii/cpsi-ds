@@ -193,7 +193,8 @@ export default {
   }
   &--inline {
     display: inline;
-    width: max-content;
+    white-space: normal;
+    word-break: break-word;
   }
   &--ellipsis {
     max-width: 100%;
