@@ -73,6 +73,10 @@ export default {
       type: String,
       default: 'lightblue',
     },
+    maxLength: {
+      type: String,
+      default: null,
+    },
     mask: {
       type: String,
       default: '',
@@ -187,6 +191,12 @@ export default {
                         value = event.target.value
                         break
                     }
+
+                    if (props.maxLength || props.maxLength === 0) {
+                      value = event.target.value?.slice(0, props.maxLength)
+                      event.target.value = value
+                    }
+
                     if (data.model) data.model.callback(value)
                     if (data && data.on && data.on.input) {
                       if (data.on.input[1] && data.on.input[1].constructor === Function) data.on.input[1](value)
