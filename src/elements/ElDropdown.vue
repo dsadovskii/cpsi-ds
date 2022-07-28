@@ -159,6 +159,10 @@ export default {
       type: String,
       default: null,
     },
+    appendToBody: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -242,6 +246,7 @@ export default {
       return String(_get(item, prop))
     },
     getPopupContainer() {
+      if (this.appendToBody) return document.body
       return document.getElementById(this.id)
     },
     handleChange(value) {
