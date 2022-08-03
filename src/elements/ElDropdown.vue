@@ -273,7 +273,7 @@ export default {
       this.$emit('change', val)
     },
     handleSearch(value) {
-      if (this.filterable) return (this.filter_search = value)
+      if (this.filterable) return (this.filter_search = value?.replace(/[\[\]\\\?\+\*\(\)]/gm, ''))
       this.$emit('search', value)
     },
     handlerClearField() {
