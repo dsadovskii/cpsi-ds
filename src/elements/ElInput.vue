@@ -19,6 +19,8 @@ export default {
      *
      * Custom:
      * "num" only for numbers,
+     * "en" only en characters,
+     * "ru" only ru characters,
      * "amount_format" - for formatted amount (for example 100 000 000)
      * */
     type: {
@@ -187,6 +189,14 @@ export default {
                           return first ? parseFloat(first) : null
                         })()
                         break
+                      case 'en':
+                        value = event.target.value.replace(/([А-Яа-я])/gm, '')
+                        event.target.value = value
+                        return value
+                      case 'ru':
+                        value = event.target.value.replace(/([A-Za-z])/gm, '')
+                        event.target.value = value
+                        return value
                       default:
                         value = event.target.value
                         break
