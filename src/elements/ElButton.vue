@@ -349,6 +349,7 @@ export default {
       letter-spacing: normal;
       font-size: $fs-12;
       line-height: $lh-13;
+      vertical-align: bottom;
       &-compact {
         @include size(26px);
         padding: 6px;
@@ -374,6 +375,7 @@ export default {
       letter-spacing: normal;
       font-size: $fs-12;
       line-height: $lh-13;
+      vertical-align: bottom;
       &-compact {
         @include size($size-32);
         padding: 6px;
@@ -399,6 +401,7 @@ export default {
       letter-spacing: normal;
       font-size: $fs-14;
       line-height: $lh-2;
+      vertical-align: bottom;
       &-compact {
         @include size($size-40);
         padding: $space-14;
@@ -423,6 +426,7 @@ export default {
       padding: 0 $space-16;
       font-size: $fs-16;
       line-height: $lh-13;
+      vertical-align: bottom;
       &-compact {
         @include size($size-44);
         padding: $space-8;
@@ -447,6 +451,7 @@ export default {
       padding: 0 $space-24;
       font-size: $fs-24;
       line-height: $lh-13;
+      vertical-align: bottom;
       &-compact {
         @include size($size-48);
         padding: $space-14;
