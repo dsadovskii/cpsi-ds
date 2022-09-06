@@ -192,11 +192,11 @@ export default {
                       case 'en':
                         value = event.target.value.replace(/([А-Яа-я])/gm, '')
                         event.target.value = value
-                        return value
+                        break
                       case 'ru':
                         value = event.target.value.replace(/([A-Za-z])/gm, '')
                         event.target.value = value
-                        return value
+                        break
                       default:
                         value = event.target.value
                         break
