@@ -134,8 +134,8 @@ export default {
     tokens() {
       return {
         '#': { pattern: /\d/ },
-        X: { pattern: /[0-9a-zA-Z]/ },
-        S: { pattern: /[a-zA-Z]/ },
+        X: { pattern: /[0-9a-zA-Zа-яА-Я]/ },
+        S: { pattern: /[a-zA-Zа-яА-Я]/ },
         A: { pattern: /[a-zA-Z]/, transform: v => v.toLocaleUpperCase() },
         a: { pattern: /[a-zA-Z]/, transform: v => v.toLocaleLowerCase() },
         '!': { escape: true },
