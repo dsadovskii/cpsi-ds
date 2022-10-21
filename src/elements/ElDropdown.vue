@@ -15,6 +15,7 @@
       @click.stop.prevent
     >
       <a-select
+        ref="el_dropdown_a_select"
         :mode="mode"
         class="no-select-styles"
         :dropdown-match-select-width="matchWidth"
@@ -102,6 +103,10 @@ export default {
       default: false,
     },
     defaultOpen: {
+      type: Boolean,
+      default: false,
+    },
+    autofocus: {
       type: Boolean,
       default: false,
     },
@@ -239,6 +244,12 @@ export default {
       }
       return this.placeholder
     },
+  },
+  mounted() {
+    this.autofocus &&
+      this.$nextTick(() => {
+        this.$refs.el_dropdown_a_select.$el.click()
+      })
   },
   methods: {
     getValue(item) {
