@@ -28,6 +28,7 @@
         :filter-option="false"
         :not-found-content="computedNotFoundContent"
         :class="classes"
+        :default-open="defaultOpen"
         :getPopupContainer="getPopupContainer"
         @change="handleChange"
         @search="handleSearch"
@@ -97,6 +98,10 @@ export default {
       default: false,
     },
     matchWidth: {
+      type: Boolean,
+      default: false,
+    },
+    defaultOpen: {
       type: Boolean,
       default: false,
     },
