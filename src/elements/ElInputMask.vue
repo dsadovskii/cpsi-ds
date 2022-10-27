@@ -18,8 +18,17 @@
       >
       </the-mask>
       <label v-if="label" :for="name" :class="labelClasses">{{ label }}</label>
-      <div v-if="$slots['append-btn']" class="el-input__slot-append">
-        <slot name="append-btn" />
+      <div
+        v-if="$slots['append-btn'] || ((inputValue || inputValue === 0) && clearable && !disabled)"
+        class="el-input__slot-append"
+      >
+        <button
+          v-if="(inputValue || inputValue === 0) && clearable && !disabled"
+          class="el-input__clear-button"
+          title="Очистить поле"
+          @click="handleClearValue"
+        />
+        <slot v-if="$slots['append-btn']" name="append-btn" />
       </div>
     </section>
     <small v-if="error" class="el-input--error-msg" :title="errorMessage">{{ errorMessage }}</small>
@@ -116,6 +125,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    clearable: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
     inputValue: {
@@ -180,6 +193,10 @@ export default {
   methods: {
     handlerWrapperClick() {
       this.$refs[`el-input_${this.name}`] && this.$refs[`el-input_${this.name}`].$el.focus()
+    },
+    handleClearValue() {
+      document.getElementById(this.name).value = null
+      this.inputValue = null
     },
   },
 }
