@@ -39,7 +39,7 @@
         </div>
         <!--eslint-disable-next-line-->
         <a-select-option v-for="(item, i) in computedOptions" :key="new Date().getTime() + i" :value="getValue(item)">
-          {{ getTitle(item) }}
+          <span v-html="getTitle(item)" />
         </a-select-option>
       </a-select>
       <div v-if="mode === 'multiple' || searchable" class="searchable-icon">
