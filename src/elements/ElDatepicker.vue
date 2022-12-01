@@ -103,6 +103,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    defaultSelectToday: {
+      type: Boolean,
+      default: true,
+    },
     /**
      * Функция проверяюая и устанавливающая доступна ли дата для выбора
      * Params [String] date - текущая дата
@@ -146,7 +150,11 @@ export default {
       get() {
         return this.useTimezone
           ? momentTz.tz(moment(this.value, 'YYYY-MM-DD HH:mm:SS')._i, this.currentTimezone).format(this.format)
-          : moment(this.value, this.toFormat).format(this.format)
+          : this.value
+          ? moment(this.value, this.toFormat).format(this.format)
+          : this.defaultSelectToday
+          ? moment(this.value, this.toFormat).format(this.format)
+          : null
       },
       set(value) {
         if (!value) return this.$emit('input', null)
