@@ -225,6 +225,9 @@ export default {
                     listeners && listeners.enter && listeners.enter()
                   }
                 },
+                blur: event => {
+                  listeners && listeners.blur && listeners.blur(event)
+                },
               },
               [!props.mask ? '' : 'directives']: [
                 {
