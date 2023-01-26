@@ -335,6 +335,10 @@ export default {
     display: inline-flex;
     align-items: center;
     user-select: none;
+    .el-button__content {
+      display: flex;
+      align-items: center;
+    }
   }
   &__content + &__icon-append {
     margin-left: $space-10;
