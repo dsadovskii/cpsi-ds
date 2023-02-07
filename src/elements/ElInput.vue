@@ -22,6 +22,7 @@ export default {
      * "en" only en characters,
      * "ru" only ru characters,
      * "amount_format" - for formatted amount (for example 100 000 000)
+     * "score" - for formatted points
      * */
     type: {
       type: String,
@@ -149,6 +150,7 @@ export default {
                   const isAmountFormat = props.type === 'amount_format'
                   const hasValue = props.value || props.value === 0
                   const value = (() => {
+                    //amount format
                     if (hasValue && isAmountFormat) {
                       const [first] =
                         /\d*[\.]?\d*/.exec(
@@ -160,6 +162,15 @@ export default {
                         .replace(/[^\d\.]/g, '')
                         .replace(/\B(?=(?:\d{3})+(?!\d))/g, ' ')
                       return preparedValue
+                      // score format
+                    } else if (hasValue && props.type === 'score') {
+                      const [first] =
+                        /(\d*[\.]?\d{0,2})/.exec(
+                          String(props.value)
+                            ?.replace(/ /gm, '')
+                            ?.trim(),
+                        ) || []
+                      return String(first)
                     } else return props.value || props.value === 0 ? props.value : null
                   })()
                   return value
