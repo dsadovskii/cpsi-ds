@@ -31,6 +31,7 @@
         :class="classes"
         :default-open="defaultOpen"
         :getPopupContainer="getPopupContainer"
+        @blur="handleBlur"
         @change="handleChange"
         @search="handleSearch"
       >
@@ -252,6 +253,16 @@ export default {
       })
   },
   methods: {
+    handleBlur() {
+      /**
+       * Переопределяем блюр пакета, и сохраняем текущеее выбранное значение в переменной
+       * Бывают кейсы при поиске, что пакет сам выбирал первое значение их списка. Это фиксит этот баг
+       * */
+      const computedValue = this.computedValue
+      this.$nextTick(() => {
+        this.handleChange(computedValue)
+      })
+    },
     getValue(item) {
       return _has(item, this.valueField) ? this.getValueByProp(item, this.valueField) : null
     },

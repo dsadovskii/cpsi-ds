@@ -439,7 +439,6 @@ export default {
     background: none;
     box-shadow: none;
     outline: none;
-    font-family: 'Inter', sans-serif;
     color: $color-black;
     &-disabled {
       cursor: inherit;

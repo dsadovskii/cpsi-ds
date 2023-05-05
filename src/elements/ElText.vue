@@ -1,7 +1,7 @@
 <script>
 import { MediaGenerator } from '../helpers/mediaGenerator'
 
-let params = ['size', 'lh']
+let params = ['size', 'lh', 'variation']
 let sizeProps = new MediaGenerator(params).generateProps(String)
 
 export default {
@@ -80,6 +80,10 @@ export default {
       type: String,
       default: 'auto',
     },
+    variation: {
+      type: String,
+      default: null,
+    },
   },
   render(h, { props, slots, data }) {
     let tag
@@ -108,6 +112,11 @@ export default {
       'el-text--ellipsis': props.ellipsis,
       'el-text--uppercase': props.uppercase,
       'el-text--pre-line': props.preLine,
+      [`el-text--variation-xs-${props.variation}`]: props.variation,
+      [`el-text--variation-s-${props.variationS}`]: props.variationS,
+      [`el-text--variation-m-${props.variationM}`]: props.variationM,
+      [`el-text--variation-l-${props.variationL}`]: props.variationL,
+      [`el-text--variation-xl-${props.variationXl}`]: props.variationXl,
       [`${data.staticClass}`]: !!data.staticClass,
       ...data.class,
     }
@@ -238,6 +247,63 @@ export default {
   &--pre-line {
     #{$block-name}__content {
       white-space: pre-line;
+    }
+  }
+  @each $media, $value in $medias {
+    @media (min-width: $value) {
+      &--variation-#{$media} {
+        &-accent-1 {
+          font-size: $fs-44;
+          line-height: $lh-13;
+          font-weight: $fw-semi-bold;
+        }
+        &-accent-2 {
+          font-size: 34px;
+          line-height: $lh-13;
+          font-weight: $fw-semi-bold;
+        }
+        &-title-1 {
+          font-size: $fs-28;
+          line-height: $lh-14;
+          font-weight: $fw-semi-bold;
+        }
+        &-headline-1 {
+          font-size: $fs-18;
+          line-height: $lh-13;
+          font-weight: $fw-semi-bold;
+        }
+        &-headline-2 {
+          font-size: $fs-18;
+          line-height: $lh-13;
+        }
+        &-headline-3 {
+          font-size: $fs-16;
+          line-height: $lh-13;
+          font-weight: $fw-semi-bold;
+        }
+        &-headline-4 {
+          font-size: $fs-16;
+          line-height: $lh-13;
+        }
+        &-text-1 {
+          font-size: $fs-14;
+          line-height: $lh-14;
+          font-weight: $fw-semi-bold;
+        }
+        &-text-2 {
+          font-size: $fs-14;
+          line-height: $lh-14;
+        }
+        &-footnote-1 {
+          font-size: $fs-12;
+          line-height: $lh-15;
+          font-weight: $fw-semi-bold;
+        }
+        &-footnote-2 {
+          font-size: $fs-12;
+          line-height: $lh-15;
+        }
+      }
     }
   }
   @each $name, $color in $colors {
