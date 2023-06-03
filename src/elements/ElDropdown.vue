@@ -258,11 +258,13 @@ export default {
       })
   },
   methods: {
-    handleBlur() {
+    handleBlur(val) {
       /**
        * Переопределяем блюр пакета, и сохраняем текущеее выбранное значение в переменной
        * Бывают кейсы при поиске, что пакет сам выбирал первое значение их списка. Это фиксит этот баг
        * */
+      if (val === this.computedValue) return
+
       const computedValue = this.computedValue
       this.$nextTick(() => {
         this.handleChange(computedValue)
