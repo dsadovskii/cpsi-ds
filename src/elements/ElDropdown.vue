@@ -24,7 +24,7 @@
         :style="styles"
         :placeholder="computedPlaceholder"
         :show-search="filterable || searchable"
-        :disabled="disabled"
+        :disabled="disabled || unselectable"
         :required="required"
         :filter-option="false"
         :not-found-content="computedNotFoundContent"
@@ -146,6 +146,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    unselectable: {
+      type: Boolean,
+      default: false,
+    },
     clearable: {
       type: Boolean,
       default: true,
@@ -225,6 +229,7 @@ export default {
       return {
         'el-dropdown--no-arrow-bg': this.noArrowBg,
         'el-dropdown--inverted-colors': this.invertedColors,
+        'el-dropdown--unselectable': this.unselectable,
         [`el-dropdown--size-${this.size}`]: true,
       }
     },
@@ -344,6 +349,11 @@ export default {
     }
     &-wrapper {
       display: flex;
+    }
+  }
+  &--unselectable {
+    .ant-select-arrow {
+      display: none !important;
     }
   }
   &__content {
